@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "@/pages/Home";
-import Error from "@/pages/Error";
+import Home from "@/views/Home";
+import Error from "@/views/Error";
 
 export default function App() {
   return (
