@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "@/stores";
 
 import "@/index.css";
+import "@fontsource/poppins";
 
 const rootEl = document.querySelector("#root");
 const root = ReactDOM.createRoot(rootEl);

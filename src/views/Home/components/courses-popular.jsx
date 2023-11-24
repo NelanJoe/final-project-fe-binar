@@ -1,0 +1,25 @@
+import { Link } from "react-router-dom";
+
+import CoursesCTA from "./courses-cta";
+import CoursesList from "@/components/common/courses-list";
+
+const CoursesPopular = () => {
+  return (
+    <section>
+      <div className="max-w-7xl mx-4 md:mx-auto mt-8">
+        <div className="flex flex-row justify-between items-center">
+          <h3 className="text-xl font-semibold">Kursus Populer</h3>
+          <Link to="/category" className="text-[#6148FF] font-semibold">
+            Lihat Semua
+          </Link>
+        </div>
+        <CoursesCTA />
+        <div>
+          <CoursesList />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default CoursesPopular;
