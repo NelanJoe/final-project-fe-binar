@@ -1,15 +1,11 @@
+import AuthLayout from "@/layouts/auth.layout";
+import RegisterForm from "../components/register-form";
+
 const Register = () => {
   return (
-    <main>
-      <section>
-        <img src="" alt="" />
-      </section>
-      <section>
-        <form action="">
-          <input type="text" />
-        </form>
-      </section>
-    </main>
+  <AuthLayout>
+    <RegisterForm/>
+  </AuthLayout>
   );
 };
 
