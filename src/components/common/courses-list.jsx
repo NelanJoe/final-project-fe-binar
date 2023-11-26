@@ -44,11 +44,11 @@ const CoursesList = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+    <>
       {coursesList.map((course) => (
         <CoursesItem key={course.id} course={course} />
       ))}
-    </div>
+    </>
   );
 };
 
