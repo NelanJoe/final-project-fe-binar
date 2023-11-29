@@ -4,6 +4,7 @@ import Home from "@/views/Home";
 import Error from "@/views/Error";
 import { Login, Register } from "@/views/Auth";
 import Courses from "./views/Courses";
+import Otp from "./views/Auth/pages/otp";
 
 export default function App() {
   return (
@@ -15,8 +16,10 @@ export default function App() {
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="otp" element={<Otp />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
 }
+ 
