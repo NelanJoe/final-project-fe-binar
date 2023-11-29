@@ -32,7 +32,7 @@ const Header = () => {
           </div>
         </div>
         <div className="hidden md:block">
-          {!userInfo ? (
+          {userInfo ? (
             <div className="flex gap-x-2 text-lg">
               <span>
                 <LoginIcon className="w-6 h-6 text-white" />
