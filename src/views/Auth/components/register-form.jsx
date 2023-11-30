@@ -1,66 +1,42 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import GoogleLogin from "./google-login";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { registerAction } from "@/stores/auth/authActions";
 
-const loginSchema = yup.object().shape({
-  name: yup.string().required("Nama harus di isi"),
-  email: yup
-    .string()
-    .email("Harap masukkan email yang valid")
-    .required("Email harus di isi"),
-  phone: yup
-    .number()
-    .typeError("Nomor telepon harus berupa angka")
-    .max(9999999999999, "Nomor telepon terlalu panjang")
-    .required("Nomor telepon harus di isi"),
-  password: yup
-    .string()
-    .required("Kata sandi harus di isi")
-    .min(6, "Panjang kata sandi minimal 6 karakter")
-    .matches(
-      /[a-z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf kecil"
-    )
-    .matches(
-      /[A-Z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf besar"
-    )
-    .matches(
-      /[\d]+/,
+import GoogleLogin from "./google-login";
 
-      "Kata sandi harus mengandung setidaknya satu angka"
-    )
-    .matches(
-      /[!@#$%^&*()_+{}|<>,./?-]/,
-      "Kata sandi harus mengandung setidaknya satu karakter khusus"
-    ),
-});
+import { useRegisterActionMutation } from "@/stores";
+import { loginSchema } from "../validation";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-
+  const [registerAction] = useRegisterActionMutation();
 
   const {
     register,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm({
-    resolver:yupResolver(loginSchema),
-  })
+    resolver: yupResolver(loginSchema),
+  });
 
-  const onSubmit = async (data, event) => {
-    console.log(data);
-
+  const onSubmit = async (values, event) => {
     event.preventDefault();
 
-    dispatch(registerAction(data, navigate));
-  }
+    try {
+      const res = await registerAction(values).unwrap();
+
+      toast.success(res.message);
+
+      navigate({
+        pathname: "/otp",
+        search: `?verify-email=${values?.email}`,
+      });
+    } catch (error) {
+      toast.error(error?.data?.error);
+    }
+  };
 
   return (
     <section className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
@@ -177,6 +153,6 @@ const RegisterForm = () => {
       </div>
     </section>
   );
-}
+};
 
-export default RegisterForm
+export default RegisterForm;

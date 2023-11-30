@@ -1,45 +1,21 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import GoogleLogin from "./google-login";
-import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { login } from "@/stores/auth/authActions";
+import { Link, useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
 
-const loginSchema = yup.object({
-  email: yup
-    .string()
-    .email("Harap masukkan email yang valid")
-    .required("Email harus di isi"),
-  password: yup
-    .string()
-    .required("Kata sandi harus di isi")
-    .min(6, "Panjang kata sandi minimal 6 karakter")
-    .matches(
-      /[a-z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf kecil"
-    )
-    .matches(
-      /[A-Z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf besar"
-    )
-    .matches(
-      /[\d]+/,
+import { useLoginMutation } from "@/stores";
+import { setToken } from "@/stores/auth/auth.slice";
 
-      "Kata sandi harus mengandung setidaknya satu angka"
-    )
-    .matches(
-      /[!@#$%^&*()_+{}|<>,./?-]/,
-      "Kata sandi harus mengandung setidaknya satu karakter khusus"
-    ),
-});
+import { loginSchema } from "../validation";
+
+import GoogleLogin from "./google-login";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
+  const [login] = useLoginMutation();
 
   const {
     register,
@@ -50,11 +26,23 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (values, event) => {
-    console.log(values);
-
     event.preventDefault();
 
-    dispatch(login(email, password, navigate));
+    try {
+      const res = await login(values).unwrap();
+
+      const token = res.data.token;
+
+      // Save our token
+      dispatch(setToken(token));
+
+      toast.success("Login Berhasil");
+
+      // Redirect to home
+      navigate("/");
+    } catch (error) {
+      toast.error(error?.data?.message);
+    }
   };
 
   return (
@@ -76,8 +64,6 @@ const LoginForm = () => {
             </label>
             <input
               {...register("email")}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 text-sm border shadow appearance-none rounded-2xl leading-tigh lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
               placeholder="Contoh: johndoe@gmail.com"
             />
@@ -103,8 +89,6 @@ const LoginForm = () => {
               </div>
               <input
                 {...register("password")}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 name="password"
                 id="password"
@@ -119,7 +103,7 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full duration-75 bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2 flex items-center justify-center gap-1"
+            className="w-full bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Masuk
           </button>
