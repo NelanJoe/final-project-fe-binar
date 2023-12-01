@@ -76,14 +76,12 @@ const Header = () => {
             <SearchForm />
           </div>
           {!userInfo ? (
-            <div className="flex gap-x-2 text-lg">
-              <span>
+            <Link to="/login" className="text-white cursor-pointer">
+              <div className="flex gap-x-2 text-lg">
                 <LoginIcon className="w-6 h-6 text-white" />
-              </span>
-              <Link to="/login" className="text-white">
-                Masuk
-              </Link>
-            </div>
+                <span>Masuk</span>
+              </div>
+            </Link>
           ) : (
             <div className="flex items-center gap-x-2 text-lg">
               <Link>

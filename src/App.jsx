@@ -22,8 +22,10 @@ export default function App() {
         <Route path="register" element={<Register />} />
         <Route path="otp" element={<Otp />} />
         <Route path="*" element={<Error />} />
+
       </Routes>
       <Toaster position="top-left" />
     </BrowserRouter>
   );
 }
+ 
