@@ -35,7 +35,7 @@ const OtpForm = () => {
       dispatch(setToken(token));
       navigate("/");
     } catch (error) {
-      console.error(error);
+      toast.error(error);
     }
   };
 
