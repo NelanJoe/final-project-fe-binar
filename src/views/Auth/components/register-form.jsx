@@ -6,6 +6,7 @@ import GoogleLogin from "./google-login";
 
 import { useRegisterActionMutation } from "@/stores";
 import { loginSchema } from "../validation";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
   const navigate = useNavigate();

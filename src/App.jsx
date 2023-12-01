@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { Toaster } from "react-hot-toast";
 
 import Home from "@/views/Home";
 import Error from "@/views/Error";
@@ -17,11 +17,13 @@ export default function App() {
           <Route index element={<Courses />} />
           <Route path=":id" element={<CoursesDetail />} />
         </Route>
+
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="otp" element={<Otp />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <Toaster position="top-left" />
     </BrowserRouter>
   );
 }

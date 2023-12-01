@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { ArrowLeftIcon } from "lucide-react";
 import OtpInput from "react-otp-input";
 
 import { useVerifyOtpMutation } from "@/stores";
 
-import btnBack from "@/assets/images/btn-back.svg";
+import toast from "react-hot-toast";
+
 import { setToken } from "@/stores/auth/auth.slice";
 
 const OtpForm = () => {
@@ -41,7 +43,9 @@ const OtpForm = () => {
     <section className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
       <div className="max-w-xl lg:max-w-3xl">
         <Link to="/register">
-          <img src={btnBack} alt="btn" className="mb-6" />
+          <button>
+            <ArrowLeftIcon />
+          </button>
         </Link>
         <form
           className="px-8 relative pt-6 pb-8 mb-4 w-[460px]"
@@ -64,7 +68,7 @@ const OtpForm = () => {
               inputStyle={{
                 width: "2.8rem",
                 height: "2.8rem",
-                margin: "0 1rem",
+                margin: "0 .6rem",
                 border: ".1rem solid #6148FF",
                 borderRadius: "40%",
               }}
@@ -72,7 +76,7 @@ const OtpForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full mt-16 duration-75 bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2 flex items-center justify-center gap-1"
+            className="w-full mt-14 duration-75 bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Simpan
           </button>

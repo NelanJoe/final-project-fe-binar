@@ -96,7 +96,7 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full duration-75 bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2 flex items-center justify-center gap-1"
+            className="w-full bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Masuk
           </button>
