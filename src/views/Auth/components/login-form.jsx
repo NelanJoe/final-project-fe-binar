@@ -32,16 +32,11 @@ const LoginForm = () => {
       const res = await login(values).unwrap();
 
       const token = res.data.token;
-
-      // Save our token
       dispatch(setToken(token));
 
-      toast.success("Login Berhasil");
-
-      // Redirect to home
       navigate("/");
     } catch (error) {
-      toast.error(error?.data?.message);
+      toast.error(`Error: ${error?.message}`);
     }
   };
 
@@ -52,7 +47,7 @@ const LoginForm = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="px-8 pt-6 bg-white w-[460px]"
         >
-          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-5 font-bold leading-9 text-[#6148FF]">
+          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-5 font-bold leading-9 text-dark-blue">
             Masuk
           </h1>
           <div className="mb-4">
@@ -82,7 +77,7 @@ const LoginForm = () => {
                 </label>
                 <a
                   href="#"
-                  className="text-sm lg:text-base font-medium hover:underline text-[#6148FF]"
+                  className="text-sm lg:text-base font-medium hover:underline text-dark-blue"
                 >
                   Lupa Kata Sandi
                 </a>
@@ -94,7 +89,6 @@ const LoginForm = () => {
                 id="password"
                 placeholder="Masukan Password"
                 className="w-full px-3 py-2 text-sm leading-tight border shadow appearance-none rounded-2xl lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
-                required=""
               />
               <span className="text-sm text-red-500 lg:text-base">
                 {errors.password?.message}
@@ -103,7 +97,7 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Masuk
           </button>
@@ -119,7 +113,7 @@ const LoginForm = () => {
             Belum punya akun?
             <Link
               to="/register"
-              className="font-bold duration-75 text-[#6148FF] hover:underline"
+              className="font-bold duration-75 text-dark-blue hover:underline"
             >
               Daftar di sini
             </Link>

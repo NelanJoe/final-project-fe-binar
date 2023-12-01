@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import Home from "@/views/Home";
 import Error from "@/views/Error";
 import { Login, Register } from "@/views/Auth";
-import Courses from "./views/Courses";
-import Otp from "./views/Auth/pages/otp";
-import { Toaster } from "react-hot-toast";
+import Courses from "@/views/Courses";
+import CoursesDetail from "@/views/Courses/pages/courses-detail";
+import Otp from "@/views/Auth/pages/otp";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="courses">
           <Route index element={<Courses />} />
+          <Route path=":id" element={<CoursesDetail />} />
         </Route>
 
         <Route path="login" element={<Login />} />
@@ -22,7 +24,7 @@ export default function App() {
         <Route path="*" element={<Error />} />
 
       </Routes>
-        <Toaster position="top-left"/>
+      <Toaster position="top-left" />
     </BrowserRouter>
   );
 }

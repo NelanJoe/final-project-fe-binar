@@ -24,17 +24,20 @@ const RegisterForm = () => {
   const onSubmit = async (values, event) => {
     event.preventDefault();
 
+    console.log("Values", values);
+
     try {
       const res = await registerAction(values).unwrap();
 
-      toast.success(res.message);
+      console.log(res.message);
+      console.log("OTP CODE:", res.otp);
 
       navigate({
         pathname: "/otp",
         search: `?verify-email=${values?.email}`,
       });
     } catch (error) {
-      toast.error(error?.data?.error);
+      toast.error(`Error: ${error?.message}`);
     }
   };
 
@@ -45,7 +48,7 @@ const RegisterForm = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="px-8 pt-6 bg-white w-[460px]"
         >
-          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-5 font-bold leading-9 text-[#6148FF]">
+          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-5 font-bold leading-9 text-dark-blue">
             Daftar
           </h1>
           <div className="mb-4">
@@ -128,7 +131,7 @@ const RegisterForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full duration-75 bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2 flex items-center justify-center gap-1"
+            className="w-full duration-75 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2 flex items-center justify-center gap-1"
           >
             Daftar
           </button>
@@ -144,7 +147,7 @@ const RegisterForm = () => {
             Sudah punya akun?
             <Link
               to="/login"
-              className="font-bold duration-75 text-[#6148FF] hover:underline"
+              className="font-bold duration-75 text-dark-blue hover:underline"
             >
               Masuk di sini
             </Link>

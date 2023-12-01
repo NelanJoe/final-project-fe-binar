@@ -21,7 +21,7 @@ const Header = () => {
   const userInfo = true;
 
   return (
-    <header className="bg-[#6148FF] py-6 px-4 md:px-0 border-b border-b-gray-300 sticky z-30 top-0">
+    <header className="bg-dark-blue py-6 px-4 md:px-0 border-b border-b-gray-300 sticky z-30 top-0">
       <nav className="flex items-center justify-between max-w-7xl mx-auto">
         <div className="flex items-center gap-x-2 w-full md:w-1/2">
           <Link to="/" className="text-white">
@@ -32,7 +32,7 @@ const Header = () => {
           </div>
         </div>
         <div className="hidden md:block">
-          {!userInfo ? (
+          {userInfo ? (
             <div className="flex gap-x-2 text-lg">
               <span>
                 <LoginIcon className="w-6 h-6 text-white" />
@@ -44,7 +44,7 @@ const Header = () => {
           ) : (
             <div className="flex items-center gap-x-2 text-lg">
               <Link>
-                <button className="flex items-center gap-x-1 bg-[#489CFF] px-2 py-1 rounded-md text-white">
+                <button className="flex items-center gap-x-1 bg-soft-blue px-2 py-1 rounded-md text-white">
                   <span>
                     <ListIcon />
                   </span>
@@ -76,18 +76,16 @@ const Header = () => {
             <SearchForm />
           </div>
           {!userInfo ? (
-            <div className="flex gap-x-2 text-lg">
-              <span>
+            <Link to="/login" className="text-white cursor-pointer">
+              <div className="flex gap-x-2 text-lg">
                 <LoginIcon className="w-6 h-6 text-white" />
-              </span>
-              <Link to="/login" className="text-white">
-                Masuk
-              </Link>
-            </div>
+                <span>Masuk</span>
+              </div>
+            </Link>
           ) : (
             <div className="flex items-center gap-x-2 text-lg">
               <Link>
-                <button className="flex items-center gap-x-1 bg-[#489CFF] px-2 py-1 rounded-md text-white">
+                <button className="flex items-center gap-x-1 bg-soft-blue px-2 py-1 rounded-md text-white">
                   <span>
                     <ListIcon />
                   </span>
