@@ -51,7 +51,7 @@ const OtpForm = () => {
           className="px-8 relative pt-6 pb-8 mb-4 w-[460px]"
           onSubmit={onSubmit}
         >
-          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-20 font-bold leading-9 text-[#6148FF]">
+          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-20 font-bold leading-9 text-dark-blue">
             Masukan OTP
           </h1>
           <div className="flex justify-center">
@@ -76,7 +76,7 @@ const OtpForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full mt-14 duration-75 bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full mt-14 duration-75 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Simpan
           </button>

@@ -26,7 +26,7 @@ const CoursesDetail = () => {
   return (
     <HomeLayout>
       <main className="min-h-screen">
-        <section className="bg-[#E8F1FF]">
+        <section className="bg-light-blue">
           <div className="max-w-7xl mx-4 md:mx-auto py-6">
             <Link to="/courses">
               <button className="flex flex-row items-center space-x-3">
@@ -35,7 +35,7 @@ const CoursesDetail = () => {
             </Link>
             <div className="px-10 mt-12 space-y-3 w-[67%]">
               <div className="flex md:flex-row justify-between items-center">
-                <h3 className="font-semibold text-[#6148FF]">UI/UX Design</h3>
+                <h3 className="font-semibold text-dark-blue">UI/UX Design</h3>
                 <div className="flex items-center gap-x-2">
                   ⭐<p>4.7</p>
                 </div>
@@ -49,7 +49,7 @@ const CoursesDetail = () => {
               <div className="flex items-center space-x-12">
                 <div className="flex items-center space-x-2">
                   <ShieldPlusIcon className="w-4 h-4 text-green-500" />
-                  <p className="text-[#6148FF]">Beginner Level</p>
+                  <p className="text-dark-blue">Beginner Level</p>
                 </div>
                 <div className="flex items-center space-x-2">
                   <BookOpenTextIcon className="w-4 h-4 text-green-500" />

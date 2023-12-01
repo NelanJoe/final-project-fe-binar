@@ -21,7 +21,7 @@ const CoursesItem = ({ course }) => {
         </div>
         <div className="py-2 px-3 space-y-2">
           <div className="flex justify-between items-center">
-            <p className="text-[#6148FF] text-sm font-semibold">
+            <p className="text-dark-blue text-sm font-semibold">
               {course.category}
             </p>
             <span className="font-semibold text-sm">⭐ {course.rating}</span>
@@ -35,7 +35,7 @@ const CoursesItem = ({ course }) => {
           <div className="flex justify-between items-center">
             <div className="flex flex-row items-center gap-x-1 text-sm md:text-base">
               <ShieldPlusIcon className="w-4 h-4 text-green-500" />{" "}
-              <p className="text-[#6148FF]">{course.level}</p>
+              <p className="text-dark-blue">{course.level}</p>
             </div>
             <div className="flex flex-row items-center gap-x-1 text-sm md:text-base">
               <BookOpenTextIcon className="w-4 h-4 text-green-500" />{" "}
@@ -46,7 +46,7 @@ const CoursesItem = ({ course }) => {
               <p>{course.duration}</p>
             </div>
           </div>
-          <button className="rounded-full px-3 py-1 bg-[#489CFF] text-sm text-white font-semibold">
+          <button className="rounded-full px-3 py-1 bg-soft-blue text-sm text-white font-semibold">
             <div className="flex flex-row items-center gap-x-2">
               <GemIcon className="w-4 h-4" />{" "}
               <span>Beli Rp {course.price}</span>
