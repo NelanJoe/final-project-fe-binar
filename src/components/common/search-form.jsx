@@ -29,7 +29,7 @@ const SearchForm = () => {
           className="w-full px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-[#EBF3FC]"
         />
         <div className="absolute inset-y-0 right-3 top-2">
-          <button type="submit" className="rounded-lg bg-[#6148FF] px-3 py-2">
+          <button type="submit" className="rounded-lg bg-dark-blue px-3 py-2">
             <SearchIcon className="w-4 h-4 text-white" />
           </button>
         </div>
