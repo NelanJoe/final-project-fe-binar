@@ -42,11 +42,11 @@ const Category = () => {
   ];
 
   return (
-    <section className="bg-[#EBF3FC] py-8 md:py-20">
+    <section className="bg-light-blue-100 py-8 md:py-20">
       <div className="max-w-7xl mx-4 md:mx-auto space-y-6">
         <div className="flex flex-row justify-between items-center">
           <h3 className="text-xl font-semibold">Kategori Belajar</h3>
-          <Link to="/category" className="text-[#6148FF] font-semibold">
+          <Link to="/category" className="text-dark-blue font-semibold">
             Lihat Semua
           </Link>
         </div>

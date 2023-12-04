@@ -20,11 +20,11 @@ const SearchFromCourses = () => {
             placeholder="Cari Kelas..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full border border-[#6148FF] outline-none focus:ring-1 focus:ring-[#6148FF] rounded-full px-3 py-2"
+            className="w-full border border-dark-blue outline-none focus:ring-1 focus:ring-dark-blue rounded-full px-3 py-2"
           />
         </div>
         <div className="absolute inset-y-0 right-3 top-2">
-          <button type="submit" className="px-1 py-1 bg-[#6148FF] rounded-xl">
+          <button type="submit" className="px-1 py-1 bg-dark-blue rounded-xl">
             <SearchIcon className="w-4 h-4 text-white" />
           </button>
         </div>
