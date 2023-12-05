@@ -1,9 +1,6 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { ListFilterIcon } from "lucide-react";
-
-import { useGetCoursesMutation } from "@/stores";
 
 import HomeLayout from "@/layouts/home.layout";
 import CoursesList from "@/components/common/courses-list";
@@ -11,13 +8,10 @@ import CoursesList from "@/components/common/courses-list";
 import SearchFromCourses from "../components/search-form-courses";
 import CourseFilter from "../components/course-filter";
 import CourseCTA from "../components/course-cta";
+import { useGetCoursesQuery } from "@/stores";
 
 const Courses = () => {
-  const [getCourses, { data }] = useGetCoursesMutation();
-
-  useEffect(() => {
-    getCourses("");
-  }, []);
+  const { data } = useGetCoursesQuery("");
 
   const courses = data?.popular;
 

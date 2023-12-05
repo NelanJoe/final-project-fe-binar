@@ -2,18 +2,15 @@ import { apiSlice } from "../apis/api.slice";
 
 const courseApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getCourses: builder.mutation({
-      query: ({ category }) => {
+    getCourses: builder.query({
+      query: (category) => {
         return {
-          url: `/home/popular`,
-          method: "POST",
-          body: {
-            category,
-          },
+          url: `/home/popular/?category=${category}`,
+          method: "GET",
         };
       },
     }),
   }),
 });
 
-export const { useGetCoursesMutation } = courseApi;
+export const { useGetCoursesQuery } = courseApi;
