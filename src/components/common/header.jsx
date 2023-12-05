@@ -35,11 +35,7 @@ const Header = () => {
           </div>
         </div>
         <div className="hidden md:block">
-<<<<<<< HEAD
           {!token ? (
-=======
-          {userInfo ? (
->>>>>>> a6dbc13273294f05fb8fa37c457dbf51cf3d23cb
             <div className="flex gap-x-2 text-lg">
               <span>
                 <LoginIcon className="w-6 h-6 text-white" />
@@ -50,11 +46,7 @@ const Header = () => {
             </div>
           ) : (
             <div className="flex items-center gap-x-2 text-lg">
-<<<<<<< HEAD
               <Link to="/courses">
-=======
-              <Link>
->>>>>>> a6dbc13273294f05fb8fa37c457dbf51cf3d23cb
                 <button className="flex items-center gap-x-1 bg-soft-blue px-2 py-1 rounded-md text-white">
                   <span>
                     <ListIcon />
@@ -86,11 +78,7 @@ const Header = () => {
           <div className="w-full">
             <SearchForm />
           </div>
-<<<<<<< HEAD
           {!token ? (
-=======
-          {!userInfo ? (
->>>>>>> a6dbc13273294f05fb8fa37c457dbf51cf3d23cb
             <Link to="/login" className="text-white cursor-pointer">
               <div className="flex gap-x-2 text-lg">
                 <LoginIcon className="w-6 h-6 text-white" />
@@ -99,11 +87,7 @@ const Header = () => {
             </Link>
           ) : (
             <div className="flex items-center gap-x-2 text-lg">
-<<<<<<< HEAD
               <Link to="/courses">
-=======
-              <Link>
->>>>>>> a6dbc13273294f05fb8fa37c457dbf51cf3d23cb
                 <button className="flex items-center gap-x-1 bg-soft-blue px-2 py-1 rounded-md text-white">
                   <span>
                     <ListIcon />

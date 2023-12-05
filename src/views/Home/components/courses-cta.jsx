@@ -12,12 +12,12 @@ const CoursesCTA = () => {
   };
 
   return (
-    <div className="flex flex-row items-center gap-x-4 my-10 overflow-x-scroll">
+    <div className="flex flex-row flex-wrap items-center gap-2 my-6 md:my-10">
       <div>
         <button
           value="all"
           onClick={handleClick}
-          className="px-3 py-1 md:px-4 md:py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
+          className="px-3 py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
         >
           All
         </button>
@@ -26,7 +26,7 @@ const CoursesCTA = () => {
         <button
           value="Data Science"
           onClick={handleClick}
-          className="px-3 py-1 md:px-4 md:py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
+          className="px-3 py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
         >
           Data Science
         </button>
@@ -35,7 +35,7 @@ const CoursesCTA = () => {
         <button
           value="Ui&Ux"
           onClick={handleClick}
-          className="px-3 py-1 md:px-4 md:py-1 bg-dark-blue rounded-full text-sm md:text-base md:font-semibold text-white"
+          className="px-3 py-1 bg-dark-blue rounded-full text-sm md:text-base md:font-semibold text-white"
         >
           UI/UX Design
         </button>
@@ -44,7 +44,7 @@ const CoursesCTA = () => {
         <button
           value="Cyber Cecurity"
           onClick={handleClick}
-          className="px-3 py-1 md:px-4 md:py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
+          className="px-3 py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
         >
           Cyber Security
         </button>
@@ -53,13 +53,13 @@ const CoursesCTA = () => {
         <button
           value="Web Development"
           onClick={handleClick}
-          className="px-3 py-1 md:px-4 md:py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
+          className="px-3 py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
         >
           Android Development
         </button>
       </div>
       <div>
-        <button className="px-3 py-1 md:px-4 md:py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold">
+        <button className="px-3 py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold">
           Web Development
         </button>
       </div>
@@ -67,7 +67,7 @@ const CoursesCTA = () => {
         <button
           value="IOS Development"
           onClick={handleClick}
-          className="px-4 py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
+          className="px-3 py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
         >
           IOS Development
         </button>
@@ -76,7 +76,7 @@ const CoursesCTA = () => {
         <button
           value="Business Intellegence"
           onClick={handleClick}
-          className="px-4 py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
+          className="px-3 py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
         >
           Business Intellegence
         </button>
