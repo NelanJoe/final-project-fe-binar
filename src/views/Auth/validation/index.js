@@ -11,20 +11,20 @@ const loginSchema = yup.object({
     .min(6, "Panjang kata sandi minimal 6 karakter")
     .matches(
       /[a-z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf kecil"
+      "Password harus mengandung setidaknya satu huruf kecil"
     )
     .matches(
       /[A-Z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf besar"
+      "Password harus mengandung setidaknya satu huruf besar"
     )
     .matches(
       /[\d]+/,
 
-      "Kata sandi harus mengandung setidaknya satu angka"
+      "Password harus mengandung setidaknya satu angka"
     )
     .matches(
       /[!@#$%^&*()_+{}|<>,./?-]/,
-      "Kata sandi harus mengandung setidaknya satu karakter khusus"
+      "Password harus mengandung setidaknya satu karakter khusus"
     ),
 });
 
@@ -41,25 +41,49 @@ const registerSchema = yup.object().shape({
     .required("Nomor telepon harus di isi"),
   password: yup
     .string()
-    .required("Kata sandi harus di isi")
+    .required("Password harus di isi")
     .min(6, "Panjang kata sandi minimal 6 karakter")
     .matches(
       /[a-z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf kecil"
+      "Password harus mengandung setidaknya satu huruf kecil"
     )
     .matches(
       /[A-Z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf besar"
+      "Password harus mengandung setidaknya satu huruf besar"
     )
     .matches(
       /[\d]+/,
 
-      "Kata sandi harus mengandung setidaknya satu angka"
+      "Password harus mengandung setidaknya satu angka"
     )
     .matches(
       /[!@#$%^&*()_+{}|<>,./?-]/,
-      "Kata sandi harus mengandung setidaknya satu karakter khusus"
+      "Password harus mengandung setidaknya satu karakter khusus"
     ),
 });
 
-export { loginSchema, registerSchema };
+const loginAdminSchema = yup.object().shape({
+  password: yup
+    .string()
+    .required("Password harus di isi")
+    .min(6, "Panjang kata sandi minimal 6 karakter")
+    .matches(
+      /[a-z]+/,
+      "Password harus mengandung setidaknya satu huruf kecil"
+    )
+    .matches(
+      /[A-Z]+/,
+      "Password harus mengandung setidaknya satu huruf besar"
+    )
+    .matches(
+      /[\d]+/,
+
+      "Password harus mengandung setidaknya satu angka"
+    )
+    .matches(
+      /[!@#$%^&*()_+{}|<>,./?-]/,
+      "Password harus mengandung setidaknya satu karakter khusus"
+    ),
+});
+
+export { loginSchema, registerSchema, loginAdminSchema };

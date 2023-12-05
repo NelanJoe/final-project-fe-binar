@@ -111,7 +111,7 @@ const Courses = () => {
                 <button className="w-full px-4 py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70">
                   All
                 </button>
-                <button className="w-full px-4 py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-white bg-[#6148FF]">
+                <button className="w-full px-4 py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-white bg-dark-blue">
                   In Progress
                 </button>
                 <button className="w-full px-4 py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70">

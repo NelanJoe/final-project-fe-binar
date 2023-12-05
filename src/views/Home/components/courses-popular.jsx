@@ -9,7 +9,7 @@ const CoursesPopular = () => {
       <div className="mx-4 mt-8 max-w-7xl md:mx-auto">
         <div className="flex flex-row items-center justify-between">
           <h3 className="text-xl font-semibold">Kursus Populer</h3>
-          <Link to="/courses" className="text-[#6148FF] font-semibold">
+          <Link to="/courses" className="text-dark-blue font-semibold">
             Lihat Semua
           </Link>
         </div>

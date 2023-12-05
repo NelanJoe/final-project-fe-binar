@@ -20,4 +20,5 @@ export {
   useLoginMutation,
   useRegisterActionMutation,
   useVerifyOtpMutation,
+  useLoginGoogleMutation,
 } from "./auth/auth.api";

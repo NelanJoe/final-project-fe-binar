@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import OtpInput from "react-otp-input";
-import toast from "react-hot-toast";
 import { ArrowLeftIcon } from "lucide-react";
+import OtpInput from "react-otp-input";
 
 import { useVerifyOtpMutation } from "@/stores";
+
+import toast from "react-hot-toast";
 
 import { setToken } from "@/stores/auth/auth.slice";
 
@@ -31,15 +32,10 @@ const OtpForm = () => {
 
       const token = res.data.token;
 
-      // Save our token
       dispatch(setToken(token));
-
-      toast.success("Registrasi Berhasil");
-      
-      // Redirect to home
       navigate("/");
     } catch (error) {
-      toast.error(error?.data?.message);
+      toast.error(error);
     }
   };
 
@@ -48,14 +44,14 @@ const OtpForm = () => {
       <div className="max-w-xl lg:max-w-3xl">
         <Link to="/register">
           <button>
-            <ArrowLeftIcon/>
+            <ArrowLeftIcon />
           </button>
         </Link>
         <form
           className="px-8 relative pt-6 pb-8 mb-4 w-[460px]"
           onSubmit={onSubmit}
         >
-          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-20 font-bold leading-9 text-[#6148FF]">
+          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-20 font-bold leading-9 text-dark-blue">
             Masukan OTP
           </h1>
           <div className="flex justify-center">
@@ -80,7 +76,7 @@ const OtpForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full mt-14 duration-75 bg-[#6148FF] text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full mt-14 duration-75 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Simpan
           </button>

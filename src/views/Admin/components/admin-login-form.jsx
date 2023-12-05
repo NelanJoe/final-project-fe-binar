@@ -1,43 +1,19 @@
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import GoogleLogin from "@/views/Auth/components/google-login";
+import { loginAdminSchema } from "@/views/Auth/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
-import { useLoginMutation } from "@/stores";
-import { setToken } from "@/stores/auth/auth.slice";
-
-import { loginSchema } from "../validation";
-
-import GoogleLogin from "./google-login";
-
-const LoginForm = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const [login] = useLoginMutation();
-
+const AdminLoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(loginAdminSchema),
   });
 
   const onSubmit = async (values, event) => {
     event.preventDefault();
-
-    try {
-      const res = await login(values).unwrap();
-
-      const token = res.data.token;
-      dispatch(setToken(token));
-
-      navigate("/");
-    } catch (error) {
-      toast.error(`Error: ${error?.message}`);
-    }
   };
 
   return (
@@ -45,22 +21,22 @@ const LoginForm = () => {
       <div className="max-w-xl lg:max-w-3xl">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="px-8 pt-6 bg-white w-[380px] lg:w-[460px]"
+          className="px-8 pt-6 bg-white w-[460px]"
         >
-          <h1 className="mb-5 text-2xl font-bold leading-9 md:text-3xl xl:text-4xl text-dark-blue">
-            Masuk
+          <h1 className="mb-5 text-2xl font-bold leading-9 text-center md:text-3xl xl:text-4xl text-dark-blue">
+            Login
           </h1>
           <div className="mb-4">
             <label
               htmlFor="email"
               className="block mb-2 text-[#3C3C3C] text-sm font-normal leading-4 lg:text-base"
             >
-              Email
+              ID Admin
             </label>
             <input
               {...register("email")}
               className="w-full px-3 py-2 text-sm border shadow appearance-none rounded-2xl leading-tigh lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
-              placeholder="Contoh: johndoe@gmail.com"
+              placeholder="ID Admin"
             />
             <span className="text-sm text-red-500 lg:text-base">
               {errors.email?.message}
@@ -100,26 +76,18 @@ const LoginForm = () => {
             Masuk
           </button>
         </form>
-        <div className="text-center ms-7 w-[380px]">
+        <div className="text-center ms-7 w-[400px]">
           <div className="flex items-center py-5 ">
             <div className="flex-grow border-t border-gray-400"></div>
             <span className="flex-shrink mx-4 text-gray-400">or</span>
             <div className="flex-grow border-t border-gray-400"></div>
           </div>
           <GoogleLogin buttonText={"Sign in with Google"} />
-          <span className="text-sm font-normal text-center lg:text-base">
-            Belum punya akun?
-            <Link
-              to="/register"
-              className="font-bold duration-75 text-dark-blue hover:underline"
-            >
-              Daftar di sini
-            </Link>
-          </span>
+          
         </div>
       </div>
     </section>
   );
 };
 
-export default LoginForm;
+export default AdminLoginForm;
