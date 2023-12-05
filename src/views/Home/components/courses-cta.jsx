@@ -55,6 +55,11 @@ const CoursesCTA = () => {
           onClick={handleClick}
           className="px-3 py-1 md:px-4 md:py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold"
         >
+          Android Development
+        </button>
+      </div>
+      <div>
+        <button className="px-3 py-1 md:px-4 md:py-1 bg-light-blue rounded-full text-black/80 text-sm md:text-base md:font-semibold">
           Web Development
         </button>
       </div>
