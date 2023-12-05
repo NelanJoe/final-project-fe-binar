@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CategoryItem = ({ category }) => {
   return (
     <div className="group w-full md:w-[200px]">
-      <Link to="/catrgory/ui-ux">
+      <Link to={`/catrgory/${category.name}`}>
         <div className="space-y-2">
           <div className="group">
             <img
@@ -14,7 +14,7 @@ const CategoryItem = ({ category }) => {
             />
           </div>
           <div>
-            <h4 className="text-center">{category.name}</h4>
+            <h4 className="text-center capitalize">{category.name}</h4>
           </div>
         </div>
       </Link>
