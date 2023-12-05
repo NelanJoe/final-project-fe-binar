@@ -21,3 +21,7 @@ export {
   useRegisterActionMutation,
   useVerifyOtpMutation,
 } from "./auth/auth.api";
+
+export { useGetCategoriesQuery } from "./category/category.api";
+
+export { useGetCoursesMutation } from "./course/course.api";

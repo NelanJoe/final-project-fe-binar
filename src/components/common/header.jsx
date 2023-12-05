@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 import {
   LogIn as LoginIcon,
   AlignJustify as HumbergerIcon,
@@ -13,12 +15,13 @@ import {
 import SearchForm from "./search-form";
 import Logo from "@/assets/images/logo.png";
 
+import { selectedToken } from "@/stores/auth/auth.selector";
+
 const Header = () => {
+  const token = useSelector(selectedToken);
   const [isShow, setIsShow] = useState(false);
 
   const onToggle = () => setIsShow(!isShow);
-
-  const userInfo = true;
 
   return (
     <header className="bg-dark-blue py-6 px-4 md:px-0 border-b border-b-gray-300 sticky z-30 top-0">
@@ -32,7 +35,7 @@ const Header = () => {
           </div>
         </div>
         <div className="hidden md:block">
-          {userInfo ? (
+          {!token ? (
             <div className="flex gap-x-2 text-lg">
               <span>
                 <LoginIcon className="w-6 h-6 text-white" />
@@ -43,7 +46,7 @@ const Header = () => {
             </div>
           ) : (
             <div className="flex items-center gap-x-2 text-lg">
-              <Link>
+              <Link to="/courses">
                 <button className="flex items-center gap-x-1 bg-soft-blue px-2 py-1 rounded-md text-white">
                   <span>
                     <ListIcon />
@@ -51,10 +54,10 @@ const Header = () => {
                   Kelas
                 </button>
               </Link>
-              <Link>
+              <Link to="/notification">
                 <NotifIcon className="text-white" />
               </Link>
-              <Link>
+              <Link to="/profile">
                 <UserIcon className="text-white" />
               </Link>
             </div>
@@ -75,7 +78,7 @@ const Header = () => {
           <div className="w-full">
             <SearchForm />
           </div>
-          {!userInfo ? (
+          {!token ? (
             <Link to="/login" className="text-white cursor-pointer">
               <div className="flex gap-x-2 text-lg">
                 <LoginIcon className="w-6 h-6 text-white" />
@@ -84,7 +87,7 @@ const Header = () => {
             </Link>
           ) : (
             <div className="flex items-center gap-x-2 text-lg">
-              <Link>
+              <Link to="/courses">
                 <button className="flex items-center gap-x-1 bg-soft-blue px-2 py-1 rounded-md text-white">
                   <span>
                     <ListIcon />
@@ -92,10 +95,10 @@ const Header = () => {
                   Kelas
                 </button>
               </Link>
-              <Link>
+              <Link to="/notification">
                 <NotifIcon className="text-white" />
               </Link>
-              <Link>
+              <Link to="/profile">
                 <UserIcon className="text-white" />
               </Link>
             </div>
