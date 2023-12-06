@@ -46,7 +46,7 @@ const RegisterForm = () => {
       <div className="max-w-xl lg:max-w-3xl">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="px-8 pt-6 bg-white w-[460px]"
+          className="px-8 pt-6 bg-white w-[380px] lg:w-[460px]"
         >
           <h1 className="mb-5 text-2xl font-bold leading-9 md:text-3xl xl:text-4xl text-dark-blue">
             Daftar
@@ -107,26 +107,26 @@ const RegisterForm = () => {
             </span>
           </div>
           <div className="mb-8">
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-[#3C3C3C] text-sm font-normal leading-4 lg:text-base"
-                >
-                  Buat Password
-                </label>
-              </div>
-              <input
-                {...register("password")}
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Buat Password"
-                className="w-full px-3 py-2 text-sm lg:text-base leading-tight text-[#3C3C3C] border rounded-2xl shadow appearance-none focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
-              />
-              <span className="text-sm text-red-500 lg:text-base">
-                {errors.password?.message}
-              </span>
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="password"
+                className="block mb-2 text-[#3C3C3C] text-sm font-normal leading-4 lg:text-base"
+              >
+                Buat Password
+              </label>
             </div>
+            <input
+              {...register("password")}
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Buat Password"
+              className="w-full px-3 py-2 text-sm lg:text-base leading-tight text-[#3C3C3C] border rounded-2xl shadow appearance-none focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
+            />
+            <span className="text-sm text-red-500 lg:text-base">
+              {errors.password?.message}
+            </span>
+          </div>
           <button
             type="submit"
             className="w-full duration-75 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2 flex items-center justify-center gap-1"
@@ -134,7 +134,7 @@ const RegisterForm = () => {
             Daftar
           </button>
         </form>
-        <div className="text-center ms-7 w-[400px]">
+        <div className="text-center ms-7 w-[320px] lg:w-[400px]">
           <div className="flex items-center py-5 ">
             <div className="flex-grow border-t border-gray-400"></div>
             <span className="flex-shrink mx-4 text-gray-400">or</span>
@@ -142,7 +142,7 @@ const RegisterForm = () => {
           </div>
           <GoogleLogin buttonText={"Sign in with Google"} />
           <span className="text-sm font-normal text-center lg:text-base">
-            Sudah punya akun?
+            Sudah punya akun?&nbsp;
             <Link
               to="/login"
               className="font-bold duration-75 text-dark-blue hover:underline"

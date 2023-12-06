@@ -74,12 +74,12 @@ const LoginForm = () => {
               >
                 Password
               </label>
-              <a
-                href="#"
+              <Link
+                to="/reset-password"
                 className="text-sm font-medium lg:text-base hover:underline text-dark-blue"
               >
                 Lupa Kata Sandi
-              </a>
+              </Link>
             </div>
             <input
               {...register("password")}
@@ -100,7 +100,7 @@ const LoginForm = () => {
             Masuk
           </button>
         </form>
-        <div className="text-center ms-7 w-[380px]">
+        <div className="text-center ms-7 w-[320px] lg:w-[400px]">
           <div className="flex items-center py-5 ">
             <div className="flex-grow border-t border-gray-400"></div>
             <span className="flex-shrink mx-4 text-gray-400">or</span>
@@ -108,7 +108,7 @@ const LoginForm = () => {
           </div>
           <GoogleLogin buttonText={"Sign in with Google"} />
           <span className="text-sm font-normal text-center lg:text-base">
-            Belum punya akun?
+            Belum punya akun?&nbsp;
             <Link
               to="/register"
               className="font-bold duration-75 text-dark-blue hover:underline"

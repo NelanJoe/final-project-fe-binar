@@ -4,7 +4,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import Home from "@/views/Home";
 import Error from "@/views/Error";
-import { Login, Register } from "@/views/Auth";
+import { Login, Register, ResetPassword, SetPassword } from "@/views/Auth";
 import Otp from "@/views/Auth/pages/otp";
 import Courses from "@/views/Courses";
 import CoursesDetail from "@/views/Courses/pages/courses-detail";
@@ -24,6 +24,8 @@ export default function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="otp" element={<Otp />} />
+          <Route path="reset-password" element={<ResetPassword/>}/>
+          <Route path="set-password" element={<SetPassword/>}/>
 
           <Route path="admin-login" element={<AdminLogin />}/>
           <Route path="admin-dashboard" element={<AdminDashboard />}/>

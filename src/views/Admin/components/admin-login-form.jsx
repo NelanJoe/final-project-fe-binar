@@ -1,7 +1,9 @@
 import GoogleLogin from "@/views/Auth/components/google-login";
-import { loginAdminSchema } from "@/views/Auth/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+
+import { loginAdminSchema } from "../validation";
+import { Link } from "react-router-dom";
 
 const AdminLoginForm = () => {
   const {
@@ -21,7 +23,7 @@ const AdminLoginForm = () => {
       <div className="max-w-xl lg:max-w-3xl">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="px-8 pt-6 bg-white w-[460px]"
+          className="px-8 pt-6 bg-white w-[380px] lg:w-[460px]"
         >
           <h1 className="mb-5 text-2xl font-bold leading-9 text-center md:text-3xl xl:text-4xl text-dark-blue">
             Login
@@ -50,12 +52,12 @@ const AdminLoginForm = () => {
               >
                 Password
               </label>
-              <a
-                href="#"
+              <Link
+                to="/reset-password"
                 className="text-sm font-medium lg:text-base hover:underline text-dark-blue"
               >
                 Lupa Kata Sandi
-              </a>
+              </Link>
             </div>
             <input
               {...register("password")}
@@ -76,14 +78,13 @@ const AdminLoginForm = () => {
             Masuk
           </button>
         </form>
-        <div className="text-center ms-7 w-[400px]">
+        <div className="text-center ms-7 w-[320px] lg:w-[400px]">
           <div className="flex items-center py-5 ">
             <div className="flex-grow border-t border-gray-400"></div>
             <span className="flex-shrink mx-4 text-gray-400">or</span>
             <div className="flex-grow border-t border-gray-400"></div>
           </div>
           <GoogleLogin buttonText={"Sign in with Google"} />
-          
         </div>
       </div>
     </section>

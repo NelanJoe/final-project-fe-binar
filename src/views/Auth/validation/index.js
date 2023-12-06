@@ -62,19 +62,17 @@ const registerSchema = yup.object().shape({
     ),
 });
 
-const loginAdminSchema = yup.object().shape({
+const resetPasswordSchema = yup.object({
+  email: yup
+    .string()
+    .email("Harap masukkan email yang valid")
+    .required("Email harus di isi"),
   password: yup
     .string()
-    .required("Password harus di isi")
+    .required("Kata sandi harus di isi")
     .min(6, "Panjang kata sandi minimal 6 karakter")
-    .matches(
-      /[a-z]+/,
-      "Password harus mengandung setidaknya satu huruf kecil"
-    )
-    .matches(
-      /[A-Z]+/,
-      "Password harus mengandung setidaknya satu huruf besar"
-    )
+    .matches(/[a-z]+/, "Password harus mengandung setidaknya satu huruf kecil")
+    .matches(/[A-Z]+/, "Password harus mengandung setidaknya satu huruf besar")
     .matches(
       /[\d]+/,
 
@@ -86,4 +84,6 @@ const loginAdminSchema = yup.object().shape({
     ),
 });
 
-export { loginSchema, registerSchema, loginAdminSchema };
+
+
+export { loginSchema, registerSchema, resetPasswordSchema };
