@@ -67,34 +67,6 @@ const LoginForm = () => {
             </span>
           </div>
           <div className="mb-8">
-<<<<<<< HEAD
-            <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-[#3C3C3C] text-sm font-normal leading-4 lg:text-base"
-                >
-                  Password
-                </label>
-                <a
-                  href="#"
-                  className="text-sm lg:text-base font-medium hover:underline text-dark-blue"
-                >
-                  Lupa Kata Sandi
-                </a>
-              </div>
-              <input
-                {...register("password")}
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Masukan Password"
-                className="w-full px-3 py-2 text-sm leading-tight border shadow appearance-none rounded-2xl lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
-              />
-              <span className="text-sm text-red-500 lg:text-base">
-                {errors.password?.message}
-              </span>
-=======
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
@@ -108,7 +80,6 @@ const LoginForm = () => {
               >
                 Lupa Kata Sandi
               </Link>
->>>>>>> 3d7836dd27726047b1007abf2e32bc6a20ee7ac2
             </div>
             <input
               {...register("password")}

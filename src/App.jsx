@@ -38,10 +38,8 @@ export default function App() {
           <Route path="paymenthistory" element={<PaymentHistory />} />
 
           <Route path="*" element={<Error />} />
-
-          <Route path="*" element={<Error />} />
-          <Toaster position="top-left" />
         </Routes>
+        <Toaster position="top-left" />
       </BrowserRouter>
     </GoogleOAuthProvider>
   );

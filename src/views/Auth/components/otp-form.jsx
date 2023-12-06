@@ -43,11 +43,7 @@ const OtpForm = () => {
     <section className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
       <div className="max-w-xl lg:max-w-3xl">
         <Link to="/register">
-<<<<<<< HEAD
-          <button>
-=======
           <button className="ms-4 lg:ms-0">
->>>>>>> 3d7836dd27726047b1007abf2e32bc6a20ee7ac2
             <ArrowLeftIcon />
           </button>
         </Link>
@@ -55,11 +51,7 @@ const OtpForm = () => {
           className="px-8 relative pt-6 pb-8 mb-4 w-[400px] lg:w-[460px]"
           onSubmit={onSubmit}
         >
-<<<<<<< HEAD
-          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-20 font-bold leading-9 text-dark-blue">
-=======
           <h1 className="mb-20 text-2xl font-bold leading-9 md:text-3xl xl:text-4xl text-dark-blue">
->>>>>>> 3d7836dd27726047b1007abf2e32bc6a20ee7ac2
             Masukan OTP
           </h1>
           <div className="flex justify-center">
