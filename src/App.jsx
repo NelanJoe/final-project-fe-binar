@@ -9,6 +9,9 @@ import Otp from "@/views/Auth/pages/otp";
 import Courses from "@/views/Courses";
 import CoursesDetail from "@/views/Courses/pages/courses-detail";
 import { AdminDashboard, AdminLogin } from "@/views/Admin";
+import Profile from "@/views/Profil/pages/profil";
+import Newpassword from "@/views/Profil/pages/new-password";
+import PaymentHistory from "@/views/Profil/pages/payment-history";
 
 export default function App() {
   return (
@@ -24,11 +27,15 @@ export default function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="otp" element={<Otp />} />
-          <Route path="reset-password" element={<ResetPassword/>}/>
-          <Route path="set-password" element={<SetPassword/>}/>
+          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="set-password" element={<SetPassword />} />
 
-          <Route path="admin-login" element={<AdminLogin />}/>
-          <Route path="admin-dashboard" element={<AdminDashboard />}/>
+          <Route path="admin-login" element={<AdminLogin />} />
+          <Route path="admin-dashboard" element={<AdminDashboard />} />
+
+          <Route path="profile" element={<Profile />} />
+          <Route path="newpassword" element={<Newpassword />} />
+          <Route path="paymenthistory" element={<PaymentHistory />} />
 
           <Route path="*" element={<Error />} />
         </Routes>
