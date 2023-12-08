@@ -1,17 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-
 import Home from "@/views/Home";
 import Error from "@/views/Error";
 import { Login, Register } from "@/views/Auth";
-
 import Courses from "@/views/Courses";
 import CoursesDetail from "@/views/Courses/pages/courses-detail";
 import Otp from "@/views/Auth/pages/otp";
-
-import Profile from "./views/Profil/pages/profil";
-import Newpassword from "./views/Profil/pages/new-password";
-import PaymentHistory from "./views/Profil/pages/payment-history";
+import Profile from "@/views/Profil/pages/profil";
+import Newpassword from "@/views/Profil/pages/new-password";
+import PaymentHistory from "@/views/Profil/pages/payment-history";
 
 export default function App() {
   return (
@@ -26,11 +23,11 @@ export default function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="otp" element={<Otp />} />
-        <Route path="*" element={<Error />} />
 
         <Route path="profile" element={<Profile />} />
         <Route path="newpassword" element={<Newpassword />} />
         <Route path="paymenthistory" element={<PaymentHistory />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Toaster position="top-left" />
     </BrowserRouter>

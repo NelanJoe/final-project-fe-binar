@@ -1,9 +1,27 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 
-import CoursesCTA from "./courses-cta";
+import { useGetCoursesMutation } from "@/stores";
+
 import CoursesList from "@/components/common/courses-list";
+import CoursesCTA from "./courses-cta";
 
 const CoursesPopular = () => {
+  const [searchParams] = useSearchParams();
+  const [getCourses, { data }] = useGetCoursesMutation();
+
+  const category = searchParams.get("category");
+
+  useEffect(() => {
+    if (category === null) {
+      getCourses("");
+    } else {
+      getCourses(category);
+    }
+  }, [getCourses, category]);
+
+  const courses = data?.popular;
+
   return (
     <section>
       <div className="mx-4 mt-8 max-w-7xl md:mx-auto">
@@ -14,8 +32,8 @@ const CoursesPopular = () => {
           </Link>
         </div>
         <CoursesCTA />
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <CoursesList />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <CoursesList courses={courses} />
         </div>
       </div>
     </section>

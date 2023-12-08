@@ -14,7 +14,7 @@ const SearchFromCourses = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="relative">
-        <div className="w-full ">
+        <div className="w-full">
           <input
             type="text"
             placeholder="Cari Kelas..."
