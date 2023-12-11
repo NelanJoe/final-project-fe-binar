@@ -2,7 +2,12 @@
 
 export default function AccountProfile() {
   return (
-    <section className="max-w-screen-xl sm:px-6 lg:px-8 self-stretch py-1 shrink-0 gap-4 items-center mx-[10px]">
+    <section className="max-w-7xl sm:px-6 md:px-8 py-1   items-center ">
+      <div className="mt-3">
+        <h1 className="flex items-center justify-center text-2xl font-Montserrat font-bold">
+          Profil Saya
+        </h1>
+      </div>
       <form action="" className="space-y-2   flex flex-col items-center ">
         <div>
           <label
@@ -15,7 +20,7 @@ export default function AccountProfile() {
           <div className=" ">
             <input
               type="text"
-              className=" w-96  md:w-72 h-10 px-4 ring-1 ring-black rounded-2xl"
+              className=" w-80  md:w-72 h-10 px-4 ring-1 ring-black rounded-2xl"
               placeholder="John Doe"
             />
           </div>
@@ -32,7 +37,7 @@ export default function AccountProfile() {
           <div className="">
             <input
               type="email"
-              className="w-96  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
+              className="w-80  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
               placeholder="JohnDoe@gmail.com"
               name="password"
             />
@@ -50,7 +55,7 @@ export default function AccountProfile() {
           <div className="">
             <input
               type="number"
-              className="w-96  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
+              className="w-80  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
               placeholder="+62 832381821"
               id="notelepon"
             />
@@ -67,7 +72,7 @@ export default function AccountProfile() {
           <div className="">
             <input
               type="password"
-              className="w-96  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
+              className="w-80  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
               placeholder="indonesia"
               id="negara"
             />
@@ -84,7 +89,7 @@ export default function AccountProfile() {
           <div className="">
             <input
               type="password"
-              className="w-96  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
+              className="w-80  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
               placeholder="jakarta"
               id="kota"
             />
@@ -93,7 +98,7 @@ export default function AccountProfile() {
 
         <button
           type="submit"
-          className="w-96  md:w-72 rounded-2xl bg-[#6148FF] px-5 py-3 text-sm font-medium text-white"
+          className="w-80  md:w-72 rounded-2xl bg-[#6148FF] px-5 py-3 text-sm font-medium text-white"
         >
           Simpan Profil Saya
         </button>

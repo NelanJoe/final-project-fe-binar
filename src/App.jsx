@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-
 import Home from "@/views/Home";
 import Error from "@/views/Error";
 import { Login, Register } from "@/views/Auth";
@@ -10,7 +9,7 @@ import Otp from "@/views/Auth/pages/otp";
 import Profile from "@/views/Profil/pages/profil";
 import Newpassword from "@/views/Profil/pages/new-password";
 import PaymentHistory from "@/views/Profil/pages/payment-history";
-
+import Notifcation from "./views/Profil/pages/notifcation";
 export default function App() {
   return (
     <BrowserRouter>
@@ -28,6 +27,7 @@ export default function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="newpassword" element={<Newpassword />} />
         <Route path="paymenthistory" element={<PaymentHistory />} />
+        <Route path="notifikasi" element={<Notifcation />} />
 
         <Route path="*" element={<Error />} />
       </Routes>
