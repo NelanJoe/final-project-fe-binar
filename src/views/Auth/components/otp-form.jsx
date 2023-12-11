@@ -33,6 +33,8 @@ const OtpForm = () => {
       const token = res.data.token;
 
       dispatch(setToken(token));
+
+      toast.success("Register Berhasil");
       navigate("/");
     } catch (error) {
       toast.error(error);
@@ -48,7 +50,7 @@ const OtpForm = () => {
           </button>
         </Link>
         <form
-          className="px-8 relative pt-6 pb-8 mb-4 w-[400px] lg:w-[460px]"
+          className="px-8 relative pt-6 pb-8 mb-4 w-[380px] lg:w-[460px]"
           onSubmit={onSubmit}
         >
           <h1 className="mb-20 text-2xl font-bold leading-9 md:text-3xl xl:text-4xl text-dark-blue">

@@ -1,17 +1,14 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { resetPasswordSchema } from "../validation";
+
 import { useResetPasswordMutation } from "@/stores";
-// import toast from "react-hot-toast";
 
 const ResetPasswordForm = () => {
-  const [searchParams] = useSearchParams();
-
   const [resetPassword] = useResetPasswordMutation();
-
-  const email = searchParams.get("email");
 
   const {
     register,
@@ -21,18 +18,17 @@ const ResetPasswordForm = () => {
     resolver: yupResolver(resetPasswordSchema),
   });
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (values, event) => {
     event.preventDefault();
 
     try {
-      const res = await resetPassword(email).unwrap();
+      const res = await resetPassword(values.email).unwrap();
 
-      console.log(res.message);
-
+      toast.success(res.message);
     } catch (error) {
-      console.error(error);
+      toast.error(`Error: ${error?.message}`);
     }
-  }
+  };
 
   return (
     <section className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
@@ -68,7 +64,7 @@ const ResetPasswordForm = () => {
           </button>
           <div className="mt-8 text-center">
             <span className="text-sm font-normal lg:text-base">
-              atau&nbsp;
+              Kembali ke&nbsp;
               <Link
                 to="/login"
                 className="font-bold duration-75 text-dark-blue hover:underline"

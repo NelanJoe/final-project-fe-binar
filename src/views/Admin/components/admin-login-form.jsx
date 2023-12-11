@@ -1,4 +1,3 @@
-import GoogleLogin from "@/views/Auth/components/google-login";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
@@ -19,7 +18,7 @@ const AdminLoginForm = () => {
   };
 
   return (
-    <section className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+    <section className="flex lg:w-[60%] items-center justify-center order-1 px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
       <div className="max-w-xl lg:max-w-3xl">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -78,14 +77,7 @@ const AdminLoginForm = () => {
             Masuk
           </button>
         </form>
-        <div className="text-center ms-7 w-[320px] lg:w-[400px]">
-          <div className="flex items-center py-5 ">
-            <div className="flex-grow border-t border-gray-400"></div>
-            <span className="flex-shrink mx-4 text-gray-400">or</span>
-            <div className="flex-grow border-t border-gray-400"></div>
-          </div>
-          <GoogleLogin buttonText={"Sign in with Google"} />
-        </div>
+      
       </div>
     </section>
   );

@@ -1,21 +1,20 @@
-// import React from "react";
 
 export default function AccountProfile() {
   return (
     <section className="max-w-screen-xl sm:px-6 lg:px-8 self-stretch py-1 shrink-0 gap-4 items-center mx-[10px]">
-      <form action="" className="space-y-2   flex flex-col items-center ">
+      <form action="" className="flex flex-col items-center space-y-2 ">
         <div>
           <label
             htmlFor=""
-            className="font-Poppins text-xs font-normal leading-4"
+            className="text-xs font-normal leading-4 font-Poppins"
           >
             Nama
           </label>
 
-          <div className=" ">
+          <div className="">
             <input
               type="text"
-              className=" w-96  md:w-72 h-10 px-4 ring-1 ring-black rounded-2xl"
+              className="h-10 px-4  w-96 md:w-72 ring-1 ring-black rounded-2xl"
               placeholder="John Doe"
             />
           </div>
@@ -24,7 +23,7 @@ export default function AccountProfile() {
         <div>
           <label
             htmlFor="Email"
-            className="font-Poppins text-xs font-normal leading-4"
+            className="text-xs font-normal leading-4 font-Poppins"
           >
             Email
           </label>
@@ -32,7 +31,7 @@ export default function AccountProfile() {
           <div className="">
             <input
               type="email"
-              className="w-96  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
+              className="items-center h-10 px-4 py-3 w-96 md:w-72 ring-1 ring-black rounded-2xl"
               placeholder="JohnDoe@gmail.com"
               name="password"
             />
@@ -42,7 +41,7 @@ export default function AccountProfile() {
         <div>
           <label
             htmlFor="notelepon"
-            className="font-Poppins text-xs font-normal leading-4"
+            className="text-xs font-normal leading-4 font-Poppins"
           >
             Nomor Telepon
           </label>
@@ -50,7 +49,7 @@ export default function AccountProfile() {
           <div className="">
             <input
               type="number"
-              className="w-96  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
+              className="items-center h-10 px-4 py-3 w-96 md:w-72 ring-1 ring-black rounded-2xl"
               placeholder="+62 832381821"
               id="notelepon"
             />
@@ -59,7 +58,7 @@ export default function AccountProfile() {
         <div>
           <label
             htmlFor="negara"
-            className="font-Poppins text-xs font-normal leading-4"
+            className="text-xs font-normal leading-4 font-Poppins"
           >
             Negara
           </label>
@@ -67,7 +66,7 @@ export default function AccountProfile() {
           <div className="">
             <input
               type="password"
-              className="w-96  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
+              className="items-center h-10 px-4 py-3 w-96 md:w-72 ring-1 ring-black rounded-2xl"
               placeholder="indonesia"
               id="negara"
             />
@@ -76,7 +75,7 @@ export default function AccountProfile() {
         <div>
           <label
             htmlFor="kota"
-            className="font-Poppins text-xs font-normal leading-4"
+            className="text-xs font-normal leading-4 font-Poppins"
           >
             Kota
           </label>
@@ -84,7 +83,7 @@ export default function AccountProfile() {
           <div className="">
             <input
               type="password"
-              className="w-96  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
+              className="items-center h-10 px-4 py-3 w-96 md:w-72 ring-1 ring-black rounded-2xl"
               placeholder="jakarta"
               id="kota"
             />

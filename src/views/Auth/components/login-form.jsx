@@ -16,7 +16,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const [login] = useLoginMutation();
-
+ 
   const {
     register,
     handleSubmit,
@@ -33,7 +33,8 @@ const LoginForm = () => {
 
       const token = res.data.token;
       dispatch(setToken(token));
-
+      
+      toast.success("Login Berhasil");
       navigate("/");
     } catch (error) {
       toast.error(`Error: ${error?.message}`);
