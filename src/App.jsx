@@ -12,6 +12,7 @@ import { AdminDashboard, AdminLogin } from "@/views/Admin";
 import Profile from "@/views/Profil/pages/profil";
 import Newpassword from "@/views/Profil/pages/new-password";
 import PaymentHistory from "@/views/Profil/pages/payment-history";
+import KelolaKelas from "./views/Admin/pages/kelola-kelas";
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
 
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="admin-dashboard" element={<AdminDashboard />} />
+          <Route path="admin-kelola-kelas" element={<KelolaKelas />} />
 
           <Route path="profile" element={<Profile />} />
           <Route path="newpassword" element={<Newpassword />} />

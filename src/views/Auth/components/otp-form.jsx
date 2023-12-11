@@ -78,7 +78,7 @@ const OtpForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full mt-14 duration-75 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full transition-all duration-150 ease-linear mt-14 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Simpan
           </button>

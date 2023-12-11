@@ -29,18 +29,18 @@ const AdminLoginForm = () => {
           </h1>
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="Id"
               className="block mb-2 text-[#3C3C3C] text-sm font-normal leading-4 lg:text-base"
             >
               ID Admin
             </label>
             <input
-              {...register("email")}
+              {...register("id")}
               className="w-full px-3 py-2 text-sm border shadow appearance-none rounded-2xl leading-tigh lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
               placeholder="ID Admin"
             />
             <span className="text-sm text-red-500 lg:text-base">
-              {errors.email?.message}
+              {errors.id?.message}
             </span>
           </div>
           <div className="mb-8">
@@ -72,12 +72,11 @@ const AdminLoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full transition-all duration-150 ease-linear bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Masuk
           </button>
         </form>
-      
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ const AdminSearchForm = () => {
 
     navigate({
       pathname: "/admin-dashboard",
-      search: `?title=${query}`,
+      search: `?=${query}`,
     });
   };
 
