@@ -5,7 +5,7 @@ import ProfilTransactionsHistory from "../components/profile-transactions-histor
 export default function PaymentHistory() {
   return (
     <>
-      <ModalProfile>
+      <ModalProfile title="Akun">
         <MenuProfil></MenuProfil>
         <ProfilTransactionsHistory></ProfilTransactionsHistory>
       </ModalProfile>

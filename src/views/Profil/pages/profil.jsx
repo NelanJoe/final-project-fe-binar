@@ -6,7 +6,7 @@ import AccountProfile from "../components/account-profile";
 export default function Profile() {
   return (
     <>
-      <ModalProfile>
+      <ModalProfile title="Akun">
         <MenuProfil></MenuProfil>
         <AccountProfile></AccountProfile>
       </ModalProfile>
