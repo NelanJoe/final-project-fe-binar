@@ -75,6 +75,7 @@ const SetPasswordForm = () => {
             <input
               {...register("password")}
               type="password"
+              placeholder="*****"
               value={password}
               onChange={(e) => setPasswordValue(e.target.value)}
               className="w-full px-3 py-2 text-sm leading-tight border shadow appearance-none rounded-2xl lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
@@ -95,6 +96,7 @@ const SetPasswordForm = () => {
             <input
               {...register("password")}
               type="password"
+              placeholder="*****"
               value={confirmPassword}
               onChange={(e) => setConfirmPasswordValue(e.target.value)}
               className="w-full px-3 py-2 text-sm leading-tight border shadow appearance-none rounded-2xl lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"

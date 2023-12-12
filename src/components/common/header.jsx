@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
@@ -18,10 +18,16 @@ import Logo from "@/assets/images/logo.png";
 import { selectedToken } from "@/stores/auth/auth.selector";
 
 const Header = () => {
+  const { pathname } = useLocation();
+
   const token = useSelector(selectedToken);
   const [isShow, setIsShow] = useState(false);
 
   const onToggle = () => setIsShow(!isShow);
+
+  const isActive = (to) => {
+    return pathname === to;
+  };
 
   return (
     <header className="sticky top-0 z-30 px-4 py-6 border-b bg-dark-blue md:px-0 border-b-gray-300">
@@ -45,20 +51,54 @@ const Header = () => {
               </Link>
             </div>
           ) : (
-            <div className="flex items-center text-lg gap-x-2">
-              <Link to="/courses">
-                <button className="flex items-center px-2 py-1 text-white rounded-md gap-x-1 bg-soft-blue">
-                  <span>
+            <div className="flex items-center text-lg gap-x-4">
+              <Link
+                to="/courses"
+                className={`text-white ${
+                  isActive("/courses") &&
+                  "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
+                }`}
+              >
+                {isActive("/courses") ? (
+                  <>
                     <ListIcon />
-                  </span>
-                  Kelas
-                </button>
+                    <span>Kelas</span>
+                  </>
+                ) : (
+                  <ListIcon />
+                )}
               </Link>
-              <Link to="/notification">
-                <NotifIcon className="text-white" />
+              <Link
+                to="/notifikasi"
+                className={`text-white ${
+                  isActive("/notifikasi") &&
+                  "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
+                }`}
+              >
+                {isActive("/notifikasi") ? (
+                  <>
+                    <NotifIcon />
+                    <span>Kelas</span>
+                  </>
+                ) : (
+                  <NotifIcon />
+                )}
               </Link>
-              <Link to="/profile">
-                <UserIcon className="text-white" />
+              <Link
+                to="/profile"
+                className={`text-white ${
+                  isActive("/profile") &&
+                  "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
+                }`}
+              >
+                {isActive("/profile") ? (
+                  <>
+                    <UserIcon />
+                    <span>Profile</span>
+                  </>
+                ) : (
+                  <UserIcon />
+                )}
               </Link>
             </div>
           )}
@@ -86,20 +126,54 @@ const Header = () => {
               </div>
             </Link>
           ) : (
-            <div className="flex items-center text-lg gap-x-2">
-              <Link to="/courses">
-                <button className="flex items-center px-2 py-1 text-white rounded-md gap-x-1 bg-soft-blue">
-                  <span>
+            <div className="flex items-center text-lg gap-x-4">
+              <Link
+                to="/courses"
+                className={`text-white ${
+                  isActive("/courses") &&
+                  "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
+                }`}
+              >
+                {isActive("/courses") ? (
+                  <>
                     <ListIcon />
-                  </span>
-                  Kelas
-                </button>
+                    <span>Kelas</span>
+                  </>
+                ) : (
+                  <ListIcon />
+                )}
               </Link>
-              <Link to="/notification">
-                <NotifIcon className="text-white" />
+              <Link
+                to="/notifikasi"
+                className={`text-white ${
+                  isActive("/notifikasi") &&
+                  "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
+                }`}
+              >
+                {isActive("/notifikasi") ? (
+                  <>
+                    <NotifIcon />
+                    <span>Kelas</span>
+                  </>
+                ) : (
+                  <NotifIcon />
+                )}
               </Link>
-              <Link to="/profile">
-                <UserIcon className="text-white" />
+              <Link
+                to="/profile"
+                className={`text-white ${
+                  isActive("/profile") &&
+                  "flex flex-row items-center gap-x-3 px-3 py-1 rounded-md bg-blue-500"
+                }`}
+              >
+                {isActive("/profile") ? (
+                  <>
+                    <UserIcon />
+                    <span>Profile</span>
+                  </>
+                ) : (
+                  <UserIcon />
+                )}
               </Link>
             </div>
           )}

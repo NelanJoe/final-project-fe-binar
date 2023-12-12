@@ -5,7 +5,7 @@ import ChangePassword from "../components/change-password";
 export default function Newpassword() {
   return (
     <>
-      <ModalProfile>
+      <ModalProfile title="Akun">
         <MenuProfil></MenuProfil>
         <ChangePassword></ChangePassword>
       </ModalProfile>

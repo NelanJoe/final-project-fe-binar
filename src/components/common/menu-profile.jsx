@@ -1,6 +1,20 @@
-import { PenLine, Settings, ShoppingCart, LogOut } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { PenLine, Settings, ShoppingCart, LogOutIcon } from "lucide-react";
+
+import { logout } from "@/stores/auth/auth.slice";
+
 export default function MenuProfil() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onLogout = () => {
+    dispatch(logout());
+
+    navigate("/");
+  };
+
   return (
     <section className="menu-profil">
       <div className="flex text-base font-normal leading-5 max-w-7xl md:p-8 font-Poppins ">
@@ -14,7 +28,7 @@ export default function MenuProfil() {
             </Link>
           </div>
           <div className="flex items-center w-full gap-4 shadow ">
-            <section className="flex  bg-slate-50">
+            <section className="flex bg-slate-50">
               <Settings color="#6148FF" />
             </section>
             <Link to="/newpassword" className="p-3">
@@ -22,7 +36,7 @@ export default function MenuProfil() {
             </Link>
           </div>
           <div className="flex items-center w-full gap-4 shadow">
-            <section className="flex  bg-slate-50">
+            <section className="flex bg-slate-50">
               <ShoppingCart color="#6148FF" />
             </section>
 
@@ -30,15 +44,15 @@ export default function MenuProfil() {
               Riwayat Pembelian
             </Link>
           </div>
-          <div className="flex items-center w-full gap-4 shadow ">
-            <section className="flex  bg-slate-50">
-              <LogOut color="#6148FF" />
-            </section>
-
-            <Link to="/login" className="p-3">
-              Keluar
-            </Link>
-          </div>
+          <button
+            onClick={onLogout}
+            className="w-full px-4 py-2 bg-white shadow"
+          >
+            <div className="flex flex-row gap-x-4">
+              <LogOutIcon className="text-dark-blue" />
+              <span>Keluar</span>
+            </div>
+          </button>
           <div className="opacity-50">
             <p>Version 1.1.0 </p>
           </div>

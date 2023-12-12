@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   ArrowLeftIcon,
   ShieldPlusIcon,
@@ -13,8 +13,12 @@ import HomeLayout from "@/layouts/home.layout";
 
 import CourseDescription from "../components/course-description";
 import CourseChapter from "../components/course-chapter";
+import { useGetCourseByIdQuery } from "@/stores/course/course.api";
 
 const CoursesDetail = () => {
+  const { id } = useParams();
+  const { data } = useGetCourseByIdQuery(id);
+
   const optionsYoutube = {
     width: "100%",
     height: "400",
@@ -22,6 +26,8 @@ const CoursesDetail = () => {
       autoplay: 0,
     },
   };
+
+  const course = data?.detalCourse;
 
   return (
     <HomeLayout>
@@ -33,31 +39,35 @@ const CoursesDetail = () => {
                 <ArrowLeftIcon className="w-6 h-6" /> <span>Kelas lainnya</span>
               </button>
             </Link>
-            <div className="px-10 mt-12 space-y-3 w-[67%]">
+            <div className="md:px-10 mt-6 md:mt-12 space-y-3 md:w-[67%]">
               <div className="flex md:flex-row justify-between items-center">
-                <h3 className="font-semibold text-dark-blue">UI/UX Design</h3>
+                <h3 className="font-semibold text-dark-blue">
+                  {course?.course?.categories.name}
+                </h3>
                 <div className="flex items-center gap-x-2">
-                  ⭐<p>4.7</p>
+                  ⭐<p>{course?.rating || 4.7}</p>
                 </div>
               </div>
               <div>
                 <h2 className="font-semibold text-xl">
-                  Intro to Basic of User Interaction Design
+                  {course?.course?.title || "Web Development with ReactJs"}
                 </h2>
-                <p>by Simon Doe</p>
+                <p>by {course?.course?.author || "Simon Doe"}</p>
               </div>
-              <div className="flex items-center space-x-12">
+              <div className="flex items-center space-x-3 md:space-x-12">
                 <div className="flex items-center space-x-2">
                   <ShieldPlusIcon className="w-4 h-4 text-green-500" />
-                  <p className="text-dark-blue">Beginner Level</p>
+                  <p className="text-dark-blue capitalize">
+                    {course?.course.level || "Beginner"} Level
+                  </p>
                 </div>
                 <div className="flex items-center space-x-2">
                   <BookOpenTextIcon className="w-4 h-4 text-green-500" />
-                  <p>5 Modul</p>
+                  <p>{course?.modul || 20} Modul</p>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Clock9Icon className="w-4 h-4 text-green-500" />
-                  <p>45 Menit</p>
+                  <p>{course?.duration || "120 Menit"}</p>
                 </div>
               </div>
               <div>
@@ -73,21 +83,20 @@ const CoursesDetail = () => {
             </div>
           </div>
         </section>
-        <section className="max-w-7xl mx-4 md:mx-auto px-10 py-6">
-          <div className="grid grid-cols-12 gap-x-4">
-            <div className="col-span-8 space-y-4">
+        <section className="max-w-7xl mx-4 md:mx-auto md:px-10 py-6">
+          <div className="md:grid md:grid-cols-12 gap-x-4">
+            <div className="md:col-span-8 md:space-y-4">
               <div>
                 <YouTube videoId="ymjNGjuBCTo" opts={optionsYoutube} />
               </div>
-              <CourseDescription />
+              <CourseDescription course={course?.course} />
             </div>
-            <aside className="col-span-4 -mt-60">
+            <aside className="md:col-span-4 md:-mt-60">
               <div className="bg-white p-6 rounded-xl shadow-md space-y-4">
                 <div className="flex flex-row justify-between items-center">
                   <h2 className="font-semibold text-xl">Materi Belajar</h2>
                   <p>2</p>
                 </div>
-                <CourseChapter />
                 <CourseChapter />
               </div>
             </aside>

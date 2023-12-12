@@ -43,8 +43,8 @@ const CoursesItem = ({ course }) => {
             <div className="flex items-start md:flex-row justify-between md:items-center">
               <div className="flex flex-row items-center gap-x-1 text-sm md:text-base">
                 <ShieldPlusIcon className="w-4 h-4 text-green-500" />{" "}
-                <p className="text-dark-blue">
-                  {course.level || "Intemediate Level"}
+                <p className="text-dark-blue capitalize">
+                  {course.level || "Intemediate"} Level
                 </p>
               </div>
               <div className="flex flex-row items-center gap-x-1 text-sm md:text-base">
@@ -53,7 +53,7 @@ const CoursesItem = ({ course }) => {
               </div>
               <div className="flex flex-row items-center gap-x-1 text-sm md:text-base">
                 <Clock9Icon className="w-4 h-4 text-green-500" />{" "}
-                <p>{course.duration || 120} Menit</p>
+                <p>{course.duration || "120 Menit"}</p>
               </div>
             </div>
             {!isBuyed ? (

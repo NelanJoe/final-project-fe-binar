@@ -27,4 +27,4 @@ export {
 
 export { useGetCategoriesQuery } from "./category/category.api";
 
-export { useGetCoursesMutation } from "./course/course.api";
+export { useGetCoursesQuery } from "./course/course.api";

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import HeroImg from "@/assets/images/hero-img.png";
 
 const Hero = () => {
@@ -12,9 +14,13 @@ const Hero = () => {
             <h2 className="text-2xl font-semibold text-white">
               Belajar dari Praktisi Terbaik!
             </h2>
-            <button className="w-full px-4 py-2 text-lg font-semibold uppercase bg-white rounded-lg text-dark-blue">
-              Ikuti Kelas
-            </button>
+            <div>
+              <Link to="/courses">
+                <button className="w-full px-4 py-2 text-lg font-semibold uppercase bg-white rounded-lg text-dark-blue">
+                  Ikuti Kelas
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
