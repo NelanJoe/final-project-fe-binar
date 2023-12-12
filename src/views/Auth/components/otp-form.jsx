@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ArrowLeftIcon } from "lucide-react";
@@ -20,6 +20,32 @@ const OtpForm = () => {
   const verifyEmail = searchParams.get("verify-email");
 
   const [validasi, setValidasi] = useState("");
+  const [seconds, setSeconds] = useState(60);
+
+  useEffect(() => {
+    // Set interval untuk mengurangi detik setiap 1 detik
+    const interval = setInterval(() => {
+      if (seconds > 0) {
+        // Mengurangi detik jika belum mencapai 0
+        setSeconds((prevSeconds) => prevSeconds - 1);
+      } else {
+        // Kirim ulang OTP jika waktu habis (0 detik)
+        sendOtpAgain();
+        setSeconds(60); // Reset timer ke 60 detik
+      }
+    }, 1000);
+
+    return () => clearInterval(interval); // Bersihkan interval pada unmount komponen
+  }, [seconds]); // Menjalankan effect kembali jika 'seconds' berubah
+
+  const sendOtpAgain = () => {
+    // Logika untuk mengirim ulang OTP melalui API/email
+    // Contoh: Panggil API untuk mengirim ulang OTP ke email pengguna
+    toast.success("Mengirim ulang OTP...");
+    
+    // Panggilan API/email untuk mengirim ulang OTP
+    // SomeAPIService.resendOtp(verifyEmail);
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -37,7 +63,7 @@ const OtpForm = () => {
       toast.success("Register Berhasil");
       navigate("/");
     } catch (error) {
-      toast.error(error);
+      toast.error(`Error: ${error?.data?.message}`);
     }
   };
 
@@ -76,9 +102,15 @@ const OtpForm = () => {
               }}
             />
           </div>
+          <div className="flex items-center justify-center gap-1 py-4 text-lg text-center">
+            <p>
+              Kirim ulang OTP dalam{" "}
+              <span className="text-indigo-600">{seconds} detik</span>
+            </p>
+          </div>
           <button
             type="submit"
-            className="w-full transition-all duration-150 ease-linear mt-14 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full transition-all duration-150 ease-linear mt-6 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Simpan
           </button>
