@@ -1,37 +1,48 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 import Home from "@/views/Home";
 import Error from "@/views/Error";
-import { Login, Register } from "@/views/Auth";
+import { Login, Register, ResetPassword, SetPassword } from "@/views/Auth";
 import Courses from "@/views/Courses";
 import CoursesDetail from "@/views/Courses/pages/courses-detail";
 import Otp from "@/views/Auth/pages/otp";
 import Profile from "@/views/Profil/pages/profil";
 import Newpassword from "@/views/Profil/pages/new-password";
 import PaymentHistory from "@/views/Profil/pages/payment-history";
+import { AdminDashboard, AdminLogin } from "@/views/Admin";
 import Notifcation from "./views/Profil/pages/notifcation";
+
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="courses">
-          <Route index element={<Courses />} />
-          <Route path=":id" element={<CoursesDetail />} />
-        </Route>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="courses">
+            <Route index element={<Courses />} />
+            <Route path=":id" element={<CoursesDetail />} />
+          </Route>
 
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="otp" element={<Otp />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="otp" element={<Otp />} />
+          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="set-password" element={<SetPassword />} />
 
-        <Route path="profile" element={<Profile />} />
-        <Route path="newpassword" element={<Newpassword />} />
-        <Route path="paymenthistory" element={<PaymentHistory />} />
-        <Route path="notifikasi" element={<Notifcation />} />
+          <Route path="admin-login" element={<AdminLogin />} />
+          <Route path="admin-dashboard" element={<AdminDashboard />} />
 
-        <Route path="*" element={<Error />} />
-      </Routes>
-      <Toaster position="top-left" />
-    </BrowserRouter>
+          <Route path="profile" element={<Profile />} />
+          <Route path="newpassword" element={<Newpassword />} />
+          <Route path="paymenthistory" element={<PaymentHistory />} />
+          <Route path="notifikasi" element={<Notifcation />} />
+
+          <Route path="*" element={<Error />} />
+        </Routes>
+        <Toaster position="top-left" />
+      </BrowserRouter>
+    </GoogleOAuthProvider>
   );
 }

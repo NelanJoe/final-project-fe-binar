@@ -1,24 +1,15 @@
-import { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-
-import { useGetCoursesMutation } from "@/stores";
 
 import CoursesList from "@/components/common/courses-list";
 import CoursesCTA from "./courses-cta";
+import { useGetCoursesQuery } from "@/stores";
 
 const CoursesPopular = () => {
   const [searchParams] = useSearchParams();
-  const [getCourses, { data }] = useGetCoursesMutation();
 
-  const category = searchParams.get("category");
+  const category = searchParams.get("category") || "";
 
-  useEffect(() => {
-    if (category === null) {
-      getCourses("");
-    } else {
-      getCourses(category);
-    }
-  }, [getCourses, category]);
+  const { data } = useGetCoursesQuery(category);
 
   const courses = data?.popular;
 

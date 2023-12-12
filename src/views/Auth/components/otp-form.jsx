@@ -43,15 +43,15 @@ const OtpForm = () => {
     <section className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
       <div className="max-w-xl lg:max-w-3xl">
         <Link to="/register">
-          <button>
+          <button className="ms-4 lg:ms-0">
             <ArrowLeftIcon />
           </button>
         </Link>
         <form
-          className="px-8 relative pt-6 pb-8 mb-4 w-[460px]"
+          className="px-8 relative pt-6 pb-8 mb-4 w-[400px] lg:w-[460px]"
           onSubmit={onSubmit}
         >
-          <h1 className="text-2xl md:text-3xl xl:text-4xl mb-20 font-bold leading-9 text-dark-blue">
+          <h1 className="mb-20 text-2xl font-bold leading-9 md:text-3xl xl:text-4xl text-dark-blue">
             Masukan OTP
           </h1>
           <div className="flex justify-center">
@@ -68,7 +68,7 @@ const OtpForm = () => {
               inputStyle={{
                 width: "2.8rem",
                 height: "2.8rem",
-                margin: "0 .6rem",
+                margin: "0 .5rem",
                 border: ".1rem solid #6148FF",
                 borderRadius: "40%",
               }}

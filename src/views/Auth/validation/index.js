@@ -9,22 +9,16 @@ const loginSchema = yup.object({
     .string()
     .required("Kata sandi harus di isi")
     .min(6, "Panjang kata sandi minimal 6 karakter")
-    .matches(
-      /[a-z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf kecil"
-    )
-    .matches(
-      /[A-Z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf besar"
-    )
+    .matches(/[a-z]+/, "Password harus mengandung setidaknya satu huruf kecil")
+    .matches(/[A-Z]+/, "Password harus mengandung setidaknya satu huruf besar")
     .matches(
       /[\d]+/,
 
-      "Kata sandi harus mengandung setidaknya satu angka"
+      "Password harus mengandung setidaknya satu angka"
     )
     .matches(
       /[!@#$%^&*()_+{}|<>,./?-]/,
-      "Kata sandi harus mengandung setidaknya satu karakter khusus"
+      "Password harus mengandung setidaknya satu karakter khusus"
     ),
 });
 
@@ -41,25 +35,26 @@ const registerSchema = yup.object().shape({
     .required("Nomor telepon harus di isi"),
   password: yup
     .string()
-    .required("Kata sandi harus di isi")
+    .required("Password harus di isi")
     .min(6, "Panjang kata sandi minimal 6 karakter")
-    .matches(
-      /[a-z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf kecil"
-    )
-    .matches(
-      /[A-Z]+/,
-      "Kata sandi harus mengandung setidaknya satu huruf besar"
-    )
+    .matches(/[a-z]+/, "Password harus mengandung setidaknya satu huruf kecil")
+    .matches(/[A-Z]+/, "Password harus mengandung setidaknya satu huruf besar")
     .matches(
       /[\d]+/,
 
-      "Kata sandi harus mengandung setidaknya satu angka"
+      "Password harus mengandung setidaknya satu angka"
     )
     .matches(
       /[!@#$%^&*()_+{}|<>,./?-]/,
-      "Kata sandi harus mengandung setidaknya satu karakter khusus"
+      "Password harus mengandung setidaknya satu karakter khusus"
     ),
 });
 
-export { loginSchema, registerSchema };
+const resetPasswordSchema = yup.object({
+  email: yup
+    .string()
+    .email("Harap masukkan email yang valid")
+    .required("Email harus di isi"),
+});
+
+export { loginSchema, registerSchema, resetPasswordSchema };

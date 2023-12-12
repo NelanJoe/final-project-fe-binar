@@ -31,6 +31,27 @@ export const authApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    loginGoogle: builder.mutation({
+      query: (data) => {
+        console.log(data);
+        return {
+          url: "/auth/google",
+          method: "POST",
+          body: data,
+        };
+      }
+    }),
+    resetPassword: builder.mutation({
+      query: (email) => {
+        return {
+          url: "/auth/reset-password",
+          method: "POST",
+          body: {
+            email: email
+          },
+        };
+      }
+    })
   }),
 });
 
@@ -38,4 +59,6 @@ export const {
   useLoginMutation,
   useRegisterActionMutation,
   useVerifyOtpMutation,
+  useLoginGoogleMutation,
+  useResetPasswordMutation
 } = authApi;

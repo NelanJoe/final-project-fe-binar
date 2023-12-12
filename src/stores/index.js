@@ -20,8 +20,10 @@ export {
   useLoginMutation,
   useRegisterActionMutation,
   useVerifyOtpMutation,
+  useLoginGoogleMutation,
+  useResetPasswordMutation,
 } from "./auth/auth.api";
 
 export { useGetCategoriesQuery } from "./category/category.api";
 
-export { useGetCoursesMutation } from "./course/course.api";
+export { useGetCoursesQuery } from "./course/course.api";
