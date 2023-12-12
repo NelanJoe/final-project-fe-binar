@@ -7,7 +7,7 @@ import { useGetCoursesQuery } from "@/stores";
 const CoursesPopular = () => {
   const [searchParams] = useSearchParams();
 
-  const category = searchParams.get("category");
+  const category = searchParams.get("category") || "";
 
   const { data } = useGetCoursesQuery(category);
 
