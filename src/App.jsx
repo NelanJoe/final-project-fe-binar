@@ -12,6 +12,7 @@ import Profile from "@/views/Profil/pages/profil";
 import Newpassword from "@/views/Profil/pages/new-password";
 import PaymentHistory from "@/views/Profil/pages/payment-history";
 import { AdminDashboard, AdminLogin } from "@/views/Admin";
+import Notifcation from "./views/Profil/pages/notifcation";
 
 export default function App() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="newpassword" element={<Newpassword />} />
           <Route path="paymenthistory" element={<PaymentHistory />} />
+          <Route path="notifikasi" element={<Notifcation />} />
 
           <Route path="*" element={<Error />} />
         </Routes>

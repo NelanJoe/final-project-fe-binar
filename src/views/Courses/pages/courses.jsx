@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { ListFilterIcon } from "lucide-react";
 
 import { useGetCoursesQuery } from "@/stores";

@@ -69,13 +69,13 @@ const Header = () => {
                 )}
               </Link>
               <Link
-                to="/notification"
+                to="/notifikasi"
                 className={`text-white ${
-                  isActive("/notification") &&
+                  isActive("/notifikasi") &&
                   "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
                 }`}
               >
-                {isActive("/notification") ? (
+                {isActive("/notifikasi") ? (
                   <>
                     <NotifIcon />
                     <span>Kelas</span>
@@ -144,13 +144,13 @@ const Header = () => {
                 )}
               </Link>
               <Link
-                to="/notification"
+                to="/notifikasi"
                 className={`text-white ${
-                  isActive("/notification") &&
+                  isActive("/notifikasi") &&
                   "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
                 }`}
               >
-                {isActive("/notification") ? (
+                {isActive("/notifikasi") ? (
                   <>
                     <NotifIcon />
                     <span>Kelas</span>
