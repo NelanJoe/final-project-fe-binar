@@ -1,18 +1,12 @@
-const CourseDescription = () => {
+import PropTypes from "prop-types";
+
+const CourseDescription = ({ course }) => {
   return (
     <div className="space-y-4">
       <div>
         <h2 className="font-semibold text-2xl mb-2">Tentang Kelas</h2>
         <div className="space-y-2 text-justify text-sm">
-          <article className="indent-4">
-            Design system adalah kumpulan komponen design, code, ataupun
-            dokumentasi yang dapat digunakan sebagai panduan utama yang
-            memunginkan designer serta developer memiliki lebih banyak kontrol
-            atas berbagai platform. Dengan hadirnya design system, dapat menjaga
-            konsistensi tampilan user interface dan meningkatkan user experience
-            menjadi lebih baik. Disisi bisnis, design system sangat berguna
-            dalam menghemat waktu dan biaya ketika mengembangkan suatu produk.
-          </article>
+          <article className="indent-4">{course?.description}</article>
           <article className="indent-4">
             Bersama mentor XXX, kita akan mempelajari design system dari mulai
             manfaat, alur kerja pembuatannya, tools yang digunakan, hingga pada
@@ -44,6 +38,10 @@ const CourseDescription = () => {
       </div>
     </div>
   );
+};
+
+CourseDescription.propTypes = {
+  course: PropTypes.object,
 };
 
 export default CourseDescription;
