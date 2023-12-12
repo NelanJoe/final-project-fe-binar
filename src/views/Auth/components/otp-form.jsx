@@ -33,6 +33,8 @@ const OtpForm = () => {
       const token = res.data.token;
 
       dispatch(setToken(token));
+
+      toast.success("Register Berhasil");
       navigate("/");
     } catch (error) {
       toast.error(error);
@@ -48,7 +50,7 @@ const OtpForm = () => {
           </button>
         </Link>
         <form
-          className="px-8 relative pt-6 pb-8 mb-4 w-[400px] lg:w-[460px]"
+          className="px-8 relative pt-6 pb-8 mb-4 w-[380px] lg:w-[460px]"
           onSubmit={onSubmit}
         >
           <h1 className="mb-20 text-2xl font-bold leading-9 md:text-3xl xl:text-4xl text-dark-blue">
@@ -76,7 +78,7 @@ const OtpForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full mt-14 duration-75 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full transition-all duration-150 ease-linear mt-14 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Simpan
           </button>

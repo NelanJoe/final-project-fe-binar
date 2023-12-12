@@ -32,14 +32,15 @@ export const authApi = apiSlice.injectEndpoints({
       },
     }),
     loginGoogle: builder.mutation({
-      query: (data) => {
-        console.log(data);
+      query: ({ accessToken }) => {
         return {
           url: "/auth/google",
           method: "POST",
-          body: data,
+          body: {
+            access_token: accessToken,
+          },
         };
-      }
+      },
     }),
     resetPassword: builder.mutation({
       query: (email) => {
@@ -47,11 +48,22 @@ export const authApi = apiSlice.injectEndpoints({
           url: "/auth/reset-password",
           method: "POST",
           body: {
-            email: email
+            email: email,
           },
         };
-      }
-    })
+      },
+    }),
+    setPassword: builder.mutation({
+      query: ({ token, password }) => {
+        return {
+          url: `/auth/set-password/${token}`,
+          method: "POST",
+          body: {
+            password: password,
+          },
+        };
+      },
+    }),
   }),
 });
 
@@ -60,5 +72,6 @@ export const {
   useRegisterActionMutation,
   useVerifyOtpMutation,
   useLoginGoogleMutation,
-  useResetPasswordMutation
+  useResetPasswordMutation,
+  useSetPasswordMutation,
 } = authApi;

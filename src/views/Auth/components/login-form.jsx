@@ -16,7 +16,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const [login] = useLoginMutation();
-
+ 
   const {
     register,
     handleSubmit,
@@ -33,7 +33,8 @@ const LoginForm = () => {
 
       const token = res.data.token;
       dispatch(setToken(token));
-
+      
+      toast.success("Login Berhasil");
       navigate("/");
     } catch (error) {
       toast.error(`Error: ${error?.message}`);
@@ -95,7 +96,7 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full transition-all duration-150 ease-linear bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Masuk
           </button>
