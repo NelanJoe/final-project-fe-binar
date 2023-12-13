@@ -8,7 +8,6 @@ import { useSetPasswordMutation } from "@/stores";
 import toast from "react-hot-toast";
 
 import { setToken } from "@/stores/auth/auth.slice";
-import { useState } from "react";
 
 const SetPasswordForm = () => {
   const dispatch = useDispatch();
@@ -18,9 +17,6 @@ const SetPasswordForm = () => {
   const [setPassword] = useSetPasswordMutation();
 
   const verifyToken = searchParams.get("token");
-  
-  const [password, setPasswordValue] = useState("");
-  const [confirmPassword, setConfirmPasswordValue] = useState("");
   
     const {
       register,
@@ -34,14 +30,9 @@ const SetPasswordForm = () => {
       event.preventDefault();
 
       try {
-        if (password !== confirmPassword) {
-          toast.error("Password tidak cocok");
-          return;
-        }
-
         const res = await setPassword({
           token: verifyToken,
-          password: password,
+          // password: password,
         }).unwrap();
         console.log("Values", values);
 
@@ -77,8 +68,6 @@ const SetPasswordForm = () => {
               {...register("password")}
               type="password"
               placeholder="*****"
-              value={password}
-              onChange={(e) => setPasswordValue(e.target.value)}
               className="w-full px-3 py-2 text-sm leading-tight border shadow appearance-none rounded-2xl lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
             />
             <span className="text-sm text-red-500 lg:text-base">
@@ -98,8 +87,6 @@ const SetPasswordForm = () => {
               {...register("password")}
               type="password"
               placeholder="*****"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPasswordValue(e.target.value)}
               className="w-full px-3 py-2 text-sm leading-tight border shadow appearance-none rounded-2xl lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
             />
             <span className="text-sm text-red-500 lg:text-base">
