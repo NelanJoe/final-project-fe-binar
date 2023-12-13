@@ -37,7 +37,7 @@ const LoginForm = () => {
       toast.success("Login Berhasil");
       navigate("/");
     } catch (error) {
-      toast.error(`Error: ${error?.message}`);
+      toast.error(`Error: ${error?.data?.error}`);
     }
   };
 

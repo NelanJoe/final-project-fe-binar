@@ -18,6 +18,7 @@ const SetPasswordForm = () => {
   const [setPassword] = useSetPasswordMutation();
 
   const verifyToken = searchParams.get("token");
+  
   const [password, setPasswordValue] = useState("");
   const [confirmPassword, setConfirmPasswordValue] = useState("");
   
@@ -40,7 +41,7 @@ const SetPasswordForm = () => {
 
         const res = await setPassword({
           token: verifyToken,
-          // password: password,
+          password: password,
         }).unwrap();
         console.log("Values", values);
 
@@ -49,7 +50,7 @@ const SetPasswordForm = () => {
         dispatch(setToken(token));
         navigate("/");
       } catch (error) {
-        toast.error(error);
+        toast.error(`Error: ${error?.data?.message}`);
       }
     };
 

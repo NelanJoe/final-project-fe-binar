@@ -37,7 +37,7 @@ const RegisterForm = () => {
         search: `?verify-email=${values?.email}`,
       });
     } catch (error) {
-      toast.error(`Error: ${error?.message}`);
+      toast.error(`Error: ${error?.data?.error}`);
     }
   };
 

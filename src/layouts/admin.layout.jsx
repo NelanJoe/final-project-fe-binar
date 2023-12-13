@@ -1,28 +1,48 @@
-import Logo from "@/assets/images/logo.png";
-import { AlignJustify as HamburgerIcon, X as CloseIcon } from "lucide-react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
+import { AlignJustify as HamburgerIcon, X as CloseIcon } from "lucide-react";
+import Logo from "@/assets/images/logo.png";
 
 const AdminLayout = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <main>
+      {/* Header with Hamburger Icon */}
+      <header className="sticky top-0 z-50 flex items-center justify-between p-4 text-white sm:p-0 sm:bg-inherit bg-dark-blue">
+        <Link to={"/admin-dashboard"}>
+          <img src={Logo} alt="Logo" width={160}  className="sm:hidden"/>
+        </Link>
+        <button
+          onClick={toggleMenu}
+          className="block text-2xl sm:hidden focus:outline-none"
+        >
+          {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+        </button>
+      </header>
+
+      {/* Sidebar */}
       <aside
         id="default-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } sm:translate-x-0 bg-dark-blue`}
         aria-label="Sidebar"
       >
-        <div className="h-full py-4 overflow-y-auto bg-dark-blue">
+        <div className="h-full py-4 overflow-y-auto">
+          {/* Logo */}
           <Link to={"/admin-dashboard"}>
-            <img src={Logo} />
+            <img src={Logo} alt="Logo" className="hidden sm:block"/>
           </Link>
-          <ul className="space-y-2 font-medium">
+
+          {/* Menu */}
+          <ul className="space-y-2 font-medium pt-14 sm:pt-0">
             <li>
               <Link
                 to="/admin-dashboard"
@@ -52,6 +72,7 @@ const AdminLayout = ({ children }) => {
           </ul>
         </div>
       </aside>
+      {/* Content */}
       {children}
     </main>
   );
