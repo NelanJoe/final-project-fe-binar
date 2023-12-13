@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-
-import { AlignJustify as HamburgerIcon, X as CloseIcon } from "lucide-react";
 import Logo from "@/assets/images/logo.png";
+import { AlignJustify as HamburgerIcon, X as CloseIcon } from "lucide-react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const AdminLayout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
