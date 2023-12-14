@@ -6,7 +6,7 @@ export default function TambahKelas() {
   return (
     <>
       <button
-        className="flex items-center gap-2 px-2 py-[2px] text-base text-white rounded-full hover:bg-[#4532bd] bg-dark-blue"
+        className="flex items-center ml-2 gap-2 px-2 py-[2px] text-base text-white rounded-full hover:bg-[#4532bd] bg-dark-blue"
         onClick={() => setShowModal(true)}
         type="button"
       >
@@ -14,8 +14,8 @@ export default function TambahKelas() {
       </button>
       {showModal ? (
         <>
-          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none mb-9 focus:outline-none">
-            <div className="relative w-[50%] mx-auto my-6 max-h-[80vh]">
+          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+            <div className="relative w-[80%] md:w-[50%] mx-auto my-6 max-h-[50vh] md:max-h-[80vh]">
               {/*content*/}
               <div className="relative flex flex-col w-full overflow-y-auto bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                 {/*header*/}
@@ -31,7 +31,7 @@ export default function TambahKelas() {
                   </h3>
                 </div>
                 {/*body*/}
-                <div className="relative flex-auto px-10 overflow-y-auto">
+                <form className="flex-auto px-10 overflow-y-auto">
                   <div className="mb-4">
                     <label
                       htmlFor="class"
@@ -45,18 +45,48 @@ export default function TambahKelas() {
                       placeholder="Text"
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="flex flex-col mb-4">
                     <label
                       htmlFor="category"
-                      className="block mb-2 text-sm font-normal leading-4 lg:text-base"
+                      className="mb-2 text-sm font-normal leading-4 lg:text-base"
                     >
                       Kategori
                     </label>
-                    <input
+                    <select
+                      className="text-sm font-normal leading-4 rounded-md lg:text-base"
                       id="category"
-                      className="w-full px-3 py-2 text-sm border shadow appearance-none rounded-2xl leading-tigh lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
-                      placeholder="Text"
-                    />
+                    >
+                      <option
+                        value="UI/UX Design"
+                        className="text-[10px] font-normal leading-4 lg:text-base"
+                      >
+                        UI/UX Design
+                      </option>
+                      <option
+                        value="Web Development"
+                        className="text-[10px] font-normal leading-4 lg:text-base"
+                      >
+                        Web Development
+                      </option>
+                      <option
+                        value="Android Development"
+                        className="text-[10px] font-normal leading-4 lg:text-base"
+                      >
+                        Android Development
+                      </option>
+                      <option
+                        value="Data Science"
+                        className="text-[10px] font-normal leading-4 lg:text-base"
+                      >
+                        Data Science
+                      </option>
+                      <option
+                        value="Bussiness Intelligence"
+                        className="text-[10px] font-normal leading-4 lg:text-base"
+                      >
+                        Bussiness Intelligence
+                      </option>
+                    </select>
                   </div>
                   <div className="mb-4">
                     <label
@@ -84,18 +114,36 @@ export default function TambahKelas() {
                       placeholder="Text"
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="flex flex-col mb-4">
                     <label
                       htmlFor="level"
-                      className="block mb-2 text-sm font-normal leading-4 lg:text-base"
+                      className="mb-2 text-sm font-normal leading-4 lg:text-base"
                     >
-                      Level
+                      Level Kesulitan
                     </label>
-                    <input
+                    <select
+                      className="text-sm font-normal leading-4 rounded-md lg:text-base"
                       id="level"
-                      className="w-full px-3 py-2 text-sm border shadow appearance-none rounded-2xl leading-tigh lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
-                      placeholder="Text"
-                    />
+                    >
+                      <option
+                        value="Beginner Level"
+                        className="text-[10px]  font-normal leading-4 lg:text-base"
+                      >
+                        Beginner Level
+                      </option>
+                      <option
+                        value="Intermediate Level"
+                        className="text-[10px]  font-normal leading-4 lg:text-base"
+                      >
+                        Intermediate Level
+                      </option>
+                      <option
+                        value="Advanced Level"
+                        className="text-[10px]  font-normal leading-4 lg:text-base"
+                      >
+                        Advanced Level
+                      </option>
+                    </select>
                   </div>
                   <div className="mb-4">
                     <label
@@ -110,6 +158,15 @@ export default function TambahKelas() {
                       placeholder="Text"
                     />
                   </div>
+                  <div className="flex flex-col mb-4">
+                    <label
+                      htmlFor="myfile"
+                      className="mb-2 text-sm font-normal leading-4 lg:text-base"
+                    >
+                      Upload Video :
+                    </label>
+                    <input type="file" id="myFile" name="filename" />
+                  </div>
                   <div className="mb-4">
                     <label
                       htmlFor="Materi"
@@ -120,26 +177,20 @@ export default function TambahKelas() {
                     <textarea
                       id="Materi"
                       rows="4"
-                      className="w-full p-2.5 text-sm border shadow appearance-none rounded-2xl leading-tigh lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
+                      className="w-full p-2.5 text-sm border shadow appearance-none rounded-md leading-tigh lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
                       placeholder="Paragraph"
                     ></textarea>
                   </div>
-                </div>
-                {/*footer*/}
-                <div className="flex items-center justify-center p-6 border-t border-solid rounded-b">
-                  <button
-                    className="px-10 py-2 mb-1 mr-1 text-sm hover:bg-[#b42121] font-bold text-white uppercase transition-all duration-150 ease-linear rounded-full outline-none bg-warning hover:shadow-lg focus:outline-none"
-                    type="button"
-                  >
-                    Upload Video
-                  </button>
-                  <button
-                    className="px-10 py-2 mb-1 mr-1 text-sm hover:bg-[#4532bd] font-bold text-white uppercase transition-all duration-150 ease-linear rounded-full outline-none bg-dark-blue hover:shadow-lg focus:outline-none"
-                    type="button"
-                  >
-                    Simpan
-                  </button>
-                </div>
+                  {/*footer*/}
+                  <div className="flex items-center justify-center pt-3 pb-6 border-t border-solid rounded-b">
+                    <button
+                      className="px-10 py-2 mb-1 mr-1 text-sm hover:bg-[#4532bd] font-bold text-white uppercase transition-all duration-150 ease-linear rounded-full outline-none bg-dark-blue hover:shadow-lg focus:outline-none"
+                      type="button"
+                    >
+                      Simpan
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

@@ -2,13 +2,23 @@ import { useState } from "react";
 import Logo from "@/assets/images/logo.png";
 import { AlignJustify as HamburgerIcon, X as CloseIcon } from "lucide-react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "@/stores/auth/auth.slice";
 
 const AdminLayout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const onLogout = () => {
+    dispatch(logout());
+
+    navigate("/admin-login");
   };
 
   return (
@@ -16,7 +26,7 @@ const AdminLayout = ({ children }) => {
       {/* Header with Hamburger Icon */}
       <header className="sticky top-0 z-50 flex items-center justify-between p-4 text-white sm:p-0 sm:bg-inherit bg-dark-blue">
         <Link to={"/admin-dashboard"}>
-          <img src={Logo} alt="Logo" width={160}  className="sm:hidden"/>
+          <img src={Logo} alt="Logo" width={160} className="sm:hidden" />
         </Link>
         <button
           onClick={toggleMenu}
@@ -37,7 +47,7 @@ const AdminLayout = ({ children }) => {
         <div className="h-full py-4 overflow-y-auto">
           {/* Logo */}
           <Link to={"/admin-dashboard"}>
-            <img src={Logo} alt="Logo" className="hidden sm:block"/>
+            <img src={Logo} alt="Logo" className="hidden sm:block" />
           </Link>
 
           {/* Menu */}
@@ -61,12 +71,12 @@ const AdminLayout = ({ children }) => {
               </Link>
             </li>
             <li>
-              <Link
-                to="/admin-login"
-                className="flex items-center p-2 text-white hover:bg-soft-blue group"
+              <button
+                onClick={onLogout}
+                className="flex items-center w-full p-2 text-white hover:bg-soft-blue ps-5 whitespace-nowrap"
               >
-                <span className="flex-1 ms-3 whitespace-nowrap">Keluar</span>
-              </Link>
+                Keluar
+              </button>
             </li>
           </ul>
         </div>
