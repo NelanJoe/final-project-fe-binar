@@ -1,12 +1,16 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 import { setPasswordSchema } from "../validation";
 import { useSetPasswordMutation } from "@/stores";
-import toast from "react-hot-toast";
 
 const SetPasswordForm = () => {
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmError, setConfirmError] = useState("");
+
   const navigate = useNavigate();
 
   const [setPassword] = useSetPasswordMutation();
@@ -25,6 +29,13 @@ const SetPasswordForm = () => {
     event.preventDefault();
 
     try {
+      if (password !== confirmPassword) {
+        setConfirmError("Password tidak cocok");
+        return
+      } else {
+        setConfirmError("");
+      }
+
       const res = await setPassword({
         token,
         password: password,
@@ -69,20 +80,24 @@ const SetPasswordForm = () => {
           <div className="mb-8">
             <div className="flex items-center justify-between">
               <label
-                htmlFor="password"
+                htmlFor="confirmPassword"
                 className="block mb-2 text-[#3C3C3C] text-sm font-normal leading-4 lg:text-base"
               >
                 Ulangi Password Baru
               </label>
             </div>
             <input
-              {...register("password")}
               type="password"
               placeholder="*****"
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                setConfirmError("");
+              }}
               className="w-full px-3 py-2 text-sm leading-tight border shadow appearance-none rounded-2xl lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
             />
             <span className="text-sm text-red-500 lg:text-base">
-              {errors.password?.message}
+              {confirmError}
             </span>
           </div>
           <button

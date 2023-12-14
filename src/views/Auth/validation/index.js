@@ -74,17 +74,18 @@ const setPasswordSchema = yup.object({
     .string()
     .required("Password harus di isi")
     .min(6, "Panjang kata sandi minimal 6 karakter")
+    .matches(/[a-z]+/, "Password harus mengandung setidaknya satu huruf kecil")
+    .matches(/[A-Z]+/, "Password harus mengandung setidaknya satu huruf besar")
     .matches(
-      /[a-z]+/,
-      "Password harus mengandung setidaknya satu huruf kecil"
+      /[\d]+/,
+
+      "Password harus mengandung setidaknya satu angka"
     )
     .matches(
-      /[A-Z]+/,
-      "Password harus mengandung setidaknya satu huruf besar"
-    )
-    .matches(
-      /[\d]+/),
-})
+      /[!@#$%^&*()_+{}|<>,./?-]/,
+      "Password harus mengandung setidaknya satu karakter khusus"
+    ),
+});
 
 
 
