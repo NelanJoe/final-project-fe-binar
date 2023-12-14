@@ -24,12 +24,10 @@ const RegisterForm = () => {
   const onSubmit = async (values, event) => {
     event.preventDefault();
 
-    console.log("Values", values);
-
     try {
       const res = await registerAction(values).unwrap();
 
-      console.log(res.message);
+      toast.success(res.success);
       console.log("OTP CODE:", res.otp);
 
       navigate({

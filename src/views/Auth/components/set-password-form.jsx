@@ -1,5 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -7,43 +6,36 @@ import { setPasswordSchema } from "../validation";
 import { useSetPasswordMutation } from "@/stores";
 import toast from "react-hot-toast";
 
-import { setToken } from "@/stores/auth/auth.slice";
-
 const SetPasswordForm = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
 
   const [setPassword] = useSetPasswordMutation();
 
-  const verifyToken = searchParams.get("token");
-  
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm({
-      resolver: yupResolver(setPasswordSchema),
-    });
+  const { token } = useParams();
 
-    const onSubmit = async (values, event) => {
-      event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(setPasswordSchema),
+  });
 
-      try {
-        const res = await setPassword({
-          token: verifyToken,
-          // password: password,
-        }).unwrap();
-        console.log("Values", values);
+  const onSubmit = async ({ password }, event) => {
+    event.preventDefault();
 
-        const token = res.data.token;
+    try {
+      const res = await setPassword({
+        token,
+        password: password,
+      }).unwrap();
 
-        dispatch(setToken(token));
-        navigate("/");
-      } catch (error) {
-        toast.error(`Error: ${error?.data?.message}`);
-      }
-    };
+      toast.success(res?.data?.success);
+      navigate("/login");
+    } catch (error) {
+      toast.error(`Error: ${error?.data?.error}`);
+    }
+  };
 
   return (
     <section className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
@@ -103,6 +95,6 @@ const SetPasswordForm = () => {
       </div>
     </section>
   );
-}
+};
 
-export default SetPasswordForm
+export default SetPasswordForm;
