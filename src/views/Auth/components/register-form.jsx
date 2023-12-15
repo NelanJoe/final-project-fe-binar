@@ -28,12 +28,10 @@ const RegisterForm = () => {
       const res = await registerAction(values).unwrap();
 
       toast.success(res.success);
+      localStorage.setItem("verify-email", values.email);
       console.log("OTP CODE:", res.otp);
 
-      navigate({
-        pathname: "/otp",
-        search: `?verify-email=${values?.email}`,
-      });
+      navigate("/otp");
     } catch (error) {
       toast.error(`Error: ${error?.data?.error}`);
     }

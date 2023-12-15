@@ -16,6 +16,7 @@ const SetPasswordForm = () => {
   const [setPassword] = useSetPasswordMutation();
 
   const { token } = useParams();
+  console.log(token);
 
   const {
     register,
@@ -27,6 +28,7 @@ const SetPasswordForm = () => {
 
   const onSubmit = async ({ password }, event) => {
     event.preventDefault();
+    
 
     try {
       if (password !== confirmPassword) {
@@ -41,7 +43,7 @@ const SetPasswordForm = () => {
         password: password,
       }).unwrap();
 
-      toast.success(res?.data?.success);
+      toast.success(res?.success);
       navigate("/login");
     } catch (error) {
       toast.error(`Error: ${error?.data?.error}`);

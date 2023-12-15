@@ -67,7 +67,7 @@ export const authApi = apiSlice.injectEndpoints({
     resendOtp: builder.mutation({
       query: ({email}) => {
         return {
-          url: `/auth/reset-otp/${email}`,
+          url: `/auth/reset-otp/`,
           method: "POST",
           body: {
             email: email,
