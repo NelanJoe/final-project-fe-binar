@@ -101,18 +101,30 @@ export default function TambahKelas() {
                       placeholder="Text"
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="flex flex-col mb-4">
                     <label
                       htmlFor="type class"
-                      className="block mb-2 text-sm font-normal leading-4 lg:text-base"
+                      className="mb-2 text-sm font-normal leading-4 lg:text-base"
                     >
                       Tipe Kelas
                     </label>
-                    <input
+                    <select
+                      className="text-sm font-normal leading-4 rounded-md lg:text-base"
                       id="type class"
-                      className="w-full px-3 py-2 text-sm border shadow appearance-none rounded-2xl leading-tigh lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
-                      placeholder="Text"
-                    />
+                    >
+                      <option
+                        value="GRATIS"
+                        className="text-[10px]  font-normal leading-4 lg:text-base"
+                      >
+                        GRATIS
+                      </option>
+                      <option
+                        value="PREMIUM"
+                        className="text-[10px]  font-normal leading-4 lg:text-base"
+                      >
+                        PREMIUM
+                      </option>
+                    </select>
                   </div>
                   <div className="flex flex-col mb-4">
                     <label

@@ -1,6 +1,65 @@
 import { Filter, Search } from "lucide-react";
 
 const PaymentStatusTable = () => {
+  const payment = [
+    {
+      id: "johndoe123",
+      category: "UI/UX Design",
+      class: "Belajar Web Designer dengan Figma",
+      status: "SUDAH BAYAR",
+      methode: "Credit Card",
+      date: "21 Sep, 2023 at 2:00 AM",
+    },
+    {
+      id: "supermanxx",
+      category: "UI/UX Design",
+      class: "Belajar Web Designer dengan Figma",
+      status: "BELUM BAYAR",
+      methode: "-",
+      date: "-",
+    },
+    {
+      id: "ironman99",
+      category: "Web Development",
+      class: "Belajar Web Designer dengan Figma",
+      status: "SUDAH BAYAR",
+      methode: "Credit Card",
+      date: "20 Sep, 2023 at 2:00 AM",
+    },
+    {
+      id: "lokiMaster",
+      category: "Data Science",
+      class: "Data Cleaning untuk pemula",
+      status: "SUDAH BAYAR",
+      methode: "Credit Card",
+      date: "19 Sep, 2023 at 2:00 AM",
+    },
+    {
+      id: "siapaAjaani",
+      category: "Data Science",
+      class: "Data Cleaning untuk pemula",
+      status: "BELUM BAYAR",
+      methode: "-",
+      date: "-",
+    },
+    {
+      id: "lokiMaster",
+      category: "Web Development",
+      class: "Membuat wordpress mudah",
+      status: "BELUM BAYAR",
+      methode: "-",
+      date: "-",
+    },
+    {
+      id: "visionOKE",
+      category: "Data Science",
+      class: "Data Cleaning untuk pemula",
+      status: "SUDAH BAYAR",
+      methode: "Credit Card",
+      date: "10 Sep, 2023 at 2:00 AM",
+    },
+  ];
+
   return (
     <article>
       <div className="flex items-center justify-between px-16">
@@ -37,111 +96,28 @@ const PaymentStatusTable = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap"
-              >
-                johndoe123
-              </th>
-              <td className="px-2 py-3">UI/UX Design</td>
-              <td className="px-2 py-3 font-semibold">Belajar Web Designer dengan Figma</td>
-              <td className="px-2 py-3 font-bold uppercase text-success">
-                Sudah Bayar
-              </td>
-              <td className="px-2 py-3 font-semibold">Credit Card</td>
-              <td className="px-2 py-3">21 Sep, 2023 at 2:00 AM</td>
-            </tr>
-            <tr className="bg-white border-b hover:bg-gray-50 ">
-              <th
-                scope="row"
-                className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap "
-              >
-                supermanxx
-              </th>
-              <td className="px-2 py-3">UI/UX Design</td>
-              <td className="px-2 py-3 font-semibold">Belajar Web Designer dengan Figma</td>
-              <td className="px-2 py-3 font-bold uppercase text-warning">
-                BELUM BAYAR
-              </td>
-              <td className="px-2 py-3 font-semibold">-</td>
-              <td className="px-2 py-3">-</td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50 ">
-              <th
-                scope="row"
-                className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap "
-              >
-                ironman99
-              </th>
-              <td className="px-2 py-3">Web Development</td>
-              <td className="px-2 py-3 font-semibold">Belajar Web Designer dengan Figma</td>
-              <td className="px-2 py-3 font-bold uppercase text-success">
-                SUDAH BAYAR
-              </td>
-              <td className="px-2 py-3 font-semibold">Credit Card</td>
-              <td className="px-2 py-3">20 Sep, 2023 at 2:00 AM</td>
-            </tr>
-            <tr className="bg-white border-b hover:bg-gray-50 ">
-              <th
-                scope="row"
-                className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap "
-              >
-                supermanxx
-              </th>
-              <td className="px-2 py-3">UI/UX Design</td>
-              <td className="px-2 py-3 font-semibold">Belajar Web Designer dengan Figma</td>
-              <td className="px-2 py-3 font-bold uppercase text-warning">
-                BELUM BAYAR
-              </td>
-              <td className="px-2 py-3 font-semibold">-</td>
-              <td className="px-2 py-3">-</td>
-            </tr>
-            <tr className="bg-white border-b hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap"
-              >
-                johndoe123
-              </th>
-              <td className="px-2 py-3">UI/UX Design</td>
-              <td className="px-2 py-3 font-semibold">Belajar Web Designer dengan Figma</td>
-              <td className="px-2 py-3 font-bold uppercase text-success">
-                Sudah Bayar
-              </td>
-              <td className="px-2 py-3 font-semibold">Credit Card</td>
-              <td className="px-2 py-3">21 Sep, 2023 at 2:00 AM</td>
-            </tr>
-            <tr className="bg-white border-b hover:bg-gray-50 ">
-              <th
-                scope="row"
-                className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap "
-              >
-                supermanxx
-              </th>
-              <td className="px-2 py-3">UI/UX Design</td>
-              <td className="px-2 py-3 font-semibold">Belajar Web Designer dengan Figma</td>
-              <td className="px-2 py-3 font-bold uppercase text-warning">
-                BELUM BAYAR
-              </td>
-              <td className="px-2 py-3 font-semibold">-</td>
-              <td className="px-2 py-3">-</td>
-            </tr>
-            <tr className="bg-white border-b hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap"
-              >
-                johndoe123
-              </th>
-              <td className="px-2 py-3">UI/UX Design</td>
-              <td className="px-2 py-3 font-semibold">Belajar Web Designer dengan Figma</td>
-              <td className="px-2 py-3 font-bold uppercase text-success">
-                Sudah Bayar
-              </td>
-              <td className="px-2 py-3 font-semibold">Credit Card</td>
-              <td className="px-2 py-3">21 Sep, 2023 at 2:00 AM</td>
-            </tr>
+            {payment.map((item) => {
+              return (
+                <tr
+                  key={item.id}
+                  className="bg-white border-b hover:bg-gray-50"
+                >
+                  <th
+                    scope="row"
+                    className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    {item.id}
+                  </th>
+                  <td className="px-2 py-3">{item.category}</td>
+                  <td className="px-2 py-3 font-semibold">{item.class}</td>
+                  <td className={`px-2 py-3 font-bold uppercase ${item.status === "SUDAH BAYAR" ? "text-success" : "text-warning"}`}>
+                    {item.status}
+                  </td>
+                  <td className="px-2 py-3 font-semibold">{item.methode}</td>
+                  <td className="px-2 py-3">{item.date}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
