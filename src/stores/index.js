@@ -26,4 +26,13 @@ export {
 
 export { useGetCategoriesQuery } from "./category/category.api";
 
-export { useGetCoursesQuery } from "./course/course.api";
+export {
+  useGetHomeCoursesQuery,
+  useGetCoursesQuery,
+  useGetCourseByIdQuery,
+  useGetMyCoursesQuery,
+  useGetDetailCoursePopupQuery,
+  useGetCourseOrderByIdQuery,
+  usePostOrderCourseByIdMutation,
+  usePatchOrderCourseByIdMutation,
+} from "./course/course.api";

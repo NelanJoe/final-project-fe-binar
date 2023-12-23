@@ -2,16 +2,21 @@ import { Link, useSearchParams } from "react-router-dom";
 
 import CoursesList from "@/components/common/courses-list";
 import CoursesCTA from "./courses-cta";
-import { useGetCoursesQuery } from "@/stores";
+import { useGetHomeCoursesQuery } from "@/stores";
+import LoadingBar from "@/components/ui/LoadingBar";
 
 const CoursesPopular = () => {
   const [searchParams] = useSearchParams();
 
   const category = searchParams.get("category") || "";
 
-  const { data } = useGetCoursesQuery(category);
+  const { data, isLoading } = useGetHomeCoursesQuery(category);
 
-  const courses = data?.popular;
+  if (isLoading) {
+    return <LoadingBar />;
+  }
+
+  const courses = data?.popular.slice(0, 3);
 
   return (
     <section>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 
-const HomeLayout = ({ children }) => {
+const BaseLayout = ({ children }) => {
   return (
     <>
       <Header />
@@ -13,8 +13,8 @@ const HomeLayout = ({ children }) => {
   );
 };
 
-HomeLayout.propTypes = {
+BaseLayout.propTypes = {
   children: PropTypes.node,
 };
 
-export default HomeLayout;
+export default BaseLayout;

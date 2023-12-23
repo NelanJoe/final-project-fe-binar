@@ -1,69 +1,53 @@
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { Link, useSearchParams } from "react-router-dom";
-import { ListFilterIcon, AlignJustifyIcon } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
+import { ListFilterIcon } from "lucide-react";
 
-import { useGetCoursesQuery } from "@/stores";
-import { selectedToken } from "@/stores/auth/auth.selector";
+import BaseLyout from "@/layouts/base.layout";
 
-import MainLayout from "@/layouts/base.layout";
+import CourseCTA from "@/components/common/course-cta";
+import CourseFilter from "@/components/common/course-filter";
 import CoursesList from "@/components/common/courses-list";
+import { useGetMyCoursesQuery } from "@/stores";
 import LoadingBar from "@/components/ui/LoadingBar";
 
-import CourseFilter from "../../../components/common/course-filter";
-import CourseCTA from "../../../components/common/course-cta";
-
-const Courses = () => {
+const MyCourses = () => {
   const [searchParams] = useSearchParams();
-  const token = useSelector(selectedToken);
 
-  const type = searchParams.get("type") || "all";
   const title = searchParams.get("title") || "";
+  const progress = searchParams.get("progress") || "";
 
-  const paramsCourses = useMemo(() => {
+  const paramsMyCourses = useMemo(() => {
     return {
       keyword: title,
-      type: type,
-      filter: "",
       categori: "",
+      filter: "",
       level: "",
+      progress: progress,
       page: "",
     };
-  }, [title, type]);
+  }, [title, progress]);
 
-  const { data, isLoading, error } = useGetCoursesQuery(paramsCourses);
+  const { data, isLoading, error } = useGetMyCoursesQuery(paramsMyCourses);
 
   if (isLoading) {
     return <LoadingBar />;
   }
 
   if (error) {
-    <div>Error {error?.message}</div>;
+    return <div>Error: {error}</div>;
   }
-
-  const courses = data?.course;
 
   const openModal = () => {
     document.querySelector("#course-filter")?.showModal();
   };
 
   return (
-    <MainLayout>
+    <BaseLyout>
       <main className="relative">
         <section className="max-w-7xl mx-4 md:mx-auto min-h-screen mt-12">
           <section>
             <div className="flex flex-col md:flex-row justify-between gap-y-2">
-              <h2 className="text-xl font-semibold">Kelas Berjalan</h2>
-              {token ? (
-                <Link to="/my-courses">
-                  <button className="text-white px-3 py-1.5 rounded-md shadow-md bg-blue-500 hover:bg-blue-400">
-                    <div className="flex flex-row items-center gap-x-3">
-                      <AlignJustifyIcon className="w-6 h-6" />
-                      <span>Kelasku</span>
-                    </div>
-                  </button>
-                </Link>
-              ) : null}
+              <h2 className="text-xl font-semibold">Kelasku</h2>
             </div>
           </section>
 
@@ -96,7 +80,13 @@ const Courses = () => {
                 <CourseCTA />
                 <div className="my-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <CoursesList courses={courses} />
+                    {data?.MyCourse ? (
+                      <CoursesList courses={data?.MyCourse} />
+                    ) : (
+                      <div>
+                        <h2>Not found courses</h2>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -116,8 +106,8 @@ const Courses = () => {
           </div>
         </dialog>
       </main>
-    </MainLayout>
+    </BaseLyout>
   );
 };
 
-export default Courses;
+export default MyCourses;
