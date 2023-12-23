@@ -30,4 +30,9 @@ export { useGetCategoriesQuery } from "./category/category.api";
 
 export { useGetCoursesQuery } from "./course/course.api";
 
-export { useAdminLoginMutation } from "./admin/admin.api"
+export {
+  useAdminLoginMutation,
+  useGetActiveUserQuery,
+  useGetActiveClassQuery,
+  useGetActivePremiumQuery,
+} from "./admin/admin.api";
