@@ -36,7 +36,11 @@ const AdminLoginForm = () => {
       toast.success("Login Berhasil");
       navigate("/admin-dashboard");
     } catch (error) {
-      toast.error(`Error: ${error?.data?.error}`);
+        const errorMessage =
+          error?.data?.error ||
+          error?.data?.message ||
+          "Unknown error occurred";
+        toast.error(`Error: ${errorMessage}`);
     }
   };
 

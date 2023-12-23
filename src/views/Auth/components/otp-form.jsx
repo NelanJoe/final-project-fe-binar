@@ -96,7 +96,7 @@ const OtpForm = () => {
           <div className="flex justify-center">
             <p className="block my-8 text-center top-16 w-full absolute text-[#3C3C3C] text-sm font-normal leading-4 lg:text-base">
               Ketik 6 digit kode yang dikirimkan ke{" "}
-              <span className="font-bold">{verifyEmail}</span>
+              <span className="font-bold ">{verifyEmail}</span>
             </p>
             <OtpInput
               value={validasi}
@@ -108,6 +108,7 @@ const OtpForm = () => {
                 width: "2.8rem",
                 height: "2.8rem",
                 margin: "0 .5rem",
+                marginTop: ".7rem",
                 border: ".1rem solid #6148FF",
                 borderRadius: "40%",
               }}
