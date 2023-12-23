@@ -1,6 +1,11 @@
 import * as yup from "yup";
 
 const loginAdminSchema = yup.object().shape({
+  id: yup
+    .number()
+    .typeError("Id Admin harus berupa angka")
+    .max(9999999999999, "Id Admin terlalu panjang")
+    .required("Id Admin harus di isi"),
   password: yup
     .string()
     .required("Password harus di isi")

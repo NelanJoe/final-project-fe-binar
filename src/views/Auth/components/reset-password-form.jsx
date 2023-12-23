@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
-
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { resetPasswordSchema } from "../validation";
+
 import { useResetPasswordMutation } from "@/stores";
 
 const ResetPasswordForm = () => {
@@ -18,15 +18,15 @@ const ResetPasswordForm = () => {
     resolver: yupResolver(resetPasswordSchema),
   });
 
-  const onSubmit = async ({ email }, event) => {
+  const onSubmit = async (values, event) => {
     event.preventDefault();
 
     try {
-      const res = await resetPassword(email).unwrap();
+      const res = await resetPassword(values.email).unwrap();
 
       toast.success(res.message);
     } catch (error) {
-      console.error(error);
+      toast.error(`Error: ${error?.message}`);
     }
   };
 
@@ -58,22 +58,22 @@ const ResetPasswordForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full transition-all duration-150 ease-linear bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Atur ulang sandi
           </button>
+          <div className="mt-8 text-center">
+            <span className="text-sm font-normal lg:text-base">
+              Kembali ke&nbsp;
+              <Link
+                to="/login"
+                className="font-bold duration-75 text-dark-blue hover:underline"
+              >
+                Login
+              </Link>
+            </span>
+          </div>
         </form>
-        <div className="mt-8 text-center">
-          <span className="text-sm font-normal lg:text-base">
-            atau&nbsp;
-            <Link
-              to="/login"
-              className="font-bold duration-75 text-dark-blue hover:underline"
-            >
-              Login
-            </Link>
-          </span>
-        </div>
       </div>
     </section>
   );

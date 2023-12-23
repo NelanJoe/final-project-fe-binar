@@ -8,7 +8,7 @@ const AuthLayout = ({ children }) => {
         <img
           alt="logo"
           src={Logo}
-          className="object-cover w-[280px] me-4 lg:w-[380px] xl:w-[451px]"
+          className="object-cover w-[280px] me-4 lg:w-[380px]"
           />
       </aside>
       {children}

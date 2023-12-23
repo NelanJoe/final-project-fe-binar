@@ -10,7 +10,7 @@ const CategoryItem = ({ category }) => {
             <img
               src={category.image}
               alt={`${category.name}`}
-              className="object-cover w-full h-full rounded-3xl transition-all duration-300 group-hover:rounded group-hover:scale-105 "
+              className="object-cover w-full h-full transition-all duration-300 rounded-3xl group-hover:rounded group-hover:scale-105 "
             />
           </div>
           <div>

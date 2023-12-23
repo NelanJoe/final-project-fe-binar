@@ -22,6 +22,7 @@ export {
   useVerifyOtpMutation,
   useLoginGoogleMutation,
   useResetPasswordMutation,
+  useSetPasswordMutation
 } from "./auth/auth.api";
 
 export { useGetCategoriesQuery } from "./category/category.api";

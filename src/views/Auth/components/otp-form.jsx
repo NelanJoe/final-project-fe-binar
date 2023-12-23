@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ArrowLeftIcon } from "lucide-react";
@@ -20,6 +20,32 @@ const OtpForm = () => {
   const verifyEmail = searchParams.get("verify-email");
 
   const [validasi, setValidasi] = useState("");
+  const [seconds, setSeconds] = useState(60);
+
+  useEffect(() => {
+    // Set interval untuk mengurangi detik setiap 1 detik
+    const interval = setInterval(() => {
+      if (seconds > 0) {
+        // Mengurangi detik jika belum mencapai 0
+        setSeconds((prevSeconds) => prevSeconds - 1);
+      } else {
+        // Kirim ulang OTP jika waktu habis (0 detik)
+        sendOtpAgain();
+        setSeconds(60); // Reset timer ke 60 detik
+      }
+    }, 1000);
+
+    return () => clearInterval(interval); // Bersihkan interval pada unmount komponen
+  }, [seconds]); // Menjalankan effect kembali jika 'seconds' berubah
+
+  const sendOtpAgain = () => {
+    // Logika untuk mengirim ulang OTP melalui API/email
+    // Contoh: Panggil API untuk mengirim ulang OTP ke email pengguna
+    toast.success("Mengirim ulang OTP...");
+    
+    // Panggilan API/email untuk mengirim ulang OTP
+    // SomeAPIService.resendOtp(verifyEmail);
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -33,9 +59,11 @@ const OtpForm = () => {
       const token = res.data.token;
 
       dispatch(setToken(token));
+
+      toast.success("Register Berhasil");
       navigate("/");
     } catch (error) {
-      toast.error(error);
+      toast.error(`Error: ${error?.data?.message}`);
     }
   };
 
@@ -48,7 +76,7 @@ const OtpForm = () => {
           </button>
         </Link>
         <form
-          className="px-8 relative pt-6 pb-8 mb-4 w-[400px] lg:w-[460px]"
+          className="px-8 relative pt-6 pb-8 mb-4 w-[380px] lg:w-[460px]"
           onSubmit={onSubmit}
         >
           <h1 className="mb-20 text-2xl font-bold leading-9 md:text-3xl xl:text-4xl text-dark-blue">
@@ -74,9 +102,15 @@ const OtpForm = () => {
               }}
             />
           </div>
+          <div className="flex items-center justify-center gap-1 py-4 text-lg text-center">
+            <p>
+              Kirim ulang OTP dalam{" "}
+              <span className="text-indigo-600">{seconds} detik</span>
+            </p>
+          </div>
           <button
             type="submit"
-            className="w-full mt-14 duration-75 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full transition-all duration-150 ease-linear mt-6 bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Simpan
           </button>

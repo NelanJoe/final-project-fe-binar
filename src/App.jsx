@@ -6,6 +6,7 @@ import Home from "@/views/Home";
 import Error from "@/views/Error";
 import { Login, Register, ResetPassword, SetPassword, Otp } from "@/views/Auth";
 import { AdminDashboard, AdminLogin } from "@/views/Admin";
+import KelolaKelas from "./views/Admin/pages/kelola-kelas";
 
 import Courses from "@/views/Courses";
 import CoursesDetail from "@/views/Courses/pages/courses-detail";
@@ -15,7 +16,7 @@ import MyCourses from "./views/MyCourses";
 import Profile from "@/views/Profil/pages/profil";
 import Newpassword from "@/views/Profil/pages/new-password";
 import PaymentHistory from "@/views/Profil/pages/payment-history";
-import Notifcation from "@/views/Profil/pages/notifcation";
+import Notifcation from "./views/Profil/pages/notifcation";
 
 export default function App() {
   return (
@@ -41,10 +42,11 @@ export default function App() {
           <Route path="register" element={<Register />} />
           <Route path="otp" element={<Otp />} />
           <Route path="reset-password" element={<ResetPassword />} />
-          <Route path="set-password" element={<SetPassword />} />
+          <Route path="set-password/*" element={<SetPassword />} />
 
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="admin-dashboard" element={<AdminDashboard />} />
+          <Route path="admin-kelola-kelas" element={<KelolaKelas />} />
 
           <Route path="profile" element={<Profile />} />
           <Route path="newpassword" element={<Newpassword />} />

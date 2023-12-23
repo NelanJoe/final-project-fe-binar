@@ -1,19 +1,49 @@
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { resetPasswordSchema } from "../validation";
+import { setPasswordSchema } from "../validation";
+import { useSetPasswordMutation } from "@/stores";
+import toast from "react-hot-toast";
+
+import { setToken } from "@/stores/auth/auth.slice";
 
 const SetPasswordForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
+  const [setPassword] = useSetPasswordMutation();
+
+  const verifyToken = searchParams.get("token");
+  
     const {
       register,
       handleSubmit,
       formState: { errors },
     } = useForm({
-      resolver: yupResolver(resetPasswordSchema),
+      resolver: yupResolver(setPasswordSchema),
     });
 
-    const onSubmit = async () => {};
+    const onSubmit = async (values, event) => {
+      event.preventDefault();
+
+      try {
+        const res = await setPassword({
+          token: verifyToken,
+          // password: password,
+        }).unwrap();
+        console.log("Values", values);
+
+        const token = res.data.token;
+
+        dispatch(setToken(token));
+        navigate("/");
+      } catch (error) {
+        toast.error(`Error: ${error?.data?.message}`);
+      }
+    };
 
   return (
     <section className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
@@ -37,8 +67,7 @@ const SetPasswordForm = () => {
             <input
               {...register("password")}
               type="password"
-              name="password"
-              id="password"
+              placeholder="*****"
               className="w-full px-3 py-2 text-sm leading-tight border shadow appearance-none rounded-2xl lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
             />
             <span className="text-sm text-red-500 lg:text-base">
@@ -57,8 +86,7 @@ const SetPasswordForm = () => {
             <input
               {...register("password")}
               type="password"
-              name="password"
-              id="password"
+              placeholder="*****"
               className="w-full px-3 py-2 text-sm leading-tight border shadow appearance-none rounded-2xl lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
             />
             <span className="text-sm text-red-500 lg:text-base">
@@ -67,7 +95,7 @@ const SetPasswordForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
+            className="w-full transition-all duration-150 ease-linear bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
             Simpan
           </button>
