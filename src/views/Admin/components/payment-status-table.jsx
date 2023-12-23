@@ -4,66 +4,6 @@ import { Filter } from "lucide-react";
 import { useMemo } from "react";
 
 const PaymentStatusTable = () => {
-  // const payment = [
-  //   {
-  //     id: "johndoe123",
-  //     category: "UI/UX Design",
-  //     class: "Belajar Web Designer dengan Figma",
-  //     status: "SUDAH BAYAR",
-  //     methode: "Credit Card",
-  //     date: "21 Sep, 2023 at 2:00 AM",
-  //   },
-  //   {
-  //     id: "supermanxx",
-  //     category: "UI/UX Design",
-  //     class: "Belajar Web Designer dengan Figma",
-  //     status: "BELUM BAYAR",
-  //     methode: "-",
-  //     date: "-",
-  //   },
-  //   {
-  //     id: "ironman99",
-  //     category: "Web Development",
-  //     class: "Belajar Web Designer dengan Figma",
-  //     status: "SUDAH BAYAR",
-  //     methode: "Credit Card",
-  //     date: "20 Sep, 2023 at 2:00 AM",
-  //   },
-  //   {
-  //     id: "lokiMaster",
-  //     category: "Data Science",
-  //     class: "Data Cleaning untuk pemula",
-  //     status: "SUDAH BAYAR",
-  //     methode: "Credit Card",
-  //     date: "19 Sep, 2023 at 2:00 AM",
-  //   },
-  //   {
-  //     id: "siapaAjaani",
-  //     category: "Data Science",
-  //     class: "Data Cleaning untuk pemula",
-  //     status: "BELUM BAYAR",
-  //     methode: "-",
-  //     date: "-",
-  //   },
-  //   {
-  //     id: "lokiMaster",
-  //     category: "Web Development",
-  //     class: "Membuat wordpress mudah",
-  //     status: "BELUM BAYAR",
-  //     methode: "-",
-  //     date: "-",
-  //   },
-  //   {
-  //     id: "visionOKE",
-  //     category: "Data Science",
-  //     class: "Data Cleaning untuk pemula",
-  //     status: "SUDAH BAYAR",
-  //     methode: "Credit Card",
-  //     date: "10 Sep, 2023 at 2:00 AM",
-  //   },
-  // ];
-
-
   const paramsAdminDashboard = useMemo(() => {
     return {
       filter: "",
@@ -73,7 +13,6 @@ const PaymentStatusTable = () => {
   }, []);
 
   const { data } = useGetAdminDashboardQuery(paramsAdminDashboard);
-  console.log(data);
 
   return (
     <article>

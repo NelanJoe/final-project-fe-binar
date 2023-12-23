@@ -1,65 +1,19 @@
 import { Filter } from "lucide-react";
 import TambahKelas from "./tambah-kelas";
+import { useGetAdminKelolaKelasQuery } from "@/stores";
+import { useMemo } from "react";
 
 const KelolaKelasTable = () => {
-    const manageClass = [
-      {
-        id: "UIUX0123",
-        category: "UI/UX Design",
-        name: "Belajar Web Designer dengan Figma",
-        type: "GRATIS",
-        level: "Beginner",
-        price: "Rp. 0",
-      },
-      {
-        id: "DS0223",
-        category: "Data Science",
-        name: "Data Cleaning untuk pemula",
-        type: "GRATIS",
-        level: "Beginner",
-        price: "Rp. 0",
-      },
-      {
-        id: "DS0323",
-        category: "Data Science",
-        name: "Data Cleaning untuk Professional",
-        type: "PREMIUM",
-        level: "Advanced",
-        price: "Rp 199,000",
-      },
-      {
-        id: "PM0123",
-        category: "Product Management",
-        name: "Scrum dalam tim kompleks",
-        type: "PREMIUM",
-        level: "Intermediate",
-        price: "Rp 299,000",
-      },
-      {
-        id: "PM0223",
-        category: "Product Management",
-        name: "Penerapan manajemen Agile",
-        type: "PREMIUM",
-        level: "Advanced",
-        price: "Rp 349,000",
-      },
-      {
-        id: "AD1023",
-        category: "Android Development",
-        name: "Mengenal Android Studio",
-        type: "GRATIS",
-        level: "Beginner",
-        price: "Rp 0",
-      },
-      {
-        id: "WD1123",
-        category: "Web Development",
-        name: "CSS dan HTML dalam seminggu",
-        type: "GRATIS",
-        level: "Beginner",
-        price: "Rp 0",
-      },
-    ];
+    const paramsAdminKelolaKelas = useMemo(() => {
+      return {
+        filter: "",
+        page: 1,
+        pageSize: 10,
+      }
+    }, []);
+  
+    const { data } = useGetAdminKelolaKelasQuery(paramsAdminKelolaKelas);
+
   return (
     <article>
       <div className="flex items-center justify-between px-16">
@@ -99,7 +53,7 @@ const KelolaKelasTable = () => {
             </tr>
           </thead>
           <tbody>
-            {manageClass.map((item) => {
+            {data?.data?.map((item) => {
               return (
                 <tr
                   key={item.id}
@@ -109,21 +63,25 @@ const KelolaKelasTable = () => {
                     scope="row"
                     className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    {item.id}
+                    {item?.kelolakelas?.id}
                   </th>
-                  <td className="px-2 py-3">{item.category}</td>
-                  <td className="px-2 py-3 font-semibold">{item.name}</td>
+                  <td className="px-2 py-3">
+                    {item?.kelolakelas?.categories?.name}
+                  </td>
+                  <td className="px-2 py-3 font-semibold">
+                    {item?.kelolakelas?.title}
+                  </td>
                   <td
                     className={`px-2 py-3 font-bold uppercase ${
-                      item.type === "PREMIUM"
+                      item?.priceType === "paid"
                         ? "text-dark-blue"
                         : "text-success"
                     }`}
                   >
-                    {item.type}
+                    {item.priceType}
                   </td>
-                  <td className="px-2 py-3 font-semibold">{item.level}</td>
-                  <td className="px-2 py-3 font-semibold">{item.price}</td>
+                  <td className="px-2 py-3 font-semibold capitalize">{item?.kelolakelas?.level}</td>
+                  <td className="px-2 py-3 font-semibold">{item?.kelolakelas?.price}</td>
                   <td className="flex items-center gap-2 px-2 pt-10 lg:py-3">
                     <button className="px-2 text-white rounded-full bg-dark-blue">
                       Ubah

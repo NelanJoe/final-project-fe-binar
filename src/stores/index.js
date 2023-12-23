@@ -45,4 +45,5 @@ export {
   useGetActiveClassQuery,
   useGetActivePremiumQuery,
   useGetAdminDashboardQuery,
+  useGetAdminKelolaKelasQuery,
 } from "./admin/admin.api";

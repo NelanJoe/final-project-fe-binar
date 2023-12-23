@@ -43,6 +43,14 @@ export const adminApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    getAdminKelolaKelas: builder.query({
+      query: ({ filter, page, pageSize }) => {
+        return {
+          url: `/admin/kelola-kelas?filter=${filter}&page=${page}&pageSize=${pageSize}`,
+          method: "GET",
+        };
+      }
+    })
   }),
 });
 
@@ -52,4 +60,5 @@ export const {
   useGetActiveClassQuery,
   useGetActivePremiumQuery,
   useGetAdminDashboardQuery,
+  useGetAdminKelolaKelasQuery
 } = adminApi;
