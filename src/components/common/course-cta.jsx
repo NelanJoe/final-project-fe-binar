@@ -27,7 +27,7 @@ const CourseCTA = () => {
 
   return (
     <div className="hidden md:block">
-      <div className="md:flex md:flex-row justify-between items-center gap-x-3">
+      <div className="items-center justify-between md:flex md:flex-row gap-x-3">
         {token && pathname === "/my-courses" ? (
           <>
             <button

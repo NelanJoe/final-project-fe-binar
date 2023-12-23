@@ -42,14 +42,12 @@ const Header = () => {
         </div>
         <div className="hidden md:block">
           {!token ? (
-            <div className="flex text-lg gap-x-2">
-              <span>
+            <Link to="/login" className="text-white">
+              <div className="flex text-lg gap-x-2">
                 <LoginIcon className="w-6 h-6 text-white" />
-              </span>
-              <Link to="/login" className="text-white">
-                Masuk
-              </Link>
-            </div>
+                <span>Masuk</span>
+              </div>
+            </Link>
           ) : (
             <div className="flex items-center text-lg gap-x-4">
               <Link

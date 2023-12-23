@@ -4,8 +4,8 @@ const CourseDescription = ({ course }) => {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="font-semibold text-2xl mb-2">Tentang Kelas</h2>
-        <div className="space-y-2 text-justify text-sm">
+        <h2 className="mb-2 text-2xl font-semibold">Tentang Kelas</h2>
+        <div className="space-y-2 text-sm text-justify">
           <article className="indent-4">{course?.description}</article>
           <article className="indent-4">
             Bersama mentor XXX, kita akan mempelajari design system dari mulai
@@ -24,10 +24,10 @@ const CourseDescription = ({ course }) => {
         </div>
       </div>
       <div>
-        <h2 className="font-semibold text-2xl mb-2">
+        <h2 className="mb-2 text-2xl font-semibold">
           Kelas Ini Ditujukan Untuk
         </h2>
-        <div className="space-y-2 text-justify text-sm px-4">
+        <div className="px-4 space-y-2 text-sm text-justify">
           <ol className="list-decimal">
             <li>Anda yang ingin memahami poin penting design system</li>
             <li>Anda yang ingin memahami poin penting design system</li>

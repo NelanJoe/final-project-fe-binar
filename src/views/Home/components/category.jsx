@@ -17,15 +17,15 @@ const Category = () => {
   }
 
   return (
-    <section className="bg-light-blue-100 py-8 md:py-20">
-      <div className="max-w-7xl mx-4 md:mx-auto space-y-6">
-        <div className="flex flex-row justify-between items-center">
+    <section className="py-8 bg-light-blue-100 md:py-20">
+      <div className="mx-4 space-y-6 max-w-7xl md:mx-auto">
+        <div className="flex flex-row items-center justify-between">
           <h3 className="text-xl font-semibold">Kategori Belajar</h3>
-          <Link to="/courses" className="text-dark-blue font-semibold">
+          <Link to="/courses" className="font-semibold text-dark-blue">
             Lihat Semua
           </Link>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-6">
           {data?.categories?.map((category) => (
             <CategoryItem key={category.id} category={category} />
           ))}
