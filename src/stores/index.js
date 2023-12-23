@@ -23,9 +23,11 @@ export {
   useLoginGoogleMutation,
   useResetPasswordMutation,
   useSetPasswordMutation,
-  useResendOtpMutation
+  useResendOtpMutation,
 } from "./auth/auth.api";
 
 export { useGetCategoriesQuery } from "./category/category.api";
 
 export { useGetCoursesQuery } from "./course/course.api";
+
+export { useAdminLoginMutation } from "./admin/admin.api"

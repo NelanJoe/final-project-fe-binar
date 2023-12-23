@@ -74,7 +74,7 @@ export const authApi = apiSlice.injectEndpoints({
           }
         };
       },
-    })
+    }),
   }),
 });
 
@@ -85,5 +85,5 @@ export const {
   useLoginGoogleMutation,
   useResetPasswordMutation,
   useSetPasswordMutation,
-  useResendOtpMutation
+  useResendOtpMutation,
 } = authApi;
