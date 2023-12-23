@@ -1,4 +1,4 @@
-import { Filter, Search } from "lucide-react";
+import { Filter } from "lucide-react";
 import TambahKelas from "./tambah-kelas";
 
 const KelolaKelasTable = () => {
@@ -69,7 +69,6 @@ const KelolaKelasTable = () => {
           <button className="flex items-center gap-2 px-2 text-base border-2 rounded-full text-dark-blue hover:text-white hover:bg-dark-blue border-dark-blue">
             <Filter className="w-4 h-4 " /> Filter
           </button>
-          <Search className="cursor-pointer text-dark-blue" />
         </div>
       </div>
       <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">

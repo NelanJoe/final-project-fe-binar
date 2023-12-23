@@ -36,9 +36,9 @@ export const adminApi = apiSlice.injectEndpoints({
       },
     }),
     getAdminDashboard: builder.query({
-      query: () => {
+      query: ({ filter, page, pageSize }) => {
         return {
-          url: "/admin/dashboard",
+          url: `/admin/dashboard?filter=${filter}&page=${page}&pageSize=${pageSize}`,
           method: "GET",
         };
       },

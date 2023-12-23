@@ -1,5 +1,7 @@
 import { useGetAdminDashboardQuery } from "@/stores";
-import { Filter, Search } from "lucide-react";
+import { showFormattedDate } from "@/utils/format-date";
+import { Filter } from "lucide-react";
+import { useMemo } from "react";
 
 const PaymentStatusTable = () => {
   // const payment = [
@@ -61,8 +63,17 @@ const PaymentStatusTable = () => {
   //   },
   // ];
 
-  const { data } = useGetAdminDashboardQuery();
-  console.log("data", data);
+
+  const paramsAdminDashboard = useMemo(() => {
+    return {
+      filter: "",
+      page: 1,
+      pageSize: 5,
+    }
+  }, []);
+
+  const { data } = useGetAdminDashboardQuery(paramsAdminDashboard);
+  console.log(data);
 
   return (
     <article>
@@ -72,7 +83,6 @@ const PaymentStatusTable = () => {
           <button className="flex items-center gap-2 px-2 text-base border-2 rounded-full text-dark-blue hover:text-white hover:bg-dark-blue border-dark-blue">
             <Filter className="w-4 h-4 " /> Filter
           </button>
-          <Search className="cursor-pointer text-dark-blue" />
         </div>
       </div>
       <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
@@ -100,7 +110,7 @@ const PaymentStatusTable = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((payment) => {
+            {data?.data?.map((payment) => {
               return (
                 <tr
                   key={payment.id}
@@ -110,15 +120,25 @@ const PaymentStatusTable = () => {
                     scope="row"
                     className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    {payment.id}
+                    {payment?.myCourse?.users?.profiles?.name}
                   </th>
-                  <td className="px-2 py-3">{payment?.status}</td>
-                  <td className="px-2 py-3 font-semibold">{payment.class}</td>
-                  <td className={`px-2 py-3 font-bold uppercase ${payment.status === "SUDAH BAYAR" ? "text-success" : "text-warning"}`}>
+                  <td className="px-2 py-3">
+                    {payment?.myCourse?.courses?.categories?.name}
+                  </td>
+                  <td className="px-2 py-3 font-semibold">
+                    {payment?.myCourse?.courses?.title}
+                  </td>
+                  <td
+                    className={`px-2 py-3 font-bold uppercase ${
+                      payment.status === "paid"
+                        ? "text-success"
+                        : "text-warning"
+                    }`}
+                  >
                     {payment.status}
                   </td>
-                  <td className="px-2 py-3 font-semibold">{payment.methode}</td>
-                  <td className="px-2 py-3">{payment.date}</td>
+                  <td className="px-2 py-3 font-semibold">{payment.status === "paid" ? "Credit Card" : "-"}</td>
+                  <td className="px-2 py-3">{showFormattedDate(payment.createdAt)}</td>
                 </tr>
               );
             })}

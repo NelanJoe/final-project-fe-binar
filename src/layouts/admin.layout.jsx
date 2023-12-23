@@ -47,7 +47,7 @@ const AdminLayout = ({ children }) => {
         <div className="h-full py-4 overflow-y-auto">
           {/* Logo */}
           <Link to={"/admin-dashboard"}>
-            <img src={Logo} alt="Logo" className="hidden sm:block" />
+            <img src={Logo} alt="Logo" className="hidden pb-5 w-60 ps-5 sm:block" />
           </Link>
 
           {/* Menu */}
