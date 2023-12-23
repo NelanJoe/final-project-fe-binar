@@ -1,57 +1,61 @@
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useNavigateSearch } from "@/hooks/use-navigate-search";
 
 import { selectedToken } from "@/stores/auth/auth.selector";
 
 const CourseCTA = () => {
-  const { search } = useLocation();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigateSearch();
+  const { pathname } = useLocation();
 
   const token = useSelector(selectedToken);
 
-  const handleClick = (e) => {
-    const params = {
-      [e.target.name]: e.target.value,
-    };
+  const title = searchParams.get("title") || "";
 
-    navigate("/courses", params);
+  const handleClick = ({ target }) => {
+    if (target.name === "type") {
+      navigate("/courses", `?title=${title}&type=${target.value}`);
+    } else {
+      navigate("/my-courses", `?title=${title}&progress=${target.value}`);
+    }
   };
 
-  const isActive = (to) => search === to;
+  const getTypeValue = searchParams.get("type");
+  const getProgressValue = searchParams.get("progress");
 
   return (
     <div className="hidden md:block">
       <div className="md:flex md:flex-row justify-between items-center gap-x-3">
-        {token ? (
+        {token && pathname === "/my-courses" ? (
           <>
             <button
               name="progress"
-              value="all"
+              value=""
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                isActive("?progress=all") && "bg-dark-blue text-white"
+                getProgressValue === "" && "bg-dark-blue text-white"
               }`}
             >
               All
             </button>
             <button
               name="progress"
-              value="inprogress"
+              value="inProgress"
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                isActive("?progress=inprogress") && "bg-dark-blue text-white"
+                getProgressValue === "inProgress" && "bg-dark-blue text-white"
               }`}
             >
               In Progress
             </button>
             <button
               name="progress"
-              value="done"
+              value="completed"
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                isActive("?progress=done") && "bg-dark-blue text-white"
+                getProgressValue === "completed" && "bg-dark-blue text-white"
               }`}
             >
               Selesai
@@ -61,10 +65,10 @@ const CourseCTA = () => {
           <>
             <button
               name="type"
-              value="all"
+              value=""
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                isActive("?type=all") && "bg-dark-blue text-white"
+                getTypeValue === "" && "bg-dark-blue text-white"
               }`}
             >
               All
@@ -74,7 +78,7 @@ const CourseCTA = () => {
               value="premium"
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                isActive("?type=premium") && "bg-dark-blue text-white"
+                getTypeValue === "premium" && "bg-dark-blue text-white"
               }`}
             >
               Kelas Premium
@@ -84,7 +88,7 @@ const CourseCTA = () => {
               value="gratis"
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                isActive("?type=gratis") && "bg-dark-blue text-white"
+                getTypeValue === "gratis" && "bg-dark-blue text-white"
               }`}
             >
               Kelas Gratis

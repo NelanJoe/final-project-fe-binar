@@ -1,14 +1,18 @@
 import { useState } from "react";
-
 import { SearchIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const SearchFromCourses = () => {
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Query:", query);
+    navigate({
+      pathname: "/courses",
+      search: `?title=${query}`,
+    });
   };
 
   return (

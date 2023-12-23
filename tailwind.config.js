@@ -1,5 +1,6 @@
 import tailwindTypography from "@tailwindcss/typography";
 import tailwindForm from "@tailwindcss/forms";
+import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -27,5 +28,6 @@ export default {
     tailwindForm({
       strategy: "base",
     }),
+    daisyui,
   ],
 };
