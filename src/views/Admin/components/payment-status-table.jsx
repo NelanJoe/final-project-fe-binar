@@ -1,64 +1,68 @@
+import { useGetAdminDashboardQuery } from "@/stores";
 import { Filter, Search } from "lucide-react";
 
 const PaymentStatusTable = () => {
-  const payment = [
-    {
-      id: "johndoe123",
-      category: "UI/UX Design",
-      class: "Belajar Web Designer dengan Figma",
-      status: "SUDAH BAYAR",
-      methode: "Credit Card",
-      date: "21 Sep, 2023 at 2:00 AM",
-    },
-    {
-      id: "supermanxx",
-      category: "UI/UX Design",
-      class: "Belajar Web Designer dengan Figma",
-      status: "BELUM BAYAR",
-      methode: "-",
-      date: "-",
-    },
-    {
-      id: "ironman99",
-      category: "Web Development",
-      class: "Belajar Web Designer dengan Figma",
-      status: "SUDAH BAYAR",
-      methode: "Credit Card",
-      date: "20 Sep, 2023 at 2:00 AM",
-    },
-    {
-      id: "lokiMaster",
-      category: "Data Science",
-      class: "Data Cleaning untuk pemula",
-      status: "SUDAH BAYAR",
-      methode: "Credit Card",
-      date: "19 Sep, 2023 at 2:00 AM",
-    },
-    {
-      id: "siapaAjaani",
-      category: "Data Science",
-      class: "Data Cleaning untuk pemula",
-      status: "BELUM BAYAR",
-      methode: "-",
-      date: "-",
-    },
-    {
-      id: "lokiMaster",
-      category: "Web Development",
-      class: "Membuat wordpress mudah",
-      status: "BELUM BAYAR",
-      methode: "-",
-      date: "-",
-    },
-    {
-      id: "visionOKE",
-      category: "Data Science",
-      class: "Data Cleaning untuk pemula",
-      status: "SUDAH BAYAR",
-      methode: "Credit Card",
-      date: "10 Sep, 2023 at 2:00 AM",
-    },
-  ];
+  // const payment = [
+  //   {
+  //     id: "johndoe123",
+  //     category: "UI/UX Design",
+  //     class: "Belajar Web Designer dengan Figma",
+  //     status: "SUDAH BAYAR",
+  //     methode: "Credit Card",
+  //     date: "21 Sep, 2023 at 2:00 AM",
+  //   },
+  //   {
+  //     id: "supermanxx",
+  //     category: "UI/UX Design",
+  //     class: "Belajar Web Designer dengan Figma",
+  //     status: "BELUM BAYAR",
+  //     methode: "-",
+  //     date: "-",
+  //   },
+  //   {
+  //     id: "ironman99",
+  //     category: "Web Development",
+  //     class: "Belajar Web Designer dengan Figma",
+  //     status: "SUDAH BAYAR",
+  //     methode: "Credit Card",
+  //     date: "20 Sep, 2023 at 2:00 AM",
+  //   },
+  //   {
+  //     id: "lokiMaster",
+  //     category: "Data Science",
+  //     class: "Data Cleaning untuk pemula",
+  //     status: "SUDAH BAYAR",
+  //     methode: "Credit Card",
+  //     date: "19 Sep, 2023 at 2:00 AM",
+  //   },
+  //   {
+  //     id: "siapaAjaani",
+  //     category: "Data Science",
+  //     class: "Data Cleaning untuk pemula",
+  //     status: "BELUM BAYAR",
+  //     methode: "-",
+  //     date: "-",
+  //   },
+  //   {
+  //     id: "lokiMaster",
+  //     category: "Web Development",
+  //     class: "Membuat wordpress mudah",
+  //     status: "BELUM BAYAR",
+  //     methode: "-",
+  //     date: "-",
+  //   },
+  //   {
+  //     id: "visionOKE",
+  //     category: "Data Science",
+  //     class: "Data Cleaning untuk pemula",
+  //     status: "SUDAH BAYAR",
+  //     methode: "Credit Card",
+  //     date: "10 Sep, 2023 at 2:00 AM",
+  //   },
+  // ];
+
+  const { data } = useGetAdminDashboardQuery();
+  console.log("data", data);
 
   return (
     <article>
@@ -96,25 +100,25 @@ const PaymentStatusTable = () => {
             </tr>
           </thead>
           <tbody>
-            {payment.map((item) => {
+            {data?.map((payment) => {
               return (
                 <tr
-                  key={item.id}
+                  key={payment.id}
                   className="bg-white border-b hover:bg-gray-50"
                 >
                   <th
                     scope="row"
                     className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    {item.id}
+                    {payment.id}
                   </th>
-                  <td className="px-2 py-3">{item.category}</td>
-                  <td className="px-2 py-3 font-semibold">{item.class}</td>
-                  <td className={`px-2 py-3 font-bold uppercase ${item.status === "SUDAH BAYAR" ? "text-success" : "text-warning"}`}>
-                    {item.status}
+                  <td className="px-2 py-3">{payment?.status}</td>
+                  <td className="px-2 py-3 font-semibold">{payment.class}</td>
+                  <td className={`px-2 py-3 font-bold uppercase ${payment.status === "SUDAH BAYAR" ? "text-success" : "text-warning"}`}>
+                    {payment.status}
                   </td>
-                  <td className="px-2 py-3 font-semibold">{item.methode}</td>
-                  <td className="px-2 py-3">{item.date}</td>
+                  <td className="px-2 py-3 font-semibold">{payment.methode}</td>
+                  <td className="px-2 py-3">{payment.date}</td>
                 </tr>
               );
             })}

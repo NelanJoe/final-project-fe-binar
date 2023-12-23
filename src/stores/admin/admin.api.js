@@ -35,6 +35,10 @@ export const adminApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    getAdminDashboard: builder.query({
+      url: "/admin/dashboard",
+      method: "GET",
+    })
   }),
 });
 
@@ -43,4 +47,5 @@ export const {
   useGetActiveUserQuery,
   useGetActiveClassQuery,
   useGetActivePremiumQuery,
+  useGetAdminDashboardQuery
 } = adminApi;

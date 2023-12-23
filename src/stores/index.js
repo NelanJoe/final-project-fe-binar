@@ -35,4 +35,5 @@ export {
   useGetActiveUserQuery,
   useGetActiveClassQuery,
   useGetActivePremiumQuery,
+  useGetAdminDashboardQuery,
 } from "./admin/admin.api";
