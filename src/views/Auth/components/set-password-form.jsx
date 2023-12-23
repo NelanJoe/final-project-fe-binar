@@ -16,7 +16,6 @@ const SetPasswordForm = () => {
   const [setPassword] = useSetPasswordMutation();
 
   const { token } = useParams();
-  console.log(token);
 
   const {
     register,

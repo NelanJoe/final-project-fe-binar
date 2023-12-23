@@ -29,7 +29,6 @@ const RegisterForm = () => {
 
       toast.success(res.success);
       localStorage.setItem("verify-email", values.email);
-      console.log("OTP CODE:", res.otp);
 
       navigate("/otp");
     } catch (error) {

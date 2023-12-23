@@ -24,7 +24,6 @@ const AdminLoginForm = () => {
 
   const onSubmit = async (values, event) => {
     event.preventDefault();
-    console.log(values);
 
     try {
       const res = await adminLogin(values).unwrap();
