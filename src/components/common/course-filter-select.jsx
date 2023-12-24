@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -17,15 +17,13 @@ const CourseFilterSelect = () => {
 
   const handleChange = (e) => {
     setSelectedValue(e.target.value);
-  };
 
-  useEffect(() => {
     if (token && pathname === "/my-courses") {
       navigate(`/my-courses?title=${title}&type=${selectedValue}`);
     } else {
       navigate(`/courses?title=${title}&type=${selectedValue}`);
     }
-  }, [navigate, pathname, selectedValue, token, title]);
+  };
 
   return (
     <select
