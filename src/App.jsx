@@ -11,7 +11,7 @@ import KelolaKelas from "./views/Admin/pages/kelola-kelas";
 import Courses from "@/views/Courses";
 import CoursesDetail from "@/views/Courses/pages/courses-detail";
 import { Payment, PaymentSuccess } from "@/views/Payment";
-import MyCourses from "./views/MyCourses";
+import { MyCourses, MyCoursesDetail } from "./views/MyCourses";
 
 import Profile from "@/views/Profil/pages/profil";
 import Newpassword from "@/views/Profil/pages/new-password";
@@ -32,7 +32,10 @@ export default function App() {
           </Route>
 
           {/* My Courses page */}
-          <Route path="/my-courses" element={<MyCourses />} />
+          <Route path="my-courses">
+            <Route index element={<MyCourses />} />
+            <Route path=":id" element={<MyCoursesDetail />} />
+          </Route>
 
           {/* Payment page */}
           <Route path="payment/:id" element={<Payment />} />

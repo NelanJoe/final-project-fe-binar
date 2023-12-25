@@ -10,7 +10,15 @@ export const myCourseApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    getMyCourseById: builder.query({
+      query: (id) => {
+        return {
+          url: `/my-course/${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetMyCoursesQuery } = myCourseApi;
+export const { useGetMyCoursesQuery, useGetMyCourseByIdQuery } = myCourseApi;

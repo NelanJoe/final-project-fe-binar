@@ -18,19 +18,20 @@ const Courses = () => {
   const [searchParams] = useSearchParams();
   const token = useSelector(selectedToken);
 
-  const type = searchParams.get("type") || "all";
+  const type = searchParams.get("type") || "";
   const title = searchParams.get("title") || "";
+  const category = searchParams.get("category") || "";
 
   const paramsCourses = useMemo(() => {
     return {
       keyword: title,
       type: type,
       filter: "",
-      categori: "",
+      categori: category,
       level: "",
       page: "",
     };
-  }, [title, type]);
+  }, [title, type, category]);
 
   const { data, isLoading, error } = useGetCoursesQuery(paramsCourses);
 

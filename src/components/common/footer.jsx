@@ -5,7 +5,7 @@ import Logo from "@/assets/images/logo.png";
 const Footer = () => {
   return (
     <footer className="bg-dark-blue mt-36">
-      <section className="max-w-7xl mx-4 md:mx-auto py-10">
+      <section className="py-10 mx-4 max-w-7xl md:mx-auto">
         <div className="flex flex-col items-center space-y-3">
           <img src={Logo} className="w-[200px]" />
           <div>
@@ -19,10 +19,10 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="mt-8 w-full">
+        <div className="w-full mt-8">
           <hr className="text-white " />
         </div>
-        <div className="mt-6 flex justify-between items-center text-white">
+        <div className="flex items-center justify-between mt-6 text-white">
           <p>&copy; {new Date().getFullYear()}</p>
           <ul>
             <li>

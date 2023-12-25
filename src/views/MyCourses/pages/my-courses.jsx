@@ -18,17 +18,18 @@ const MyCourses = () => {
 
   const title = searchParams.get("title") || "";
   const progress = searchParams.get("progress") || "";
+  const category = searchParams.get("category") || "";
 
   const paramsMyCourses = useMemo(() => {
     return {
       keyword: title,
-      categori: "",
+      categori: category,
       filter: "",
       level: "",
       progress: progress,
       page: "",
     };
-  }, [title, progress]);
+  }, [title, progress, category]);
 
   const { data, isLoading, error } = useGetMyCoursesQuery(paramsMyCourses);
 
@@ -46,7 +47,7 @@ const MyCourses = () => {
 
   return (
     <BaseLyout>
-      <main className="relative">
+      <main>
         <section className="min-h-screen mx-4 mt-12 max-w-7xl md:mx-auto">
           <section>
             <div className="flex flex-col justify-between md:flex-row gap-y-2">

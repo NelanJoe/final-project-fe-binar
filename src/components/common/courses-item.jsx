@@ -5,10 +5,19 @@ import {
   BookOpenTextIcon,
   Clock9Icon,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const CoursesItem = ({ course }) => {
+  const { pathname } = useLocation();
+
   const isBuyed = course?.status === "paid" ? true : false;
+
+  let redirect;
+  if (pathname === "/my-courses") {
+    redirect = `/my-courses/${course?.id}`;
+  } else {
+    redirect = `/courses/${course?.id}`;
+  }
 
   return (
     <div
@@ -34,7 +43,7 @@ const CoursesItem = ({ course }) => {
           </span>
         </div>
         <div>
-          <Link to={`/courses/${course?.id}`}>
+          <Link to={redirect}>
             <h3 className="text-lg font-semibold break-words">
               {course?.title || "Membuat web sederhana menggunakan reactjs"}
             </h3>

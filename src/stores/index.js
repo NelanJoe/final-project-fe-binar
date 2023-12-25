@@ -37,4 +37,7 @@ export {
   usePatchOrderCourseByIdMutation,
 } from "./course/course.api";
 
-export { useGetMyCoursesQuery } from "./my-course/my-course.api";
+export {
+  useGetMyCoursesQuery,
+  useGetMyCourseByIdQuery,
+} from "./my-course/my-course.api";
