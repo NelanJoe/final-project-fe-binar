@@ -15,8 +15,8 @@ const CourseDescription = ({ course, goals }) => {
         </h2>
         <div className="px-4 space-y-2 text-sm text-justify">
           <ol className="list-decimal">
-            {goals?.map((goal) => (
-              <li key={goal.id} className="capitalize">
+            {goals?.map((goal, idx) => (
+              <li key={idx} className="capitalize">
                 {goal?.name}
               </li>
             ))}

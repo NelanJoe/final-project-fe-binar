@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
   ArrowLeftIcon,
   BookOpenTextIcon,
@@ -16,10 +16,19 @@ import YoutubeEmbed from "@/components/common/youtube-embed";
 
 const MyCoursesDetail = () => {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
 
   const { data } = useGetMyCourseByIdQuery(Number(id));
 
   const course = data?.data?.courses;
+
+  const sources = course?.chapters[0]?.sources;
+
+  const watchingTitle = searchParams.get("watch") || "";
+
+  const urlYoutube =
+    sources?.find((item) => item?.name === watchingTitle)?.link ??
+    "https://www.youtube.com/watch?v=fCWOBU8OnMI";
 
   return (
     <BaseLayout>
@@ -83,7 +92,7 @@ const MyCoursesDetail = () => {
           <div className="md:grid md:grid-cols-12 gap-x-4">
             <div className="md:col-span-8 md:space-y-4">
               <div className="mb-6">
-                <YoutubeEmbed url={course?.chapters[0]?.sources[0]?.link} />
+                <YoutubeEmbed url={urlYoutube} />
               </div>
               <CourseDescription course={course} goals={course?.goals} />
             </div>

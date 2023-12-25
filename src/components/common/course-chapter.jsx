@@ -1,7 +1,28 @@
 import PropTypes from "prop-types";
-import { LockIcon, PlayCircleIcon } from "lucide-react";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+import { LockIcon, PauseCircleIcon, PlayCircleIcon } from "lucide-react";
 
 const CourseChapter = ({ chapters, status }) => {
+  const { id } = useParams();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const handleClick = (name) => {
+    if (pathname === `/my-courses/${id}`) {
+      navigate(`/my-courses/${id}?watch=${name}`);
+    } else {
+      navigate(`/courses/${id}?watch=${name}`);
+    }
+  };
+
+  const watchName = searchParams.get("watch") || "";
+
   return (
     <>
       {chapters?.map((chapter, number) => (
@@ -15,14 +36,34 @@ const CourseChapter = ({ chapters, status }) => {
           {chapter?.sources?.map((source, number) => (
             <div key={source?.id} className="space-y-4">
               <div className="space-y-2">
-                <button className="w-full text-sm">
+                <button
+                  className={`w-full text-sm ${
+                    watchName === source?.name && "p-2 bg-dark-blue rounded-md"
+                  }`}
+                  onClick={() => handleClick(source?.name)}
+                  disabled={pathname === `/courses/${id}`}
+                >
                   <div className="flex flex-row items-center justify-between">
-                    <div className="px-4 py-2 rounded-full bg-light-blue-100">
+                    <div
+                      className={`px-4 py-2 rounded-full ${
+                        watchName === source.name ? "bg-white" : "bg-white"
+                      }`}
+                    >
                       <p className="font-semibold">{(number += 1)}</p>
                     </div>
-                    <p>{source?.name}</p>
+                    <p
+                      className={
+                        watchName === source?.name ? "text-white" : "text-black"
+                      }
+                    >
+                      {source?.name}
+                    </p>
                     {status !== "paid" ? (
-                      <PlayCircleIcon className="text-green-500" />
+                      watchName === source?.name ? (
+                        <PauseCircleIcon className="text-red-500" />
+                      ) : (
+                        <PlayCircleIcon className="text-green-500" />
+                      )
                     ) : (
                       <LockIcon />
                     )}
