@@ -65,7 +65,6 @@ export const {
   useGetHomeCoursesQuery,
   useGetCoursesQuery,
   useGetCourseByIdQuery,
-  useGetMyCoursesQuery,
   useGetDetailCoursePopupQuery,
   useGetCourseOrderByIdQuery,
   usePostOrderCourseByIdMutation,
