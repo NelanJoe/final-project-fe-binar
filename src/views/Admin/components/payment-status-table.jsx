@@ -1,16 +1,32 @@
 import { useGetAdminDashboardQuery } from "@/stores";
 import { showFormattedDate } from "@/utils/format-date";
 import { Filter } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const PaymentStatusTable = () => {
+  const [showPage, setShowPage] = useState(1);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const page = searchParams.get("page") || showPage;
+
+  const handleShowPage = (page) => {
+    setShowPage(page);
+
+    navigate({
+      pathname: "/admin-dashboard",
+      search: `?page=${page}`,
+    });
+  };
+
   const paramsAdminDashboard = useMemo(() => {
     return {
       filter: "",
-      page: 1,
-      pageSize: 5,
-    }
-  }, []);
+      page: page,
+      pageSize: 10,
+    };
+  }, [page]);
 
   const { data } = useGetAdminDashboardQuery(paramsAdminDashboard);
 
@@ -28,22 +44,22 @@ const PaymentStatusTable = () => {
         <table className="w-full text-sm text-left rtl:text-right">
           <thead className="text-xs bg-light-blue-100">
             <tr>
-              <th scope="col" className="px-3 py-3">
+              <th scope="col" className="px-2 py-3">
                 ID
               </th>
-              <th scope="col" className="px-3 py-3">
+              <th scope="col" className="px-2 py-3">
                 Kategori
               </th>
-              <th scope="col" className="px-3 py-3">
+              <th scope="col" className="px-2 py-3">
                 Kelas Premium
               </th>
-              <th scope="col" className="px-3 py-3">
+              <th scope="col" className="px-2 py-3">
                 Status
               </th>
-              <th scope="col" className="px-3 py-3">
+              <th scope="col" className="px-2 py-3">
                 Metode Pembayaran
               </th>
-              <th scope="col" className="px-3 py-3">
+              <th scope="col" className="px-2 py-3">
                 Tanggal Bayar
               </th>
             </tr>
@@ -76,13 +92,32 @@ const PaymentStatusTable = () => {
                   >
                     {payment.status}
                   </td>
-                  <td className="px-2 py-3 font-semibold">{payment.status === "paid" ? "Credit Card" : "-"}</td>
-                  <td className="px-2 py-3">{showFormattedDate(payment.createdAt)}</td>
+                  <td className="px-2 py-3 font-semibold">
+                    {payment.status === "paid" ? "Credit Card" : "-"}
+                  </td>
+                  <td className="px-2 py-3">
+                    {showFormattedDate(payment.createdAt)}
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+        <div className="flex items-center justify-center mt-7">
+          <div className="join">
+            {[1, 2, 3, 4, 5, 6].map((pageNumber) => (
+              <button
+                key={pageNumber}
+                onClick={() => handleShowPage(pageNumber)}
+                className={`join-item btn btn-md ${
+                  pageNumber === +page ? "btn-active" : ""
+                }`}
+              >
+                {pageNumber}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </article>
   );

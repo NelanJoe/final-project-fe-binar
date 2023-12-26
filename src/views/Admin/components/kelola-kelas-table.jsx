@@ -1,17 +1,33 @@
 import { Filter } from "lucide-react";
 import TambahKelas from "./tambah-kelas";
 import { useGetAdminKelolaKelasQuery } from "@/stores";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const KelolaKelasTable = () => {
+  const [showPage, setShowPage] = useState(1);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const page = searchParams.get("page") || showPage;
+
+  const handleShowPage = (page) => {
+    setShowPage(page);
+
+    navigate({
+      pathname: "/admin-kelola-kelas",
+      search: `?page=${page}`
+    })
+  }
+
     const paramsAdminKelolaKelas = useMemo(() => {
       return {
         filter: "",
-        page: 1,
+        page: showPage,
         pageSize: 10,
       }
-    }, []);
-  
+    }, [showPage]);
+
     const { data } = useGetAdminKelolaKelasQuery(paramsAdminKelolaKelas);
 
   return (
@@ -29,10 +45,10 @@ const KelolaKelasTable = () => {
         <table className="w-full text-sm text-left rtl:text-right">
           <thead className="text-xs bg-light-blue-100">
             <tr>
-              <th scope="col" className="px-2 py-3">
+              <th scope="col" className="py-3 pl-2">
                 Kode Kelas
               </th>
-              <th scope="col" className="px-2 py-3">
+              <th scope="col" className="py-3 pr-2">
                 Kategori
               </th>
               <th scope="col" className="px-2 py-3">
@@ -53,35 +69,39 @@ const KelolaKelasTable = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.data?.map((item) => {
+            {data?.data?.map((myClass) => {
               return (
                 <tr
-                  key={item.id}
+                  key={myClass}
                   className="bg-white border-b hover:bg-gray-50"
                 >
                   <th
                     scope="row"
-                    className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap"
+                    className="py-3 pl-2 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    {item?.kelolakelas?.id}
+                    {myClass?.kelolakelas?.id}
                   </th>
-                  <td className="px-2 py-3">
-                    {item?.kelolakelas?.categories?.name}
+                  <td className="py-3 pr-2">
+                    {myClass?.kelolakelas?.categories?.name}
                   </td>
                   <td className="px-2 py-3 font-semibold">
-                    {item?.kelolakelas?.title}
+                    {myClass?.kelolakelas?.title}
                   </td>
                   <td
                     className={`px-2 py-3 font-bold uppercase ${
-                      item?.priceType === "paid"
+                      myClass?.priceType === "paid"
                         ? "text-dark-blue"
                         : "text-success"
                     }`}
                   >
-                    {item.priceType}
+                    {myClass.priceType}
                   </td>
-                  <td className="px-2 py-3 font-semibold capitalize">{item?.kelolakelas?.level}</td>
-                  <td className="px-2 py-3 font-semibold">{item?.kelolakelas?.price}</td>
+                  <td className="px-2 py-3 font-semibold capitalize">
+                    {myClass?.kelolakelas?.level}
+                  </td>
+                  <td className="px-2 py-3 font-semibold">
+                    {myClass?.kelolakelas?.price}
+                  </td>
                   <td className="flex items-center gap-2 px-2 pt-10 lg:py-3">
                     <button className="px-2 text-white rounded-full bg-dark-blue">
                       Ubah
@@ -95,6 +115,21 @@ const KelolaKelasTable = () => {
             })}
           </tbody>
         </table>
+        <div className="flex items-center justify-center mt-7">
+          <div className="join">
+            {[1, 2, 3, 4].map((pageNumber) => (
+              <button
+                key={pageNumber}
+                onClick={() => handleShowPage(pageNumber)}
+                className={`join-item btn btn-md ${
+                  pageNumber === +page ? "btn-active" : ""
+                }`}
+              >
+                {pageNumber}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </article>
   );
