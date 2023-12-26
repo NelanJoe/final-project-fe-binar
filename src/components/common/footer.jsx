@@ -20,9 +20,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="w-full mt-8">
-          <hr className="text-white " />
+          <hr className="text-white" />
         </div>
-        <div className="flex items-center justify-between mt-6 text-white">
+        <div className="flex items-center justify-between mx-4 mt-6 text-white lg:mx-auto">
           <p>&copy; {new Date().getFullYear()}</p>
           <ul>
             <li>

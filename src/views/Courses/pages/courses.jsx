@@ -52,7 +52,7 @@ const Courses = () => {
   return (
     <MainLayout>
       <main className="relative">
-        <section className="min-h-screen mx-4 mt-12 max-w-7xl md:mx-auto">
+        <section className="min-h-screen mx-4 mt-12 max-w-7xl lg:mx-auto">
           <section>
             <div className="flex flex-row justify-between gap-y-2">
               <h2 className="text-xl font-semibold">Kelas Berjalan</h2>
@@ -69,14 +69,14 @@ const Courses = () => {
             </div>
           </section>
 
-          <section className="mt-10">
-            <div className="flex flex-col justify-between md:flex-row gap-x-5">
-              <div className="hidden md:block md:w-[20%] mb-5 md:mb-0">
+          <section className="mt-3 lg:mt-10">
+            <div className="flex flex-col justify-between gap-5 lg:flex-row">
+              <div className="hidden lg:block lg:w-[20%] mb-5 lg:mb-0">
                 <CourseFilter />
               </div>
 
               {/* Mobile verse */}
-              <div className="flex flex-row md:hidden gap-x-4">
+              <div className="flex flex-row lg:hidden gap-x-4">
                 <button
                   onClick={openModal}
                   className="text-white btn btn-primary"
@@ -87,10 +87,10 @@ const Courses = () => {
                 <CourseFilterSelect />
               </div>
 
-              <div className="w-full md:w-[80%]">
+              <div className="w-full lg:w-[80%]">
                 <CourseCTA />
                 <div className="my-4">
-                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
                     <CoursesList courses={courses} />
                   </div>
                 </div>

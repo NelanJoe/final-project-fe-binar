@@ -26,7 +26,7 @@ const CourseCTA = () => {
   const getProgressValue = searchParams.get("progress");
 
   return (
-    <div className="hidden md:block">
+    <div className="hidden lg:block">
       <div className="items-center justify-between md:flex md:flex-row gap-x-3">
         {token && pathname === "/my-courses" ? (
           <>
