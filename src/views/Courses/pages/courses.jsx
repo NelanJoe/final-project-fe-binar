@@ -6,7 +6,7 @@ import { ListFilterIcon, AlignJustifyIcon } from "lucide-react";
 import { useGetCoursesQuery } from "@/stores";
 import { selectedToken } from "@/stores/auth/auth.selector";
 
-import MainLayout from "@/layouts/base.layout";
+import BaseLayout from "@/layouts/base.layout";
 import CoursesList from "@/components/common/courses-list";
 import LoadingBar from "@/components/ui/LoadingBar";
 
@@ -50,7 +50,7 @@ const Courses = () => {
   };
 
   return (
-    <MainLayout>
+    <BaseLayout title="Courses">
       <main className="relative">
         <section className="min-h-screen mx-4 mt-12 max-w-7xl lg:mx-auto">
           <section>
@@ -111,7 +111,7 @@ const Courses = () => {
           </div>
         </dialog>
       </main>
-    </MainLayout>
+    </BaseLayout>
   );
 };
 

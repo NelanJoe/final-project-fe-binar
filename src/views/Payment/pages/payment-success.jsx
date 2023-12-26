@@ -13,31 +13,31 @@ const PaymentSuccess = () => {
   };
 
   return (
-    <BaseLayout>
+    <BaseLayout title="Payment Success">
       <main className="min-h-screen">
-        <section className="bg-light-blue shadow-md">
-          <div className="max-w-7xl mx-4 md:mx-auto py-6">
+        <section className="shadow-md bg-light-blue">
+          <div className="py-6 mx-4 max-w-7xl md:mx-auto">
             <div className="my-10">
-              <div className="block mx-auto md:max-w-4xl bg-success py-3 rounded-2xl">
-                <h2 className="text-white text-md lg:text-xl text-center font-semibold">
+              <div className="block py-3 mx-auto md:max-w-4xl bg-success rounded-2xl">
+                <h2 className="font-semibold text-center text-white text-md lg:text-xl">
                   Terimakasih atas pembayaran transaksi
                 </h2>
               </div>
             </div>
           </div>
         </section>
-        <section className="max-w-7xl mx-4 md:mx-auto h-screen grid place-content-center">
-          <div className="flex flex-col justify-center items-center space-y-8">
-            <h2 className="text-4xl text-dark-blue font-semibold">Selamat!</h2>
+        <section className="grid h-screen mx-4 max-w-7xl md:mx-auto place-content-center">
+          <div className="flex flex-col items-center justify-center space-y-8">
+            <h2 className="text-4xl font-semibold text-dark-blue">Selamat!</h2>
             <div className="my-12">
               <img
                 src={CartShop}
                 alt="cart-shop"
-                className="w-60 h-60 object-cover"
+                className="object-cover w-60 h-60"
               />
             </div>
-            <div className="flex flex-col items-center space-y-1 mb-8">
-              <h3 className="font-semibold text-sm lg:text-base">
+            <div className="flex flex-col items-center mb-8 space-y-1">
+              <h3 className="text-sm font-semibold lg:text-base">
                 Transaksi pembayaran kelas premium berhasil!
               </h3>
               <p>E-receipt telah dikirimkan ke email.</p>

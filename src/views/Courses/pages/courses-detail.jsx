@@ -37,7 +37,7 @@ const CoursesDetail = () => {
     "https://www.youtube.com/watch?v=fCWOBU8OnMI";
 
   return (
-    <BaseLayout>
+    <BaseLayout title={course?.title}>
       <main className="min-h-screen">
         <section className="bg-light-blue">
           <div className="py-6 mx-4 max-w-7xl lg:mx-auto">
