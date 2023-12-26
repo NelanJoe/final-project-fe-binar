@@ -25,3 +25,5 @@ export {
 export { useGetCategoriesQuery } from "./category/category.api";
 
 export { useGetCoursesMutation } from "./course/course.api";
+
+export { useGetProfilQuery } from "./profile/profile.api";

@@ -80,7 +80,7 @@ const Profil = () => {
               className="w-80  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
               placeholder={data?.user.email}
               name="email"
-              value={data?.email}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
