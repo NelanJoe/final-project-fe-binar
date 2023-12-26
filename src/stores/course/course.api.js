@@ -26,14 +26,6 @@ const courseApi = apiSlice.injectEndpoints({
         };
       },
     }),
-    getMyCourses: builder.query({
-      query: ({ keyword, categori, filter, level, progress, page }) => {
-        return {
-          url: `/my-course?search=${keyword}&kategori=${categori}&filter=${filter}&level=${level}&progress=${progress}&page=${page}`,
-          method: "GET",
-        };
-      },
-    }),
     getDetailCoursePopup: builder.query({
       query: (courseId) => {
         return {
@@ -73,7 +65,6 @@ export const {
   useGetHomeCoursesQuery,
   useGetCoursesQuery,
   useGetCourseByIdQuery,
-  useGetMyCoursesQuery,
   useGetDetailCoursePopupQuery,
   useGetCourseOrderByIdQuery,
   usePostOrderCourseByIdMutation,

@@ -32,7 +32,6 @@ export {
   useGetHomeCoursesQuery,
   useGetCoursesQuery,
   useGetCourseByIdQuery,
-  useGetMyCoursesQuery,
   useGetDetailCoursePopupQuery,
   useGetCourseOrderByIdQuery,
   usePostOrderCourseByIdMutation,
@@ -47,3 +46,8 @@ export {
   useGetAdminDashboardQuery,
   useGetAdminKelolaKelasQuery,
 } from "./admin/admin.api";
+
+export {
+  useGetMyCoursesQuery,
+  useGetMyCourseByIdQuery,
+} from "./my-course/my-course.api";

@@ -1,13 +1,13 @@
 import BaseLayout from "@/layouts/base.layout";
 
-import Category from "../components/category";
 import Hero from "../components/hero";
+import Category from "../components/category";
 import CoursesPopular from "../components/courses-popular";
 
 const Home = () => {
   return (
-    <BaseLayout>
-      <main className="min-h-scree">
+    <BaseLayout title="Home">
+      <main className="min-h-screen">
         <Hero />
         <Category />
         <CoursesPopular />

@@ -1,32 +1,26 @@
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
   ArrowLeftIcon,
-  ShieldPlusIcon,
   BookOpenTextIcon,
   Clock9Icon,
   MessagesSquareIcon,
+  ShieldPlusIcon,
 } from "lucide-react";
 
-import { useGetCourseByIdQuery } from "@/stores/course/course.api";
+import { useGetMyCourseByIdQuery } from "@/stores";
 
 import BaseLayout from "@/layouts/base.layout";
-
 import CourseDescription from "@/components/common/course-description";
 import CourseChapter from "@/components/common/course-chapter";
-import CoursePaymentModal from "@/components/common/course-payment-modal";
 import YoutubeEmbed from "@/components/common/youtube-embed";
 
-const CoursesDetail = () => {
+const MyCoursesDetail = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
 
-  const { data: detailCourse } = useGetCourseByIdQuery(Number(id));
+  const { data } = useGetMyCourseByIdQuery(Number(id));
 
-  const onShowPaymentHandler = () => {
-    document.querySelector("#payment-modal")?.showModal();
-  };
-
-  const course = detailCourse?.course;
+  const course = data?.data?.courses;
 
   const sources = course?.chapters[0]?.sources;
 
@@ -90,16 +84,6 @@ const CoursesDetail = () => {
                     </div>
                   </button>
                 </Link>
-                {course?.status !== "paid" ? (
-                  <button
-                    onClick={onShowPaymentHandler}
-                    className="px-4 py-2 text-white rounded-full bg-dark-blue"
-                  >
-                    <div className="flex items-center gap-x-3">
-                      <span>Buy Now</span>
-                    </div>
-                  </button>
-                ) : null}
               </div>
             </div>
           </div>
@@ -118,7 +102,7 @@ const CoursesDetail = () => {
                   <h2 className="text-xl font-semibold">Materi Belajar</h2>
                   <progress
                     className="w-32 h-2.5 progress progress-success"
-                    value={0}
+                    value={data?.data?.progres}
                     max="100"
                   ></progress>
                 </div>
@@ -131,9 +115,8 @@ const CoursesDetail = () => {
           </div>
         </section>
       </main>
-      <CoursePaymentModal />
     </BaseLayout>
   );
 };
 
-export default CoursesDetail;
+export default MyCoursesDetail;

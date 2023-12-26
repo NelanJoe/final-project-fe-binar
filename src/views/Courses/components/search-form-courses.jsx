@@ -24,7 +24,7 @@ const SearchFromCourses = () => {
             placeholder="Cari Kelas..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full border border-dark-blue outline-none focus:ring-1 focus:ring-dark-blue rounded-full px-3 py-2"
+            className="w-full px-3 py-2 border rounded-full outline-none border-dark-blue focus:ring-1 focus:ring-dark-blue"
           />
         </div>
         <div className="absolute inset-y-0 right-3 top-2">
