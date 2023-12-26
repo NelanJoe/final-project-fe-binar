@@ -63,13 +63,30 @@ const CourseFilter = () => {
     },
   ];
 
+  const handleChangeFilter = (e) => {
+    console.log(e.target.value);
+  };
+
+  const handleChangeCategory = (e) => {
+    console.log(e.target.value);
+  };
+
+  const handleChangeLevel = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="px-4 py-3 space-y-3 border shadow-md h-fit rounded-xl md:max-w-xs">
       <h3 className="text-lg font-semibold">Filter</h3>
       <div className="space-y-1">
         {dataFilter.map((filter) => (
           <div key={filter.id} className="flex items-center gap-x-2">
-            <input type="checkbox" className="px-2 py-2 rounded-md" />
+            <input
+              type="checkbox"
+              className="px-2 py-2 rounded-md"
+              value={filter.value}
+              onChange={handleChangeFilter}
+            />
             <p>{filter.name}</p>
           </div>
         ))}
@@ -79,7 +96,12 @@ const CourseFilter = () => {
       <div className="space-y-1">
         {dataFilterCategory.map((filter) => (
           <div key={filter.id} className="flex items-center gap-x-2">
-            <input type="checkbox" className="px-2 py-2 rounded-md" />
+            <input
+              type="checkbox"
+              className="px-2 py-2 rounded-md"
+              value={filter.value}
+              onChange={handleChangeCategory}
+            />
             <p>{filter.name}</p>
           </div>
         ))}
@@ -89,7 +111,12 @@ const CourseFilter = () => {
       <div className="space-y-1">
         {dataFilterLevel.map((filter) => (
           <div key={filter.id} className="flex items-center gap-x-2">
-            <input type="checkbox" className="px-2 py-2 rounded-md" />
+            <input
+              type="checkbox"
+              className="px-2 py-2 rounded-md"
+              value={filter.value}
+              onChange={handleChangeLevel}
+            />
             <p>{filter.name}</p>
           </div>
         ))}

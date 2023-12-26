@@ -13,10 +13,12 @@ import CoursesDetail from "@/views/Courses/pages/courses-detail";
 import { Payment, PaymentSuccess } from "@/views/Payment";
 import { MyCourses, MyCoursesDetail } from "./views/MyCourses";
 
-import Profile from "@/views/Profil/pages/profil";
-import Newpassword from "@/views/Profil/pages/new-password";
-import PaymentHistory from "@/views/Profil/pages/payment-history";
-import Notifcation from "./views/Profil/pages/notifcation";
+import {
+  Profile,
+  ProfileChangePassword,
+  ProfilePaymentHistory,
+} from "@/views/Profile";
+import Notification from "./views/Notification";
 
 export default function App() {
   return (
@@ -52,9 +54,9 @@ export default function App() {
           <Route path="admin-kelola-kelas" element={<KelolaKelas />} />
 
           <Route path="profile" element={<Profile />} />
-          <Route path="newpassword" element={<Newpassword />} />
-          <Route path="paymenthistory" element={<PaymentHistory />} />
-          <Route path="notifikasi" element={<Notifcation />} />
+          <Route path="change-password" element={<ProfileChangePassword />} />
+          <Route path="payment-history" element={<ProfilePaymentHistory />} />
+          <Route path="notification" element={<Notification />} />
 
           <Route path="*" element={<Error />} />
         </Routes>
