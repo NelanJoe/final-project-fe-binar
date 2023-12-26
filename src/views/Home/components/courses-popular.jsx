@@ -20,15 +20,15 @@ const CoursesPopular = () => {
 
   return (
     <section>
-      <div className="mx-4 mt-8 max-w-7xl md:mx-auto">
+      <div className="mx-4 mt-8 max-w-7xl lg:mx-auto">
         <div className="flex flex-row items-center justify-between">
           <h3 className="text-xl font-semibold">Kursus Populer</h3>
-          <Link to="/courses" className="text-dark-blue font-semibold">
+          <Link to="/courses" className="font-semibold text-dark-blue">
             Lihat Semua
           </Link>
         </div>
         <CoursesCTA />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <CoursesList courses={courses} />
         </div>
       </div>

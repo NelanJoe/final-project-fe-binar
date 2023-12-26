@@ -22,7 +22,7 @@ export {
   useVerifyOtpMutation,
   useLoginGoogleMutation,
   useResetPasswordMutation,
-  useSetPasswordMutation
+  useSetPasswordMutation,
 } from "./auth/auth.api";
 
 export { useGetCategoriesQuery } from "./category/category.api";
@@ -31,9 +31,13 @@ export {
   useGetHomeCoursesQuery,
   useGetCoursesQuery,
   useGetCourseByIdQuery,
-  useGetMyCoursesQuery,
   useGetDetailCoursePopupQuery,
   useGetCourseOrderByIdQuery,
   usePostOrderCourseByIdMutation,
   usePatchOrderCourseByIdMutation,
 } from "./course/course.api";
+
+export {
+  useGetMyCoursesQuery,
+  useGetMyCourseByIdQuery,
+} from "./my-course/my-course.api";
