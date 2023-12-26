@@ -46,7 +46,7 @@ const MyCourses = () => {
   };
 
   return (
-    <BaseLyout>
+    <BaseLyout title="My Courses">
       <main>
         <section className="min-h-screen mx-4 mt-12 max-w-7xl lg:mx-auto">
           <section>

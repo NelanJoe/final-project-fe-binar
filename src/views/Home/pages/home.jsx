@@ -6,7 +6,7 @@ import CoursesPopular from "../components/courses-popular";
 
 const Home = () => {
   return (
-    <BaseLayout>
+    <BaseLayout title="Home">
       <main className="min-h-screen">
         <Hero />
         <Category />

@@ -44,10 +44,10 @@ const Payment = () => {
   };
 
   return (
-    <BaseLayout>
+    <BaseLayout title="Payment">
       <main className="min-h-screen">
-        <section className="bg-light-blue shadow-md">
-          <div className="max-w-7xl mx-4 md:mx-auto py-6">
+        <section className="shadow-md bg-light-blue">
+          <div className="py-6 mx-4 max-w-7xl md:mx-auto">
             <button
               onClick={onBackHandler}
               className="flex flex-row items-center space-x-3"
@@ -55,30 +55,30 @@ const Payment = () => {
               <ArrowLeftIcon className="w-6 h-6" /> <span>Kelas lainnya</span>
             </button>
             <div className="my-10">
-              <div className="block mx-auto md:max-w-4xl bg-warning py-3 rounded-2xl">
-                <h2 className="text-white text-md lg:text-xl text-center font-semibold">
+              <div className="block py-3 mx-auto md:max-w-4xl bg-warning rounded-2xl">
+                <h2 className="font-semibold text-center text-white text-md lg:text-xl">
                   Selesaikan Pembayaran sampai 10 Maret 2023 12:00
                 </h2>
               </div>
             </div>
           </div>
         </section>
-        <section className="max-w-7xl mx-4 md:mx-auto my-10">
-          <div className="flex flex-col lg:flex-row gap-5">
-            <div className="w-full lg:w-8/12 order-1 lg:order-0 space-y-3">
-              <details className="collapse collapse-arrow bg-gray-800">
-                <summary className="collapse-title text-white text-xl font-medium">
+        <section className="mx-4 my-10 max-w-7xl md:mx-auto">
+          <div className="flex flex-col gap-5 lg:flex-row">
+            <div className="order-1 w-full space-y-3 lg:w-8/12 lg:order-0">
+              <details className="bg-gray-800 collapse collapse-arrow">
+                <summary className="text-xl font-medium text-white collapse-title">
                   Bank Transfer
                 </summary>
-                <div className="collapse-content text-white">
+                <div className="text-white collapse-content">
                   <p>content</p>
                 </div>
               </details>
-              <details className="collapse border-2 collapse-arrow">
-                <summary className="collapse-title bg-dark-blue text-white text-xl font-medium">
+              <details className="border-2 collapse collapse-arrow">
+                <summary className="text-xl font-medium text-white collapse-title bg-dark-blue">
                   Credit Card
                 </summary>
-                <div className="collapse-content mt-2 space-y-3">
+                <div className="mt-2 space-y-3 collapse-content">
                   <div className="flex items-center justify-center gap-x-3">
                     <p>Icon here</p>
                     <p>Icon here</p>
@@ -106,7 +106,7 @@ const Payment = () => {
                       />
                     </div>
                     <div className="flex w-full space-x-5">
-                      <div className="w-full flex flex-col space-x-2">
+                      <div className="flex flex-col w-full space-x-2">
                         <label htmlFor="" className="font-semibold">
                           CVV
                         </label>
@@ -116,7 +116,7 @@ const Payment = () => {
                           placeholder="000"
                         />
                       </div>
-                      <div className="w-full flex flex-col space-x-2">
+                      <div className="flex flex-col w-full space-x-2">
                         <label htmlFor="" className="font-semibold">
                           Expiry date
                         </label>
@@ -132,9 +132,9 @@ const Payment = () => {
               </details>
             </div>
             <div className="order-0 lg:order-1 lg:w-1/2">
-              <div className="w-full shadow-xl rounded-3xl border border-dark-blue p-8 space-y-4">
-                <h2 className="font-semibold text-xl">Pembayaran Kelas</h2>
-                <div className="rounded-3xl border shadow-md w-full">
+              <div className="w-full p-8 space-y-4 border shadow-xl rounded-3xl border-dark-blue">
+                <h2 className="text-xl font-semibold">Pembayaran Kelas</h2>
+                <div className="w-full border shadow-md rounded-3xl">
                   <div>
                     <img
                       src={
@@ -145,17 +145,17 @@ const Payment = () => {
                       className="h-[120px] rounded-t-3xl w-full object-cover object-top"
                     />
                   </div>
-                  <div className="py-2 px-3 space-y-2">
-                    <div className="flex justify-between items-center">
-                      <p className="text-dark-blue text-sm font-semibold">
+                  <div className="px-3 py-2 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm font-semibold text-dark-blue">
                         {course?.categories}
                       </p>
-                      <span className="font-semibold text-sm">
+                      <span className="text-sm font-semibold">
                         ⭐ {course?.rating?.toFixed(1) || 4.5}
                       </span>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg break-words">
+                      <h3 className="text-lg font-semibold break-words">
                         {course?.title ||
                           "Membuat web sederhana menggunakan reactjs"}
                       </h3>
@@ -163,10 +163,10 @@ const Payment = () => {
                         by {course?.author || "Susan Doe"}
                       </p>
                     </div>
-                    <div className="flex items-start md:flex-row justify-between md:items-center gap-x-1">
+                    <div className="flex items-start justify-between md:flex-row md:items-center gap-x-1">
                       <div className="flex flex-row items-center gap-x-1">
                         <ShieldPlusIcon className="w-4 h-4 text-green-500" />{" "}
-                        <p className="text-sm marker:text-dark-blue capitalize">
+                        <p className="text-sm capitalize marker:text-dark-blue">
                           {course?.level || "Intemediate"} Level
                         </p>
                       </div>
@@ -194,7 +194,7 @@ const Payment = () => {
                   </div>
                   <div className="flex flex-col">
                     <h3 className="text-base font-semibold">Total Bayar</h3>
-                    <p className="text-base text-dark-blue font-semibold">
+                    <p className="text-base font-semibold text-dark-blue">
                       Rp {course?.price}
                     </p>
                   </div>
@@ -202,7 +202,7 @@ const Payment = () => {
                 <div>
                   <button
                     onClick={handlerPatchOrderCourse}
-                    className="block mx-auto px-4 py-2 rounded-xl text-white bg-warning hover:bg-warning/70"
+                    className="block px-4 py-2 mx-auto text-white rounded-xl bg-warning hover:bg-warning/70"
                   >
                     <div className="flex items-center gap-x-3">
                       <span>Bayar dan Ikuti Kelas Selamanya</span>
