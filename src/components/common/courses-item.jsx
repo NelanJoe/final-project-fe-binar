@@ -74,7 +74,14 @@ const CoursesItem = ({ course }) => {
                 <span>Beli Rp {course?.price}.000</span>
               </div>
             </div>
-          ) : null}
+          ) : (
+            <div className="px-3 py-1 text-sm font-semibold text-white rounded-full w-fit bg-soft-blue">
+              <div className="flex flex-row items-center gap-x-2">
+                <GemIcon className="w-4 h-4" />
+                <span>Gratis</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

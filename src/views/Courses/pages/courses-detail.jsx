@@ -36,6 +36,10 @@ const CoursesDetail = () => {
     sources?.find((item) => item?.name === watchingTitle)?.link ??
     "https://www.youtube.com/watch?v=fCWOBU8OnMI";
 
+  const statusCourse = course?.status;
+
+  console.log("statusCourse", statusCourse);
+
   return (
     <BaseLayout>
       <main className="min-h-screen">

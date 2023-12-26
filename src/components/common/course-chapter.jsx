@@ -58,7 +58,7 @@ const CourseChapter = ({ chapters, status }) => {
                     >
                       {source?.name}
                     </p>
-                    {status !== "paid" ? (
+                    {status === "paid" || status !== "notPaid" ? (
                       watchName === source?.name ? (
                         <PauseCircleIcon className="text-red-500" />
                       ) : (
