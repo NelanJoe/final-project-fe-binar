@@ -1,6 +1,41 @@
-// import React from "react";
+import { useState, useEffect } from "react";
+import { useGetProfilQuery, useUpdateProfilMutation } from "@/stores";
 
-export default function AccountProfile() {
+const Profil = () => {
+  const { data, isLoading, isError, error } = useGetProfilQuery();
+  const [name, setName] = useState(() => {
+    return data?.user.profiles.name || "";
+  });
+  const [email, setEmail] = useState(() => {
+    return "" || data?.user.email;
+  });
+  const [telp, setTelp] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+
+  const [updateProfil] = useUpdateProfilMutation();
+
+  const handleUpdateProfil = async (e) => {
+    e.preventDefault();
+    // const newDataProfile = {};
+    // const res = await updateProfil.mutateAsync({
+    //   id: data.id,
+    //   name,
+    //   email,
+    //   telp,
+    //   country,
+    //   city,
+    // });
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <section className="max-w-7xl sm:px-6 md:px-8 py-1   items-center ">
       <div className="mt-3">
@@ -8,20 +43,25 @@ export default function AccountProfile() {
           Profil Saya
         </h1>
       </div>
-      <form action="" className="space-y-2   flex flex-col items-center ">
+      <form
+        onSubmit={handleUpdateProfil}
+        className="space-y-2   flex flex-col items-center "
+      >
         <div>
           <label
-            htmlFor=""
+            htmlFor="nama"
             className="font-Poppins text-xs font-normal leading-4"
           >
             Nama
           </label>
-
           <div className=" ">
             <input
+              id="nama"
               type="text"
               className=" w-80  md:w-72 h-10 px-4 ring-1 ring-black rounded-2xl"
-              placeholder="John Doe"
+              placeholder={data?.user.profiles.name}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
         </div>
@@ -38,8 +78,10 @@ export default function AccountProfile() {
             <input
               type="email"
               className="w-80  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
-              placeholder="JohnDoe@gmail.com"
-              name="password"
+              placeholder={data?.user.email}
+              name="email"
+              value={data?.email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>
@@ -56,8 +98,10 @@ export default function AccountProfile() {
             <input
               type="number"
               className="w-80  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
-              placeholder="+62 832381821"
+              placeholder={data?.user.phone}
               id="notelepon"
+              value={telp}
+              onChange={(e) => setTelp(e.target.value)}
             />
           </div>
         </div>
@@ -71,10 +115,12 @@ export default function AccountProfile() {
 
           <div className="">
             <input
-              type="password"
+              type="text"
               className="w-80  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
-              placeholder="indonesia"
+              placeholder={data?.user.profiles.country}
               id="negara"
+              value={data.country}
+              onChange={(e) => setCountry(e.target.value)}
             />
           </div>
         </div>
@@ -88,10 +134,12 @@ export default function AccountProfile() {
 
           <div className="">
             <input
-              type="password"
+              type="text"
               className="w-80  md:w-72 h-10 items-center py-3 px-4 ring-1 ring-black rounded-2xl"
-              placeholder="jakarta"
+              placeholder={data?.user.profiles.city}
               id="kota"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
             />
           </div>
         </div>
@@ -105,4 +153,6 @@ export default function AccountProfile() {
       </form>
     </section>
   );
-}
+};
+
+export default Profil;
