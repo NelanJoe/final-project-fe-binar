@@ -2042,11 +2042,16 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+<<<<<<< HEAD
 react-fast-compare@^3.0.1, react-fast-compare@^3.2.2:
+=======
+react-fast-compare@^3.0.1:
+>>>>>>> 55d1ca2e97cbdc78e06e1d2fee92f14f153101a2
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
 
+<<<<<<< HEAD
 react-helmet-async@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-2.0.4.tgz#50a4377778f380ed1d0136303916b38eff1bf153"
@@ -2056,6 +2061,8 @@ react-helmet-async@^2.0.4:
     react-fast-compare "^3.2.2"
     shallowequal "^1.1.0"
 
+=======
+>>>>>>> 55d1ca2e97cbdc78e06e1d2fee92f14f153101a2
 react-hook-form@^7.48.2:
   version "7.48.2"
   resolved "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.48.2.tgz"
