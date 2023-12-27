@@ -6,12 +6,19 @@ const CourseFilterSelect = () => {
   const [searchParams] = useSearchParams();
 
   const title = searchParams.get("title") || "";
+  const filter = searchParams.get("filter") || "";
+  const level = searchParams.get("level") || "";
+  const category = searchParams.get("category") || "";
 
   const handleChange = (e) => {
     if (pathname === "/my-courses") {
-      navigate(`/my-courses?title=${title}&progress=${e.target.value}`);
+      navigate(
+        `/my-courses?title=${title}&progress=${e.target.value}&filter=${filter}&category=${category}&level=${level}`
+      );
     } else {
-      navigate(`/courses?title=${title}&type=${e.target.value}`);
+      navigate(
+        `/courses?title=${title}&type=${e.target.value}&filter=${filter}&category=${category}&level=${level}`
+      );
     }
   };
 

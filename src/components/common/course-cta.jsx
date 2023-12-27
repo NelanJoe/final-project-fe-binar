@@ -13,12 +13,21 @@ const CourseCTA = () => {
   const token = useSelector(selectedToken);
 
   const title = searchParams.get("title") || "";
+  const filter = searchParams.get("filter") || "";
+  const level = searchParams.get("level") || "";
+  const category = searchParams.get("category") || "";
 
   const handleClick = ({ target }) => {
     if (target.name === "type") {
-      navigate("/courses", `?title=${title}&type=${target.value}`);
+      navigate(
+        "/courses",
+        `?title=${title}&type=${target.value}&filter=${filter}&category=${category}&level=${level}`
+      );
     } else {
-      navigate("/my-courses", `?title=${title}&progress=${target.value}`);
+      navigate(
+        "/my-courses",
+        `?title=${title}&progress=${target.value}&filter=${filter}&category=${category}&level=${level}`
+      );
     }
   };
 
@@ -35,7 +44,8 @@ const CourseCTA = () => {
               value=""
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                getProgressValue === "" && "bg-dark-blue text-white"
+                (getProgressValue === "" || pathname === "/courses") &&
+                "bg-dark-blue text-white"
               }`}
             >
               All

@@ -142,13 +142,13 @@ const Header = () => {
                 )}
               </Link>
               <Link
-                to="/notifikasi"
+                to="/notification"
                 className={`text-white ${
-                  isActive("/notifikasi") &&
+                  isActive("/notification") &&
                   "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
                 }`}
               >
-                {isActive("/notifikasi") ? (
+                {isActive("/notification") ? (
                   <>
                     <NotifIcon />
                     <span>Kelas</span>
