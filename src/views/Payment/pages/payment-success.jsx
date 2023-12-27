@@ -9,7 +9,7 @@ const PaymentSuccess = () => {
   const navigate = useNavigate();
 
   const handleMulaiBelajar = () => {
-    navigate(`/courses/${id}`);
+    navigate(`/my-courses/${id}`);
   };
 
   return (

@@ -30,9 +30,9 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-dark-blue py-6 px-4 border-b border-b-gray-300 sticky z-30 top-0">
-      <nav className="flex items-center justify-between max-w-7xl mx-auto">
-        <div className="flex items-center gap-x-2 w-full md:w-1/2">
+    <header className="sticky top-0 z-30 px-4 py-6 border-b bg-dark-blue border-b-gray-300">
+      <nav className="flex items-center justify-between mx-auto max-w-7xl">
+        <div className="flex items-center w-full gap-x-2 md:w-1/2">
           <Link to="/" className="text-white">
             <img src={Logo} alt="logo" className="object-cover w-32 md:w-52" />
           </Link>
@@ -67,13 +67,13 @@ const Header = () => {
                 )}
               </Link>
               <Link
-                to="/notifikasi"
+                to="/notification"
                 className={`text-white ${
-                  isActive("/notifikasi") &&
+                  isActive("/notification") &&
                   "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
                 }`}
               >
-                {isActive("/notifikasi") ? (
+                {isActive("/notification") ? (
                   <>
                     <NotifIcon />
                     <span>Notifikasi</span>
@@ -142,13 +142,13 @@ const Header = () => {
                 )}
               </Link>
               <Link
-                to="/notifikasi"
+                to="/notification"
                 className={`text-white ${
-                  isActive("/notifikasi") &&
+                  isActive("/notification") &&
                   "flex flex-row items-center gap-x-3 px-3 py-1.5 rounded-md bg-blue-500"
                 }`}
               >
-                {isActive("/notifikasi") ? (
+                {isActive("/notification") ? (
                   <>
                     <NotifIcon />
                     <span>Kelas</span>

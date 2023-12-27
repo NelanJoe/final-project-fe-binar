@@ -1,39 +1,35 @@
-import { useState } from "react";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-
-import { selectedToken } from "@/stores/auth/auth.selector";
 
 const CourseFilterSelect = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
 
-  const token = useSelector(selectedToken);
-
-  const [selectedValue, setSelectedValue] = useState("");
-
   const title = searchParams.get("title") || "";
+  const filter = searchParams.get("filter") || "";
+  const level = searchParams.get("level") || "";
+  const category = searchParams.get("category") || "";
 
   const handleChange = (e) => {
-    setSelectedValue(e.target.value);
-
-    if (token && pathname === "/my-courses") {
-      navigate(`/my-courses?title=${title}&type=${selectedValue}`);
+    if (pathname === "/my-courses") {
+      navigate(
+        `/my-courses?title=${title}&progress=${e.target.value}&filter=${filter}&category=${category}&level=${level}`
+      );
     } else {
-      navigate(`/courses?title=${title}&type=${selectedValue}`);
+      navigate(
+        `/courses?title=${title}&type=${e.target.value}&filter=${filter}&category=${category}&level=${level}`
+      );
     }
   };
 
   return (
     <select
       className="select select-primary"
-      name={token && pathname === "/my-courses" ? "progress" : "type"}
-      value={selectedValue}
+      name={pathname === "/my-courses" ? "progress" : "type"}
       onChange={handleChange}
     >
       <option disabled>Urutkan</option>
-      {token && pathname === "/my-courses" ? (
+      {pathname === "/my-courses" ? (
         <>
           <option value="">All</option>
           <option value="InProgress">In Progress</option>
@@ -42,8 +38,8 @@ const CourseFilterSelect = () => {
       ) : (
         <>
           <option value="">All</option>
-          <option value="premium">Kelas Premium</option>
           <option value="gratis">Kelas Gratis</option>
+          <option value="premium">Kelas Premium</option>
         </>
       )}
     </select>

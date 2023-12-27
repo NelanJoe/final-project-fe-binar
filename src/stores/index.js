@@ -51,3 +51,8 @@ export {
   useGetMyCoursesQuery,
   useGetMyCourseByIdQuery,
 } from "./my-course/my-course.api";
+
+export {
+  useGetProfileQuery,
+  useUpdateProfileMutation,
+} from "./profile/profile.api";
