@@ -43,12 +43,14 @@ export default function App() {
           <Route path="payment/:id" element={<Payment />} />
           <Route path="payment-success/:id" element={<PaymentSuccess />} />
 
+          {/* Auth Page */}
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="otp" element={<Otp />} />
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="set-password/:token" element={<SetPassword />} />
 
+          {/* Admin page */}
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="admin-dashboard" element={<AdminDashboard />} />
           <Route path="admin-kelola-kelas" element={<KelolaKelas />} />

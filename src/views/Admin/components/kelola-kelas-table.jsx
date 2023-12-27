@@ -4,6 +4,7 @@ import { useGetAdminKelolaKelasQuery } from "@/stores";
 import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import CourseFilter from "@/components/common/course-filter";
+import LoadingBar from "@/components/ui/LoadingBar";
 
 const KelolaKelasTable = () => {
   const [showPage, setShowPage] = useState(1);
@@ -29,7 +30,11 @@ const KelolaKelasTable = () => {
       }
     }, [showPage]);
 
-    const { data } = useGetAdminKelolaKelasQuery(paramsAdminKelolaKelas);
+    const { data, isLoading } = useGetAdminKelolaKelasQuery(paramsAdminKelolaKelas);
+
+    if (isLoading) {
+      return <LoadingBar/>
+    }
 
   const openModal = () => {
     document.querySelector("#kelola-kelas-filter")?.showModal();
