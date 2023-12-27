@@ -19,17 +19,19 @@ const MyCourses = () => {
   const title = searchParams.get("title") || "";
   const progress = searchParams.get("progress") || "";
   const category = searchParams.get("category") || "";
+  const filter = searchParams.get("filter") || "";
+  const level = searchParams.get("level") || "";
 
   const paramsMyCourses = useMemo(() => {
     return {
       keyword: title,
       categori: category,
-      filter: "",
-      level: "",
+      filter: filter,
+      level: level,
       progress: progress,
       page: "",
     };
-  }, [title, progress, category]);
+  }, [title, progress, category, filter, level]);
 
   const { data, isLoading, error } = useGetMyCoursesQuery(paramsMyCourses);
 

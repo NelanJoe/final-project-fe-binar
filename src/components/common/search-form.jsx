@@ -1,20 +1,34 @@
 import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Search as SearchIcon } from "lucide-react";
 
 const SearchForm = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { pathname } = useLocation();
+
   const [query, setQuery] = useState("");
+
+  const type = searchParams.get("type") || "";
+  const filter = searchParams.get("filter") || "";
+  const category = searchParams.get("category") || "";
+  const level = searchParams.get("level") || "";
+  const progress = searchParams.get("progress") || "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate({
-      pathname: "/courses",
-      search: `?title=${query}`,
-    });
+    if (pathname === "/courses") {
+      navigate(
+        `/courses?title=${query}&type=${type}&filter=${filter}&category=${category}&level=${level}`
+      );
+    } else {
+      navigate(
+        `/my-courses?title=${query}&progress=${progress}&filter=${filter}&category=${category}&level=${level}`
+      );
+    }
   };
 
   return (
