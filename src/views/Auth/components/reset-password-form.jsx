@@ -24,9 +24,9 @@ const ResetPasswordForm = () => {
     try {
       const res = await resetPassword(values.email).unwrap();
 
-      toast.success(res.message);
+      toast.success(res.success);
     } catch (error) {
-      toast.error(`Error: ${error?.message}`);
+      toast.error(`Error: ${error?.data?.error}`);
     }
   };
 

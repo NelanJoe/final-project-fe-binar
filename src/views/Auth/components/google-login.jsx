@@ -17,7 +17,6 @@ const GoogleLogin = ({ buttonText }) => {
 
   const loginWithGoogle = useGoogleLogin({
     onSuccess: async (responseGoogle) => {
-      console.log(responseGoogle);
       try {
         const res = await loginGoogle({
           accessToken: responseGoogle.access_token,
@@ -25,9 +24,12 @@ const GoogleLogin = ({ buttonText }) => {
 
         const token = res.data.token;
         dispatch(setToken(token));
+
+        toast.success('Login Berhasil');
+
         navigate('/');
       } catch (error) {
-        toast.error(`Error: ${error?.data?.message}`);
+        toast.error(`Error: ${error?.data?.error}`);
       }
     },
   });

@@ -24,18 +24,13 @@ const RegisterForm = () => {
   const onSubmit = async (values, event) => {
     event.preventDefault();
 
-    console.log("Values", values);
-
     try {
       const res = await registerAction(values).unwrap();
 
-      console.log(res.message);
-      console.log("OTP CODE:", res.otp);
+      toast.success(res.success);
+      localStorage.setItem("verify-email", values.email);
 
-      navigate({
-        pathname: "/otp",
-        search: `?verify-email=${values?.email}`,
-      });
+      navigate("/otp");
     } catch (error) {
       toast.error(`Error: ${error?.data?.error}`);
     }

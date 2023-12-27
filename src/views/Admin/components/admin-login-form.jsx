@@ -1,10 +1,19 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import { loginAdminSchema } from "../validation";
-import { Link } from "react-router-dom";
+import { useAdminLoginMutation } from "@/stores";
+import { setToken } from "@/stores/admin/admin.slice";
 
 const AdminLoginForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [adminLogin] = useAdminLoginMutation();
+
   const {
     register,
     handleSubmit,
@@ -15,6 +24,23 @@ const AdminLoginForm = () => {
 
   const onSubmit = async (values, event) => {
     event.preventDefault();
+
+    try {
+      const res = await adminLogin(values).unwrap();
+
+      const token = res.data.token;
+
+      dispatch(setToken(token));
+
+      toast.success("Login Berhasil");
+      navigate("/admin-dashboard");
+    } catch (error) {
+        const errorMessage =
+          error?.data?.error ||
+          error?.data?.message ||
+          "Unknown error occurred";
+        toast.error(`Error: ${errorMessage}`);
+    }
   };
 
   return (
@@ -29,18 +55,18 @@ const AdminLoginForm = () => {
           </h1>
           <div className="mb-4">
             <label
-              htmlFor="Id"
+              htmlFor="email"
               className="block mb-2 text-[#3C3C3C] text-sm font-normal leading-4 lg:text-base"
             >
-              ID Admin
+              Email
             </label>
             <input
-              {...register("id")}
+              {...register("email")}
               className="w-full px-3 py-2 text-sm border shadow appearance-none rounded-2xl leading-tigh lg:text-base focus:border-slate-400 border-slate-300 focus:outline-none focus:shadow-outline"
-              placeholder="ID Admin"
+              placeholder="Masukan Email"
             />
             <span className="text-sm text-red-500 lg:text-base">
-              {errors.id?.message}
+              {errors.email?.message}
             </span>
           </div>
           <div className="mb-8">

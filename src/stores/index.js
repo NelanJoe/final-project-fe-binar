@@ -23,6 +23,7 @@ export {
   useLoginGoogleMutation,
   useResetPasswordMutation,
   useSetPasswordMutation,
+  useResendOtpMutation,
 } from "./auth/auth.api";
 
 export { useGetCategoriesQuery } from "./category/category.api";
@@ -36,6 +37,15 @@ export {
   usePostOrderCourseByIdMutation,
   usePatchOrderCourseByIdMutation,
 } from "./course/course.api";
+
+export {
+  useAdminLoginMutation,
+  useGetActiveUserQuery,
+  useGetActiveClassQuery,
+  useGetActivePremiumQuery,
+  useGetAdminDashboardQuery,
+  useGetAdminKelolaKelasQuery,
+} from "./admin/admin.api";
 
 export {
   useGetMyCoursesQuery,

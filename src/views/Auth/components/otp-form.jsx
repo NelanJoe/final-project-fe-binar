@@ -1,50 +1,57 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ArrowLeftIcon } from "lucide-react";
 import OtpInput from "react-otp-input";
-
-import { useVerifyOtpMutation } from "@/stores";
-
 import toast from "react-hot-toast";
+
+import { useResendOtpMutation, useVerifyOtpMutation } from "@/stores";
 
 import { setToken } from "@/stores/auth/auth.slice";
 
 const OtpForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
 
   const [verifyOtp] = useVerifyOtpMutation();
+  const [resendOtp] = useResendOtpMutation();
 
-  const verifyEmail = searchParams.get("verify-email");
+  const verifyEmail = localStorage.getItem("verify-email");
 
   const [validasi, setValidasi] = useState("");
   const [seconds, setSeconds] = useState(60);
+  const [showResendButton, setShowResendButton] = useState(false);
 
   useEffect(() => {
-    // Set interval untuk mengurangi detik setiap 1 detik
     const interval = setInterval(() => {
       if (seconds > 0) {
-        // Mengurangi detik jika belum mencapai 0
         setSeconds((prevSeconds) => prevSeconds - 1);
       } else {
-        // Kirim ulang OTP jika waktu habis (0 detik)
-        sendOtpAgain();
-        setSeconds(60); // Reset timer ke 60 detik
+        setShowResendButton(true);
+        clearInterval(interval);
       }
     }, 1000);
+    return () => clearInterval(interval);
+  }, [seconds]);
 
-    return () => clearInterval(interval); // Bersihkan interval pada unmount komponen
-  }, [seconds]); // Menjalankan effect kembali jika 'seconds' berubah
+  const sendOtpAgain = async () => {
+    try {
+      const res = await resendOtp({
+        email: verifyEmail,
+      }).unwrap();
 
-  const sendOtpAgain = () => {
-    // Logika untuk mengirim ulang OTP melalui API/email
-    // Contoh: Panggil API untuk mengirim ulang OTP ke email pengguna
-    toast.success("Mengirim ulang OTP...");
-    
-    // Panggilan API/email untuk mengirim ulang OTP
-    // SomeAPIService.resendOtp(verifyEmail);
+      if (res.success) {
+        toast.success("Mengirim ulang OTP...");
+      }
+    } catch (error) {
+      toast.error(`Error: ${error?.error}`);
+    }
+  };
+
+  const handleResendClick = () => {
+    sendOtpAgain();
+    setSeconds(60);
+    setShowResendButton(false);
   };
 
   const onSubmit = async (event) => {
@@ -58,12 +65,16 @@ const OtpForm = () => {
 
       const token = res.data.token;
 
-      dispatch(setToken(token));
+      if (token) {
+        dispatch(setToken(token));
 
-      toast.success("Register Berhasil");
-      navigate("/");
+        localStorage.removeItem("verify-email");
+
+        toast.success("Register Berhasil");
+        navigate("/");
+      }
     } catch (error) {
-      toast.error(`Error: ${error?.data?.message}`);
+      toast.error(`Error: ${error?.data?.error}`);
     }
   };
 
@@ -85,7 +96,7 @@ const OtpForm = () => {
           <div className="flex justify-center">
             <p className="block my-8 text-center top-16 w-full absolute text-[#3C3C3C] text-sm font-normal leading-4 lg:text-base">
               Ketik 6 digit kode yang dikirimkan ke{" "}
-              <span className="font-bold">Email Anda</span>
+              <span className="font-bold ">{verifyEmail}</span>
             </p>
             <OtpInput
               value={validasi}
@@ -97,16 +108,26 @@ const OtpForm = () => {
                 width: "2.8rem",
                 height: "2.8rem",
                 margin: "0 .5rem",
+                marginTop: ".7rem",
                 border: ".1rem solid #6148FF",
                 borderRadius: "40%",
               }}
             />
           </div>
           <div className="flex items-center justify-center gap-1 py-4 text-lg text-center">
-            <p>
-              Kirim ulang OTP dalam{" "}
-              <span className="text-indigo-600">{seconds} detik</span>
-            </p>
+            {showResendButton ? (
+              <button
+                onClick={handleResendClick}
+                className="text-[#3C3C3C] hover:text-indigo-600 hover:underline cursor-pointer"
+              >
+                Kirim Ulang OTP
+              </button>
+            ) : (
+              <p className=" text-[#3C3C3C]">
+                Kirim ulang OTP dalam{" "}
+                <span className="text-indigo-600 ">{seconds} detik</span>
+              </p>
+            )}
           </div>
           <button
             type="submit"
