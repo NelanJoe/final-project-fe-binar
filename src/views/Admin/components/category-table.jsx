@@ -71,7 +71,6 @@ const CategoryTable = () => {
                     >
                       Ubah
                     </button>
-
                     <dialog id="edit" className="modal">
                       <div className="modal-box">
                         <form method="dialog">
@@ -94,7 +93,6 @@ const CategoryTable = () => {
                     >
                       Hapus
                     </button>
-
                     <dialog
                       id="delete"
                       className="modal modal-bottom sm:modal-middle"
@@ -123,40 +121,6 @@ const CategoryTable = () => {
             })}
           </tbody>
         </table>
-
-        {/* <div className="flex items-center justify-center mt-7">
-
-          <div className="join">
-
-            {[1, 2, 3, 4].map((pageNumber) => (
-
-              <button
-
-                key={pageNumber}
-
-                onClick={() => handleShowPage(pageNumber)}
-
-                className={`join-item btn btn-md ${
-
-                  pageNumber === +page
-
-                    ? "btn-active bg-dark-blue text-white hover:bg-[#5d4bd3]"
-
-                    : ""
-
-                }`}
-
-              >
-
-                {pageNumber}
-
-              </button>
-
-            ))}
-
-          </div>
-
-        </div> */}
       </div>
     </article>
   );
