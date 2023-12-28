@@ -20,7 +20,7 @@ const MyCoursesDetail = () => {
 
   const { data } = useGetMyCourseByIdQuery(Number(id));
 
-  const course = data?.data?.courses;
+  const course = data?.course?.courses;
 
   const sources = course?.chapters[0]?.sources;
 
@@ -92,7 +92,7 @@ const MyCoursesDetail = () => {
           <div className="lg:grid lg:grid-cols-12 gap-x-4">
             <div className="lg:col-span-8 lg:space-y-4">
               <div className="mb-6">
-                <YoutubeEmbed url={urlYoutube} />
+                {urlYoutube ? <YoutubeEmbed url={urlYoutube} /> : null}
               </div>
               <CourseDescription course={course} goals={course?.goals} />
             </div>
@@ -102,7 +102,7 @@ const MyCoursesDetail = () => {
                   <h2 className="text-xl font-semibold">Materi Belajar</h2>
                   <progress
                     className="w-32 h-2.5 progress progress-success"
-                    value={data?.data?.progres}
+                    value={data?.course?.progres}
                     max="100"
                   ></progress>
                 </div>

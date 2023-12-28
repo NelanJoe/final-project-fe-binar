@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { useGetProfileQuery, useUpdateProfileMutation } from "@/stores";
@@ -8,8 +9,9 @@ import LoadingBar from "@/components/ui/LoadingBar";
 const ProfileUpdateForm = () => {
   const { data, isLoading } = useGetProfileQuery();
   const [updateProfile] = useUpdateProfileMutation();
+  const navigate = useNavigate();
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState({ preview: "", data: "" });
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -19,9 +21,12 @@ const ProfileUpdateForm = () => {
   const handleChangeImage = (e) => {
     const file = e.target.files[0];
 
-    if (file) {
-      setImage(file);
-    }
+    const img = {
+      preview: URL.createObjectURL(file),
+      data: e.target.files[0],
+    };
+
+    setImage(img);
   };
 
   if (isLoading) {
@@ -31,24 +36,28 @@ const ProfileUpdateForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await updateProfile({
-        image: data?.user?.profiles?.image || image?.name,
-        name: data?.user?.profiles?.name || name,
-        email: data?.user?.email || email,
-        phoneNumber: data?.user?.profiles?.phoneNumber || phoneNumber,
-        country: data?.user?.profiles?.country || country,
-        city: data?.user?.profiles?.city || city,
-        password: data?.user?.password,
-      }).unwrap();
+    let formData = new FormData();
 
-      if (res.success) {
+    formData.append("image", image.data);
+    formData.append("name", data?.user?.profiles?.name || name);
+    formData.append("email", data?.user?.email || email);
+    formData.append("phone", data?.user?.phone || phoneNumber);
+    formData.append("country", data?.user?.profiles?.country || country);
+    formData.append("city", data?.user?.profiles?.city || city);
+
+    try {
+      const res = await updateProfile(formData).unwrap();
+
+      if (res?.success) {
         toast.success("Berhasil mengubah profile");
+        navigate("/profile");
+        window.location.reload();
       }
     } catch (error) {
       toast.error("Gagal mengubah profile");
     }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="space-y-3">
@@ -57,14 +66,14 @@ const ProfileUpdateForm = () => {
             <label htmlFor="">Profile Foto</label>
             <div className="avatar">
               <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                {image ? (
+                {image.data ? (
                   <img
-                    src={URL.createObjectURL(image)}
+                    src={image.preview}
                     alt={`avatar-${data?.user?.profiles?.name}`}
                   />
                 ) : (
                   <img
-                    src="https://placekitten.com/200/300"
+                    src={data?.user?.profiles?.image}
                     alt={`avatar-${data?.user?.profiles?.name}`}
                   />
                 )}
@@ -77,6 +86,7 @@ const ProfileUpdateForm = () => {
                 name="image"
                 accept="image/*"
                 className="absolute opacity-0 cursor-pointer"
+                required={true}
                 onChange={handleChangeImage}
               />
             </div>
@@ -110,9 +120,7 @@ const ProfileUpdateForm = () => {
             type="text"
             name="phoneNumber"
             className="w-full rounded-xl"
-            placeholder={
-              data?.user?.profiles?.phoneNumber || "Isi Nomor Telepon"
-            }
+            placeholder={data?.user?.phone || "Isi Nomor Telepon"}
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />

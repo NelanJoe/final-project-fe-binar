@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
+import ProtectedRoute from "@/components/common/protected-route";
+
 import Home from "@/views/Home";
 import Error from "@/views/Error";
 import { Login, Register, ResetPassword, SetPassword, Otp } from "@/views/Auth";
@@ -35,9 +37,11 @@ export default function App() {
           </Route>
 
           {/* My Courses page */}
-          <Route path="my-courses">
-            <Route index element={<MyCourses />} />
-            <Route path=":id" element={<MyCoursesDetail />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="my-courses">
+              <Route index element={<MyCourses />} />
+              <Route path=":id" element={<MyCoursesDetail />} />
+            </Route>
           </Route>
 
           {/* Payment page */}

@@ -1,15 +1,15 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import BaseLayout from "@/layouts/base.layout";
 
 import CartShop from "@/assets/images/cart-shop.png";
 
 const PaymentSuccess = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
 
   const handleMulaiBelajar = () => {
-    navigate(`/my-courses/${id}`);
+    navigate(`/my-courses`);
+    window.location.reload();
   };
 
   return (
