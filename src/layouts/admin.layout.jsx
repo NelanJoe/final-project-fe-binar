@@ -37,9 +37,9 @@ const AdminLayout = ({ children, title }) => {
 
   return (
     <>
-    <Helmet>
-      <title>{capitalizedTitle}</title>
-    </Helmet>
+      <Helmet>
+        <title>{capitalizedTitle}</title>
+      </Helmet>
       <main>
         {/* Header with Hamburger Icon */}
         <header className="sticky top-0 z-50 flex items-center justify-between p-4 text-white sm:p-0 sm:bg-inherit bg-dark-blue">
@@ -79,23 +79,39 @@ const AdminLayout = ({ children, title }) => {
                   to="/admin-dashboard"
                   className="flex items-center p-2 text-white hover:bg-soft-blue group"
                 >
-                  <span className="ms-3">Dashboard</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/admin-kelola-kelas"
-                  className="flex items-center p-2 text-white hover:bg-soft-blue group"
-                >
-                  <span className="flex-1 ms-3 whitespace-nowrap">
-                    Kelola Kelas
+                  <span className="text-xl font-medium text-center ms-3">
+                    Dashboard
                   </span>
                 </Link>
+              </li>
+              <li className="w-full text-center collapse collapse-arrow">
+                <input type="checkbox" />
+                <div className="text-xl font-medium text-white collapse-title">
+                  Kelola Kelas mu
+                </div>
+                <div className="collapse-content">
+                  <Link
+                    to="/admin-kelola-kelas"
+                    className="flex items-center p-2 text-white hover:bg-soft-blue group"
+                  >
+                    <span className="flex-1 ms-3 whitespace-nowrap">
+                      Kelola Kelas
+                    </span>
+                  </Link>
+                  <Link
+                    to="/my-class"
+                    className="flex items-center p-2 text-white hover:bg-soft-blue group"
+                  >
+                    <span className="flex-1 ms-3 whitespace-nowrap">
+                      My Class
+                    </span>
+                  </Link>
+                </div>
               </li>
               <li>
                 <button
                   onClick={onLogout}
-                  className="flex items-center w-full p-2 text-white hover:bg-soft-blue ps-5 whitespace-nowrap"
+                  className="w-full p-2 text-xl font-medium text-white hover:bg-soft-blue ps-5 whitespace-nowrap"
                 >
                   Keluar
                 </button>

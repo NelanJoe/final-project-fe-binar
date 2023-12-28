@@ -19,6 +19,7 @@ import {
   ProfilePaymentHistory,
 } from "@/views/Profile";
 import Notification from "./views/Notification";
+import MyClass from "./views/Admin/pages/my-class";
 
 export default function App() {
   return (
@@ -54,6 +55,7 @@ export default function App() {
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="admin-dashboard" element={<AdminDashboard />} />
           <Route path="admin-kelola-kelas" element={<KelolaKelas />} />
+          <Route path="my-class" element={<MyClass />} />
 
           <Route path="profile" element={<Profile />} />
           <Route path="change-password" element={<ProfileChangePassword />} />

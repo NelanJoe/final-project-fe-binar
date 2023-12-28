@@ -50,7 +50,15 @@ export const adminApi = apiSlice.injectEndpoints({
           method: "GET",
         };
       }
-    })
+    }),
+    getAllCategorys: builder.query({
+      query: () => {
+        return {
+          url: "/admin/category",
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
@@ -60,5 +68,6 @@ export const {
   useGetActiveClassQuery,
   useGetActivePremiumQuery,
   useGetAdminDashboardQuery,
-  useGetAdminKelolaKelasQuery
+  useGetAdminKelolaKelasQuery,
+  useGetAllCategorysQuery,
 } = adminApi;

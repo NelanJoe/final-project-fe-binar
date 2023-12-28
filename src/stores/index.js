@@ -45,6 +45,7 @@ export {
   useGetActivePremiumQuery,
   useGetAdminDashboardQuery,
   useGetAdminKelolaKelasQuery,
+  useGetAllCategorysQuery,
 } from "./admin/admin.api";
 
 export {
