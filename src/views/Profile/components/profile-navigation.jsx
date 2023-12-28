@@ -27,7 +27,7 @@ const ProfileNavigation = () => {
     <nav className="flex flex-col w-full">
       <Link to="/profile">
         <button className="w-full bg-white border-b">
-          <div className="flex flex-row items-center gap-4 px-4 py-2 text-lg">
+          <div className="flex flex-row items-center gap-4 px-4 py-2 text-base lg:text-lg">
             <PencilLineIcon
               className={`text-dark-blue ${isActive("/profile") && "w-7 h-7"}`}
             />
@@ -42,7 +42,7 @@ const ProfileNavigation = () => {
 
       <Link to="/change-password">
         <button className="w-full bg-white border-b">
-          <div className="flex flex-row items-center gap-4 px-4 py-2 text-lg">
+          <div className="flex flex-row items-center gap-4 px-4 py-2 text-base lg:text-lg">
             <SettingsIcon
               className={`text-dark-blue ${
                 isActive("/change-password") && "w-7 h-7"
@@ -61,7 +61,7 @@ const ProfileNavigation = () => {
 
       <Link to="/payment-history">
         <button className="w-full bg-white border-b">
-          <div className="flex flex-row items-center gap-4 px-4 py-2 text-lg">
+          <div className="flex flex-row items-center gap-4 px-4 py-2 text-base lg:text-lg">
             <ShoppingCartIcon
               className={`text-dark-blue ${
                 isActive("/payment-history") && "w-7 h-7"
@@ -79,7 +79,7 @@ const ProfileNavigation = () => {
       </Link>
 
       <button onClick={handleLogout} className="w-full bg-white border-b">
-        <div className="flex flex-row items-center gap-4 px-4 py-2 text-lg">
+        <div className="flex flex-row items-center gap-4 px-4 py-2 text-base lg:text-lg">
           <LogOutIcon className="text-dark-blue" />
           <span>Keluar</span>
         </div>

@@ -6,6 +6,7 @@ import {
   ShieldPlusIcon,
 } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import {
   useGetCourseOrderByIdQuery,
@@ -13,7 +14,11 @@ import {
 } from "@/stores";
 
 import BaseLayout from "@/layouts/base.layout";
-import toast from "react-hot-toast";
+
+import MasterCardIcon from "@/assets/images/master-card.png";
+import VisaLogo from "@/assets/images/visa-logo.png";
+import AmexLogo from "@/assets/images/amex-logo.png";
+import PaypalLogo from "@/assets/images/paypal-logo.png";
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -71,18 +76,51 @@ const Payment = () => {
                   Bank Transfer
                 </summary>
                 <div className="text-white collapse-content">
-                  <p>content</p>
+                  <div className="grid grid-flow-row grid-cols-3 gap-3">
+                    <div className="w-full col-span-3 p-4 border md:col-span-2 lg:col-span-1 rounded-xl">
+                      <p className="text-lg font-semibold">Bank BCA</p>
+                      <p className="text-sm">No. Rekening: 1234567890</p>
+                      <p className="text-sm">Atas Nama: John Doe</p>
+                    </div>
+                    <div className="w-full col-span-3 p-4 border md:col-span-2 lg:col-span-1 rounded-xl">
+                      <p className="text-lg font-semibold">Bank Mandiri</p>
+                      <p className="text-sm">No. Rekening: 1234567890</p>
+                      <p className="text-sm">Atas Nama: John Doe</p>
+                    </div>
+                    <div className="w-full col-span-3 p-4 border md:col-span-2 lg:col-span-1 rounded-xl">
+                      <p className="text-lg font-semibold">Bank BSI</p>
+                      <p className="text-sm">No. Rekening: 1234567890</p>
+                      <p className="text-sm">Atas Nama: John Doe</p>
+                    </div>
+                  </div>
                 </div>
               </details>
-              <details className="border-2 collapse collapse-arrow">
+              <details className="border-2 collapse collapse-arrow" open={true}>
                 <summary className="text-xl font-medium text-white collapse-title bg-dark-blue">
                   Credit Card
                 </summary>
-                <div className="mt-2 space-y-3 collapse-content">
+                <div className="p-6 space-y-3 collapse-content">
                   <div className="flex items-center justify-center gap-x-3">
-                    <p>Icon here</p>
-                    <p>Icon here</p>
-                    <p>Icon here</p>
+                    <img
+                      src={MasterCardIcon}
+                      alt="master-card-logo"
+                      className="object-cover h-6 w-fit"
+                    />
+                    <img
+                      src={VisaLogo}
+                      alt="visa-logo"
+                      className="object-cover h-6 w-fit"
+                    />
+                    <img
+                      src={AmexLogo}
+                      alt="american-express-logo"
+                      className="object-cover h-6 w-fit"
+                    />
+                    <img
+                      src={PaypalLogo}
+                      alt="paypal-logo"
+                      className="object-cover h-6 w-fit"
+                    />
                   </div>
                   <div className="space-y-3">
                     <div className="flex flex-col space-x-2">
