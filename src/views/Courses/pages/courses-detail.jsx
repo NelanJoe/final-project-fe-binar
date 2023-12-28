@@ -6,8 +6,10 @@ import {
   Clock9Icon,
   MessagesSquareIcon,
 } from "lucide-react";
+import { useSelector } from "react-redux";
 
 import { useGetCourseByIdQuery } from "@/stores/course/course.api";
+import { selectedToken } from "@/stores/auth/auth.selector";
 
 import BaseLayout from "@/layouts/base.layout";
 
@@ -19,6 +21,8 @@ import YoutubeEmbed from "@/components/common/youtube-embed";
 const CoursesDetail = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
+
+  const token = useSelector(selectedToken);
 
   const { data: detailCourse } = useGetCourseByIdQuery(Number(id));
 
@@ -90,15 +94,19 @@ const CoursesDetail = () => {
                     </div>
                   </button>
                 </Link>
-                {course?.status !== "paid" ? (
-                  <button
-                    onClick={onShowPaymentHandler}
-                    className="px-4 py-2 text-white rounded-full bg-dark-blue"
-                  >
-                    <div className="flex items-center gap-x-3">
-                      <span>Buy Now</span>
-                    </div>
-                  </button>
+                {token !== null ? (
+                  <>
+                    {course?.status !== "paid" ? (
+                      <button
+                        onClick={onShowPaymentHandler}
+                        className="px-4 py-2 text-white rounded-full bg-dark-blue"
+                      >
+                        <div className="flex items-center gap-x-3">
+                          <span>Buy Now</span>
+                        </div>
+                      </button>
+                    ) : null}
+                  </>
                 ) : null}
               </div>
             </div>

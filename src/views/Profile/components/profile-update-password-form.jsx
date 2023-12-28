@@ -4,15 +4,27 @@ const ProfileUpdatePasswordForm = () => {
       <div className="space-y-3">
         <div className="flex flex-col gap-2">
           <label htmlFor="">Masukkan Password Lama</label>
-          <input type="text" className="w-full rounded-xl" />
+          <input
+            type="text"
+            className="w-full rounded-xl"
+            placeholder="*********"
+          />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="">Masukkan Password Baru</label>
-          <input type="text" className="w-full rounded-xl" />
+          <input
+            type="text"
+            className="w-full rounded-xl"
+            placeholder="*********"
+          />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="">Ulangi Password Baru</label>
-          <input type="text" className="w-full rounded-xl" />
+          <input
+            type="text"
+            className="w-full rounded-xl"
+            placeholder="*********"
+          />
         </div>
         <div>
           <button className="w-full btn btn-primary rounded-xl">

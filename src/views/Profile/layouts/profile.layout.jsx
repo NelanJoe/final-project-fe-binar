@@ -17,8 +17,8 @@ const ProfileLayout = ({ children }) => {
           </Link>
         </div>
       </section>
-      <section className="lg:-mt-14 h-full lg:h-full max-w-[1200px] mx-3 lg:mx-auto border-2 border-dark-blue rounded-lg">
-        <div className="py-8 rounded-t-md bg-dark-blue">
+      <section className="-mt-6 lg:-mt-14 h-full lg:h-full max-w-[1200px] mx-3 lg:mx-auto border-2 border-dark-blue rounded-lg">
+        <div className="py-4 lg:py-8 rounded-t-md bg-dark-blue">
           <h2 className="text-xl font-semibold text-center text-white">Akun</h2>
         </div>
         <div className="p-6">
