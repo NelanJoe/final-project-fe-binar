@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const EditCategory = ({ categoryName, categoryImage }) => {
   const [name, setName] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState({ preview: "", data: "" });
   const navigate = useNavigate();
 
   const [putCategory] = usePutCategoryMutation();
@@ -17,7 +17,12 @@ const EditCategory = ({ categoryName, categoryImage }) => {
   const handleChangeImage = async (e) => {
     const file = e.target.files[0];
 
-    setImage(file);
+    const img = {
+      preview: URL.createObjectURL(file),
+      data: e.target.files[0],
+    };
+
+    setImage(img);
   };
 
   const handleSubmit = async (e) => {
@@ -64,14 +69,18 @@ const EditCategory = ({ categoryName, categoryImage }) => {
       </div>
       <div className="flex flex-col gap-3 mb-4">
         <div className="flex justify-center">
-          {image ? (
-          <img
-            src={categoryImage}
-            className="w-32 rounded-lg "
-            alt={categoryName}
-          />  
-          ): (
-            <img src={URL.createObjectURL(image)} className="w-32 rounded-lg" alt={categoryName} />
+          {image?.data ? (
+            <img
+              src={image.preview}
+              className="w-32 rounded-lg "
+              alt={categoryName}
+            />
+          ) : (
+            <img
+              src={categoryImage}
+              className="w-32 rounded-lg"
+              alt={categoryName}
+            />
           )}
         </div>
         <div className="flex flex-col">
