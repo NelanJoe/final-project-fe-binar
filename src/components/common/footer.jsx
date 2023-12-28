@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { GithubIcon, ArrowUpRight } from "lucide-react";
 
 import Logo from "@/assets/images/logo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (

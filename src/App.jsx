@@ -51,7 +51,7 @@ export default function App() {
           <Route path="register" element={<Register />} />
           <Route path="otp" element={<Otp />} />
           <Route path="reset-password" element={<ResetPassword />} />
-          <Route path="set-password/*" element={<SetPassword />} />
+          <Route path="set-password/:token" element={<SetPassword />} />
 
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="admin-dashboard" element={<AdminDashboard />} />
