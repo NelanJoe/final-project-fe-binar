@@ -1,4 +1,5 @@
 import CourseFilter from "@/components/common/course-filter";
+import LoadingBar from "@/components/ui/LoadingBar";
 import { useGetAdminDashboardQuery } from "@/stores";
 import { showFormattedDate } from "@/utils/format-date";
 import { Filter } from "lucide-react";
@@ -29,11 +30,15 @@ const PaymentStatusTable = () => {
     };
   }, [page]);
 
-  const { data } = useGetAdminDashboardQuery(paramsAdminDashboard);
+  const { data, isLoading } = useGetAdminDashboardQuery(paramsAdminDashboard);
 
-    const openModal = () => {
-      document.querySelector("#dashboard-filter")?.showModal();
-    };
+  if (isLoading) {
+    return <LoadingBar/>
+  }
+
+  const openModal = () => {
+    document.querySelector("#dashboard-filter")?.showModal();
+  };
 
     return (
       <article>
@@ -116,7 +121,9 @@ const PaymentStatusTable = () => {
                       {payment.status === "paid" ? "Credit Card" : "-"}
                     </td>
                     <td className="px-2 py-3">
-                      {showFormattedDate(payment.createdAt)}
+                      {payment.status === "paid"
+                        ? showFormattedDate(payment.createdAt)
+                        : "-"}
                     </td>
                   </tr>
                 );
@@ -125,12 +132,14 @@ const PaymentStatusTable = () => {
           </table>
           <div className="flex items-center justify-center mt-7">
             <div className="join">
-              {[1, 2, 3, 4, 5, 6].map((pageNumber) => (
+              {[1, 2, 3, 4, 5, 6, 7].map((pageNumber) => (
                 <button
                   key={pageNumber}
                   onClick={() => handleShowPage(pageNumber)}
                   className={`join-item btn btn-md ${
-                    pageNumber === +page ? "btn-active" : ""
+                    pageNumber === +page
+                      ? "btn-active bg-dark-blue text-white hover:bg-[#5d4bd3]"
+                      : ""
                   }`}
                 >
                   {pageNumber}

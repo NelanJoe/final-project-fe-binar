@@ -49,8 +49,34 @@ export const adminApi = apiSlice.injectEndpoints({
           url: `/admin/kelola-kelas?filter=${filter}&page=${page}&pageSize=${pageSize}`,
           method: "GET",
         };
-      }
-    })
+      },
+    }),
+    getAllCategorys: builder.query({
+      query: () => {
+        return {
+          url: "/admin/category",
+          method: "GET",
+        };
+      },
+    }),
+    postCategory: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/admin/category/create",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    putCategory: builder.mutation({
+      query: ({ categoryId, data }) => {
+        return {
+          url: `/admin/category/edit/${categoryId}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -60,5 +86,8 @@ export const {
   useGetActiveClassQuery,
   useGetActivePremiumQuery,
   useGetAdminDashboardQuery,
-  useGetAdminKelolaKelasQuery
+  useGetAdminKelolaKelasQuery,
+  useGetAllCategorysQuery,
+  usePostCategoryMutation,
+  usePutCategoryMutation
 } = adminApi;
