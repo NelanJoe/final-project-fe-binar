@@ -8,7 +8,8 @@ import LoadingBar from "@/components/ui/LoadingBar";
 
 const ProfileUpdateForm = () => {
   const { data, isLoading } = useGetProfileQuery();
-  const [updateProfile] = useUpdateProfileMutation();
+  const [updateProfile, { isLoading: isLoadingUpdateProfile }] =
+    useUpdateProfileMutation();
   const navigate = useNavigate();
 
   const [image, setImage] = useState({ preview: "", data: "" });
@@ -150,8 +151,16 @@ const ProfileUpdateForm = () => {
           />
         </div>
         <div>
-          <button type="submit" className="w-full btn btn-primary rounded-xl">
-            Simpan Profile Saya
+          <button
+            type="submit"
+            disabled={isLoadingUpdateProfile}
+            className="w-full btn btn-primary rounded-xl"
+          >
+            {isLoadingUpdateProfile ? (
+              <span className="loading loading-spinner loading-sm"></span>
+            ) : (
+              "Simpan Perubahan"
+            )}
           </button>
         </div>
       </div>
