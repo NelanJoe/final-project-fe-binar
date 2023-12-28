@@ -1,6 +1,9 @@
 import LoadingBar from "@/components/ui/LoadingBar";
 
 import { useGetAllCategorysQuery } from "@/stores";
+import FormAddCategory from "./form-add-category";
+import { PlusCircle } from "lucide-react";
+import EditCategory from "./edit-category";
 
 const CategoryTable = () => {
   const titleTable = ["Id", "Name", "Image", "Available", "Action"];
@@ -15,6 +18,23 @@ const CategoryTable = () => {
     <article>
       <div className="flex items-center justify-between px-16">
         <h1 className="font-bold text-md lg:text-xl">Category</h1>
+        <button
+          onClick={() => document.getElementById("create").showModal()}
+          className="flex items-center ml-2 gap-2 px-2 py-[2px] text-base text-white rounded-full hover:bg-[#4532bd] bg-dark-blue"
+        >
+          <PlusCircle className="w-4 h-4 " /> Tambah
+        </button>
+        <dialog id="create" className="modal">
+          <div className="modal-box">
+            <form method="dialog">
+              <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
+                ✕
+              </button>
+            </form>
+            <h3 className="my-3 text-lg font-bold">Tambah Kategori</h3>
+            <FormAddCategory />
+          </div>
+        </dialog>
       </div>
 
       <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
@@ -79,9 +99,7 @@ const CategoryTable = () => {
                           </button>
                         </form>
 
-                        <h3 className="text-lg font-bold">Ubah</h3>
-
-                        <p className="py-4">Ingin Mengubah kelas anda?</p>
+                        <EditCategory categoryName={category?.name} categoryImage={category?.image} />
                       </div>
                     </dialog>
 
