@@ -47,7 +47,8 @@ export {
   useGetAdminKelolaKelasQuery,
   useGetAllCategorysQuery,
   usePostCategoryMutation,
-  usePutCategoryMutation
+  usePutEditCategoryMutation,
+  usePutDeleteCategoryMutation
 } from "./admin/admin.api";
 
 export {

@@ -1,4 +1,4 @@
-import { usePutCategoryMutation } from "@/stores";
+import { usePutEditCategoryMutation } from "@/stores";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
@@ -9,7 +9,7 @@ const EditCategory = ({ categoryName, categoryImage }) => {
   const [image, setImage] = useState({ preview: "", data: "" });
   const navigate = useNavigate();
 
-  const [putCategory] = usePutCategoryMutation();
+  const [putEditCategory] = usePutEditCategoryMutation();
 
   const handleChangeName = async (e) => {
     setName(e.target.value);
@@ -34,7 +34,7 @@ const EditCategory = ({ categoryName, categoryImage }) => {
     formData.append("image", image);
 
     try {
-      const res = await putCategory(formData).unwrap();
+      const res = await putEditCategory(formData).unwrap();
 
       if (res.success) {
         toast.success(res?.success);
@@ -55,7 +55,7 @@ const EditCategory = ({ categoryName, categoryImage }) => {
       <div className="mb-4">
         <label
           htmlFor="name"
-          className="block mb-2 text-sm font-normal leading-4 lg:text-base"
+          className="block mb-2 text-sm font-normal leading-4 text-left lg:text-base"
         >
           Nama Kategori
         </label>
@@ -86,7 +86,7 @@ const EditCategory = ({ categoryName, categoryImage }) => {
         <div className="flex flex-col">
           <label
             htmlFor="myfile"
-            className="mb-2 text-sm font-normal leading-4 lg:text-base"
+            className="mb-2 text-sm font-normal leading-4 text-left lg:text-base"
           >
             Upload Video :
           </label>

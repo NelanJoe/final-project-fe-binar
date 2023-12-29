@@ -11,6 +11,15 @@ const PaymentStatusTable = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
+  const titleTable = [
+    "ID",
+    "Kategori",
+    "Kelas Premium",
+    "Status",
+    "Metode Pembayaran",
+    "Tanggal Bayar"
+  ];
+
   const page = searchParams.get("page") || showPage;
 
   const handleShowPage = (page) => {
@@ -66,27 +75,14 @@ const PaymentStatusTable = () => {
           </div>
         </div>
         <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
-          <table className="w-full text-sm text-left rtl:text-right">
-            <thead className="text-xs bg-light-blue-100">
-              <tr>
-                <th scope="col" className="px-2 py-3">
-                  ID
+          <table className="w-full text-sm text-left border rtl:text-right">
+            <thead className="text-sm bg-light-blue-100">
+              <tr  className="text-center">
+                {titleTable?.map((title, index) => (
+                  <th key={index} scope="col" className="px-2 py-3 border-x">
+                  {title}
                 </th>
-                <th scope="col" className="px-2 py-3">
-                  Kategori
-                </th>
-                <th scope="col" className="px-2 py-3">
-                  Kelas Premium
-                </th>
-                <th scope="col" className="px-2 py-3">
-                  Status
-                </th>
-                <th scope="col" className="px-2 py-3">
-                  Metode Pembayaran
-                </th>
-                <th scope="col" className="px-2 py-3">
-                  Tanggal Bayar
-                </th>
+                  ))}
               </tr>
             </thead>
             <tbody>
@@ -94,22 +90,22 @@ const PaymentStatusTable = () => {
                 return (
                   <tr
                     key={payment.id}
-                    className="bg-white border-b hover:bg-gray-50"
+                    className="text-center bg-white border-b hover:bg-gray-50"
                   >
                     <th
                       scope="row"
-                      className="px-2 py-3 font-medium text-gray-900 whitespace-nowrap"
+                      className="px-2 py-3 font-medium text-gray-900 border-x whitespace-nowrap"
                     >
                       {payment?.myCourse?.users?.profiles?.name}
                     </th>
-                    <td className="px-2 py-3">
+                    <td className="px-2 py-3 border-x">
                       {payment?.myCourse?.courses?.categories?.name}
                     </td>
-                    <td className="px-2 py-3 font-semibold">
+                    <td className="px-2 py-3 font-semibold border-x">
                       {payment?.myCourse?.courses?.title}
                     </td>
                     <td
-                      className={`px-2 py-3 font-bold uppercase ${
+                      className={`px-2 border-x py-3 font-bold uppercase ${
                         payment.status === "paid"
                           ? "text-success"
                           : "text-warning"
@@ -117,10 +113,10 @@ const PaymentStatusTable = () => {
                     >
                       {payment.status}
                     </td>
-                    <td className="px-2 py-3 font-semibold">
+                    <td className="px-2 py-3 font-semibold border-x">
                       {payment.status === "paid" ? "Credit Card" : "-"}
                     </td>
-                    <td className="px-2 py-3">
+                    <td className="px-2 py-3 border-x">
                       {payment.status === "paid"
                         ? showFormattedDate(payment.createdAt)
                         : "-"}
@@ -130,6 +126,7 @@ const PaymentStatusTable = () => {
               })}
             </tbody>
           </table>
+        </div>
           <div className="flex items-center justify-center mt-7">
             <div className="join">
               {[1, 2, 3, 4, 5, 6, 7].map((pageNumber) => (
@@ -147,7 +144,6 @@ const PaymentStatusTable = () => {
               ))}
             </div>
           </div>
-        </div>
       </article>
     );
 };

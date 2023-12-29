@@ -34,6 +34,8 @@ const FormAddCategory = () => {
         toast.success(res?.success);
         navigate("/my-class");
 
+        window.location.reload();
+
         document.getElementById("create").close();
       }
     } catch (error) {

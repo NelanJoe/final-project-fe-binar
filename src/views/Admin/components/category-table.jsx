@@ -4,9 +4,10 @@ import { useGetAllCategorysQuery } from "@/stores";
 import FormAddCategory from "./form-add-category";
 import { PlusCircle } from "lucide-react";
 import EditCategory from "./edit-category";
+import DeleteCategory from "./delete-category";
 
 const CategoryTable = () => {
-  const titleTable = ["Id", "Name", "Image", "Available", "Action"];
+  const titleTable = ["Id", "Nama", "Gambar", "Available", "Aksi"];
 
   const { data, isLoading } = useGetAllCategorysQuery();
 
@@ -38,14 +39,14 @@ const CategoryTable = () => {
       </div>
 
       <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
-        <table className="w-full text-sm text-left rtl:text-right">
+        <table className="w-full text-sm text-left border rtl:text-right">
           <thead className="text-xs bg-light-blue-100">
-            <tr>
+            <tr className="text-center">
               {titleTable.map((title, index) => (
                 <th
                   key={index}
                   scope="col"
-                  className="py-5 pl-2 capitalize md:text-sm"
+                  className="py-5 pl-2 capitalize border-x md:text-sm"
                 >
                   {title}
                 </th>
@@ -56,33 +57,31 @@ const CategoryTable = () => {
           <tbody>
             {data?.category?.map((category, index) => {
               return (
-                <tr key={index} className="bg-white border-b hover:bg-gray-50">
+                <tr key={index} className="text-center bg-white border-b hover:bg-gray-50">
                   <th
                     scope="row"
                     className="py-3 pl-2 font-medium text-gray-900 whitespace-nowrap"
                   >
                     {category?.id}
                   </th>
-
-                  <td className="py-3 pr-2">{category?.name}</td>
-
-                  <td className="px-2 py-3 font-semibold">
+                  <td className="py-3 pr-2 border-x">{category?.name}</td>
+                  <td className="px-2 py-3 font-semibold border-x">
+                    <div className="flex items-center justify-center">
                     <img
                       src={category?.image}
                       alt={category?.name}
-                      className="w-10 h-10 border-2 rounded-xl border-dark-blue"
-                    />
+                      className="object-cover w-10 h-10 border-2 rounded-xl border-dark-blue"
+                      />
+                      </div>
                   </td>
-
                   <td
-                    className={`px-2 py-3 font-bold uppercase ${
+                    className={`px-2 py-3 border-x font-bold uppercase ${
                       category?.available ? "text-dark-blue" : "text-success"
                     }`}
                   >
                     {category.available ? "Tersedia" : "Tidak Tersedia"}
                   </td>
-
-                  <td className="flex items-center gap-2 px-2 pt-5 lg:py-3">
+                  <td className="flex items-center justify-center gap-2 px-2 pt-5 lg:py-5">
                     <button
                       onClick={() =>
                         document.getElementById("edit").showModal()
@@ -98,11 +97,12 @@ const CategoryTable = () => {
                             ✕
                           </button>
                         </form>
-
-                        <EditCategory categoryName={category?.name} categoryImage={category?.image} />
+                        <EditCategory
+                          categoryName={category?.name}
+                          categoryImage={category?.image}
+                        />
                       </div>
                     </dialog>
-
                     <button
                       onClick={() =>
                         document.getElementById("delete").showModal()
@@ -117,19 +117,11 @@ const CategoryTable = () => {
                     >
                       <div className="modal-box">
                         <h3 className="text-lg font-bold">Hapus!</h3>
-
                         <p className="py-4 text-base">
                           Apakah anda yakin ingin menghapus kelas ini?
                         </p>
-
                         <div className="flex justify-center modal-action">
-                          <form method="dialog">
-                            <button className="btn">Batal</button>
-
-                            <button className="ml-5 text-white btn bg-dark-blue hover:bg-[#4532bd]">
-                              Yakin
-                            </button>
-                          </form>
+                          <DeleteCategory IdCategory={category?.id}/>
                         </div>
                       </div>
                     </dialog>
