@@ -4,6 +4,7 @@ import { useGetAllCategorysQuery } from "@/stores";
 import FormAddCategory from "./form-add-category";
 import { PlusCircle } from "lucide-react";
 import EditCategory from "./edit-category";
+import { Link } from "react-router-dom";
 
 const CategoryTable = () => {
   const titleTable = ["Id", "Name", "Image", "Available", "Action"];
@@ -61,7 +62,7 @@ const CategoryTable = () => {
                     scope="row"
                     className="py-3 pl-2 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    {category?.id}
+                    {(index += 1)}
                   </th>
 
                   <td className="py-3 pr-2">{category?.name}</td>
@@ -70,7 +71,7 @@ const CategoryTable = () => {
                     <img
                       src={category?.image}
                       alt={category?.name}
-                      className="w-10 h-10 border-2 rounded-xl border-dark-blue"
+                      className="object-cover w-10 h-10 border-2 rounded-xl border-dark-blue"
                     />
                   </td>
 
@@ -83,14 +84,15 @@ const CategoryTable = () => {
                   </td>
 
                   <td className="flex items-center gap-2 px-2 pt-5 lg:py-3">
-                    <button
+                    <Link to={`/my-class/update/${category?.id}`}>Ubah</Link>
+                    {/* <button
                       onClick={() =>
                         document.getElementById("edit").showModal()
                       }
                       className="px-2 text-white rounded-full bg-dark-blue"
                     >
                       Ubah
-                    </button>
+                    </button> */}
                     <dialog id="edit" className="modal">
                       <div className="modal-box">
                         <form method="dialog">
@@ -99,7 +101,11 @@ const CategoryTable = () => {
                           </button>
                         </form>
 
-                        <EditCategory categoryName={category?.name} categoryImage={category?.image} />
+                        <EditCategory
+                          categoryId={category?.id}
+                          categoryName={category?.name}
+                          categoryImage={category?.image}
+                        />
                       </div>
                     </dialog>
 

@@ -8,7 +8,8 @@ const FormAddCategory = () => {
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
 
-  const [postCategory] = usePostCategoryMutation();
+  const [postCategory, { isLoading: isLoadingPostCategory }] =
+    usePostCategoryMutation();
 
   const handleChangeName = async (e) => {
     setName(e.target.value);
@@ -33,6 +34,8 @@ const FormAddCategory = () => {
       if (res?.success) {
         toast.success(res?.success);
         navigate("/my-class");
+
+        window.location.reload();
 
         document.getElementById("create").close();
       }
@@ -73,8 +76,16 @@ const FormAddCategory = () => {
           name="filename"
         />
       </div>
-      <button type="submit" className="w-full btn btn-md btn-primary">
-        Simpan
+      <button
+        type="submit"
+        disabled={isLoadingPostCategory}
+        className="w-full btn btn-md btn-primary"
+      >
+        {isLoadingPostCategory ? (
+          <span className="loading loading-spinner loading-sm"></span>
+        ) : (
+          "Simpan"
+        )}
       </button>
     </form>
   );
