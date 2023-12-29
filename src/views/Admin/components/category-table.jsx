@@ -62,7 +62,7 @@ const CategoryTable = () => {
                     scope="row"
                     className="py-3 pl-2 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    {category?.id}
+                    {(index += 1)}
                   </th>
                   <td className="py-3 pr-2 border-x">{category?.name}</td>
                   <td className="px-2 py-3 font-semibold border-x">
@@ -81,6 +81,7 @@ const CategoryTable = () => {
                   >
                     {category.available ? "Tersedia" : "Tidak Tersedia"}
                   </td>
+
                   <td className="flex items-center justify-center gap-2 px-2 pt-5 lg:py-5">
                     <button
                       onClick={() =>
@@ -98,6 +99,7 @@ const CategoryTable = () => {
                           </button>
                         </form>
                         <EditCategory
+                          categoryId={category?.id}
                           categoryName={category?.name}
                           categoryImage={category?.image}
                         />

@@ -28,6 +28,7 @@ export default function App() {
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID}>
       <BrowserRouter>
         <Routes>
+          {/* Home pages */}
           <Route path="/" element={<Home />} />
 
           {/* Courses pages */}
@@ -36,7 +37,7 @@ export default function App() {
             <Route path=":id" element={<CoursesDetail />} />
           </Route>
 
-          {/* My Courses page */}
+          {/* My Courses pages */}
           <Route element={<ProtectedRoute />}>
             <Route path="my-courses">
               <Route index element={<MyCourses />} />
@@ -61,10 +62,15 @@ export default function App() {
           <Route path="admin-kelola-kelas" element={<KelolaKelas />} />
           <Route path="my-class" element={<MyClass />} />
 
-          <Route path="profile" element={<Profile />} />
-          <Route path="change-password" element={<ProfileChangePassword />} />
-          <Route path="payment-history" element={<ProfilePaymentHistory />} />
+          {/* Notification pages */}
           <Route path="notification" element={<Notification />} />
+
+          {/* Profile page */}
+          <Route path="profile">
+            <Route index element={<Profile />} />
+            <Route path="change-password" element={<ProfileChangePassword />} />
+            <Route path="payment-history" element={<ProfilePaymentHistory />} />
+          </Route>
 
           <Route path="*" element={<Error />} />
         </Routes>

@@ -22,6 +22,9 @@ const CourseDescription = ({ course, goals }) => {
             ))}
           </ol>
         </div>
+        <div>
+          <p></p>
+        </div>
       </div>
     </div>
   );

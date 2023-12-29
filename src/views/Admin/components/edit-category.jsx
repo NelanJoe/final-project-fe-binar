@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const EditCategory = ({ categoryName, categoryImage }) => {
+const EditCategory = ({ categoryName, categoryImage, categoryId }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState({ preview: "", data: "" });
   const navigate = useNavigate();
 
-  const [putEditCategory] = usePutEditCategoryMutation();
+  const [putEditCategory, { isLoading }] = usePutEditCategoryMutation();
 
   const handleChangeName = async (e) => {
     setName(e.target.value);
@@ -34,12 +34,17 @@ const EditCategory = ({ categoryName, categoryImage }) => {
     formData.append("image", image);
 
     try {
-      const res = await putEditCategory(formData).unwrap();
+      const res = await putEditCategory({
+        categoryId,
+        data: formData,
+      }).unwrap();
 
       if (res.success) {
         toast.success(res?.success);
 
         navigate("/my-class");
+
+        window.location.reload();
 
         document.getElementById("edit").close();
       }
@@ -99,14 +104,23 @@ const EditCategory = ({ categoryName, categoryImage }) => {
           />
         </div>
       </div>
-      <button type="submit" className="w-full btn btn-md btn-primary">
-        Simpan Perubahan
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="w-full btn btn-md btn-primary"
+      >
+        {isLoading ? (
+          <span className="loading loading-spinner loading-sm"></span>
+        ) : (
+          "Simpan"
+        )}
       </button>
     </form>
   );
 };
 
 EditCategory.propTypes = {
+  categoryId: PropTypes.number,
   categoryName: PropTypes.string,
   categoryImage: PropTypes.string,
 };

@@ -40,17 +40,17 @@ const ProfileNavigation = () => {
         </button>
       </Link>
 
-      <Link to="/change-password">
+      <Link to="/profile/change-password">
         <button className="w-full bg-white border-b">
           <div className="flex flex-row items-center gap-4 px-4 py-2 text-base lg:text-lg">
             <SettingsIcon
               className={`text-dark-blue ${
-                isActive("/change-password") && "w-7 h-7"
+                isActive("/profile/change-password") && "w-7 h-7"
               }`}
             />
             <span
               className={`${
-                isActive("/change-password") && "text-xl text-dark-blue"
+                isActive("/profile/change-password") && "text-xl text-dark-blue"
               }`}
             >
               Ubah Password
@@ -59,17 +59,17 @@ const ProfileNavigation = () => {
         </button>
       </Link>
 
-      <Link to="/payment-history">
+      <Link to="/profile/payment-history">
         <button className="w-full bg-white border-b">
           <div className="flex flex-row items-center gap-4 px-4 py-2 text-base lg:text-lg">
             <ShoppingCartIcon
               className={`text-dark-blue ${
-                isActive("/payment-history") && "w-7 h-7"
+                isActive("/profile/payment-history") && "w-7 h-7"
               }`}
             />
             <span
               className={`${
-                isActive("/payment-history") && "text-xl text-dark-blue"
+                isActive("/profile/payment-history") && "text-xl text-dark-blue"
               }`}
             >
               Riwayat Pembayaran

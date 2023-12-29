@@ -38,6 +38,8 @@ export {
   usePatchOrderCourseByIdMutation,
 } from "./course/course.api";
 
+export { useGetNotificationsQuery } from "./notification/notification.api";
+
 export {
   useAdminLoginMutation,
   useGetActiveUserQuery,
