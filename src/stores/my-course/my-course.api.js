@@ -26,6 +26,15 @@ export const myCourseApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    postCourseReview: builder.mutation({
+      query: ({ myCouseId, data }) => {
+        return {
+          method: "POST",
+          url: `/course/review/${myCouseId}`,
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -33,4 +42,5 @@ export const {
   useGetMyCoursesQuery,
   useGetMyCourseByIdQuery,
   useGetAllCourseReviewQuery,
+  usePostCourseReviewMutation,
 } = myCourseApi;

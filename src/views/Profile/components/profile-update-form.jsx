@@ -89,7 +89,10 @@ const ProfileUpdateForm = () => {
                     />
                   ) : (
                     <img
-                      src={data?.user?.profiles?.image}
+                      src={
+                        data?.user?.profiles?.image ||
+                        "https://i.pickadummy.com/300?text=404NotImage&font=Raleway"
+                      }
                       alt={`avatar-${data?.user?.profiles?.name}`}
                     />
                   )}
