@@ -89,5 +89,5 @@ export const {
   useGetAdminKelolaKelasQuery,
   useGetAllCategorysQuery,
   usePostCategoryMutation,
-  usePutCategoryMutation
+  usePutCategoryMutation,
 } = adminApi;

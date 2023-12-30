@@ -15,8 +15,10 @@ const CoursesItem = ({ course }) => {
   let redirect;
   if (pathname === "/my-courses") {
     redirect = `/my-courses/${course?.id}`;
-  } else {
+  } else if (pathname === "/courses" || pathname === "/") {
     redirect = `/courses/${course?.id}`;
+  } else {
+    redirect = `/my-courses/${course?.id}`;
   }
 
   return (
