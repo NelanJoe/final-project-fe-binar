@@ -38,6 +38,10 @@ const Courses = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetCoursesQuery(paramsCourses);
 
+  const openModal = () => {
+    document.querySelector("#course-filter")?.showModal();
+  };
+
   let content;
 
   if (isLoading) {
@@ -45,14 +49,73 @@ const Courses = () => {
   }
 
   if (isError) {
-    content = <div>Error {error?.data?.message}</div>;
+    content = (
+      <BaseLayout title="Courses">
+        <main className="relative">
+          <section className="min-h-screen mx-4 mt-12 max-w-7xl lg:mx-auto">
+            <section>
+              <div className="flex flex-row justify-between gap-y-2">
+                <h2 className="text-xl font-semibold">Kelas Berjalan</h2>
+                {token ? (
+                  <Link to="/my-courses">
+                    <button className="text-white px-3 py-1.5 rounded-md shadow-md bg-blue-500 hover:bg-blue-400">
+                      <div className="flex flex-row items-center gap-x-3">
+                        <AlignJustifyIcon className="w-6 h-6" />
+                        <span>Kelasku</span>
+                      </div>
+                    </button>
+                  </Link>
+                ) : null}
+              </div>
+            </section>
+
+            <section className="mt-3 lg:mt-10">
+              <div className="flex flex-col justify-between gap-5 lg:flex-row">
+                <div className="hidden lg:block lg:w-[20%] mb-5 lg:mb-0">
+                  <CourseFilter />
+                </div>
+
+                {/* Mobile verse */}
+                <div className="flex flex-row lg:hidden gap-x-4">
+                  <button
+                    onClick={openModal}
+                    className="text-white btn btn-primary"
+                  >
+                    <ListFilterIcon />
+                    <span>Filter</span>
+                  </button>
+                  <CourseFilterSelect />
+                </div>
+
+                <div className="w-full lg:w-[80%]">
+                  <CourseCTA />
+                  <div className="my-4">
+                    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                      <p className="capitalize text-warning">
+                        {error?.data?.message}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+          <dialog id="course-filter" className="modal">
+            <div className="modal-box">
+              <form method="dialog">
+                <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <div className="p-4">
+                <CourseFilter />
+              </div>
+            </div>
+          </dialog>
+        </main>
+      </BaseLayout>
+    );
   }
-
-  const courses = data?.course;
-
-  const openModal = () => {
-    document.querySelector("#course-filter")?.showModal();
-  };
 
   if (isSuccess) {
     content = (
@@ -97,7 +160,7 @@ const Courses = () => {
                   <CourseCTA />
                   <div className="my-4">
                     <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                      <CoursesList courses={courses} />
+                      <CoursesList courses={data?.course} />
                     </div>
                   </div>
                 </div>

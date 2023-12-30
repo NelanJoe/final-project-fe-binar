@@ -55,6 +55,7 @@ export {
 export {
   useGetMyCoursesQuery,
   useGetMyCourseByIdQuery,
+  useGetAllCourseReviewQuery,
 } from "./my-course/my-course.api";
 
 export {
