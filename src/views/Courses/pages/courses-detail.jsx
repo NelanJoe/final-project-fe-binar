@@ -141,7 +141,8 @@ const CoursesDetail = () => {
               </div>
             </div>
           </section>
-          <section className="py-6 mx-4 max-w-7xl lg:mx-auto lg:px-10">
+
+          <section className="hidden py-6 mx-4 max-w-7xl lg:block lg:mx-auto lg:px-10">
             <div className="lg:grid lg:grid-cols-12 gap-x-4">
               <div className="lg:col-span-8 lg:space-y-4">
                 <div className="mb-6">
@@ -165,6 +166,31 @@ const CoursesDetail = () => {
                   />
                 </div>
               </aside>
+            </div>
+          </section>
+
+          <section className="block py-6 mx-4 space-y-4 lg:hidden">
+            <div>
+              <YoutubeEmbed url={urlYoutube} />
+            </div>
+            <div>
+              <div className="p-6 space-y-4 bg-white shadow-md rounded-xl">
+                <div className="flex flex-row items-center justify-between">
+                  <h2 className="text-xl font-semibold">Materi Belajar</h2>
+                  <progress
+                    className="w-32 h-2.5 progress progress-success"
+                    value="0"
+                    max="100"
+                  ></progress>
+                </div>
+                <CourseChapter
+                  chapters={course?.chapters}
+                  status={course?.status}
+                />
+              </div>
+            </div>
+            <div>
+              <CourseDescription course={course} goals={course?.goals} />
             </div>
           </section>
         </main>

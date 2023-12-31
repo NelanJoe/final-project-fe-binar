@@ -166,6 +166,7 @@ const MyCoursesDetail = () => {
             </div>
           </section>
         </main>
+        
       </BaseLayout>
     );
   }
