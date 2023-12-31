@@ -155,10 +155,7 @@ const MyCoursesDetail = () => {
                     max="100"
                   ></progress>
                 </div>
-                <CourseChapter
-                  chapters={course?.chapters}
-                  status={course?.status}
-                />
+                <CourseDescription course={course} goals={course?.goals} />
               </div>
             </div>
             <div>
@@ -166,7 +163,6 @@ const MyCoursesDetail = () => {
             </div>
           </section>
         </main>
-        
       </BaseLayout>
     );
   }

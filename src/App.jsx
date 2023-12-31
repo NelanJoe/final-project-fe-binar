@@ -84,6 +84,13 @@ export default function App() {
             </Route>
           </Route>
 
+          {/* Profile page */}
+          <Route path="profile">
+            <Route index element={<Profile />} />
+            <Route path="change-password" element={<ProfileChangePassword />} />
+            <Route path="payment-history" element={<ProfilePaymentHistory />} />
+          </Route>
+
           <Route path="*" element={<Error />} />
         </Routes>
         <Toaster position="top-left" />
