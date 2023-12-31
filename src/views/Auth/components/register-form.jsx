@@ -1,17 +1,22 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 import GoogleLogin from "./google-login";
 
 import { useRegisterActionMutation } from "@/stores";
+import { selectedToken } from "@/stores/auth/auth.selector";
+
 import { loginSchema } from "../validation";
-import toast from "react-hot-toast";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const token = useSelector(selectedToken);
 
-  const [registerAction] = useRegisterActionMutation();
+  const [registerAction, { isLoading }] = useRegisterActionMutation();
 
   const {
     register,
@@ -20,6 +25,12 @@ const RegisterForm = () => {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate, token]);
 
   const onSubmit = async (values, event) => {
     event.preventDefault();
@@ -126,7 +137,11 @@ const RegisterForm = () => {
             type="submit"
             className="w-full transition-all duration-150 ease-linear bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2 flex items-center justify-center gap-1"
           >
-            Daftar
+            {isLoading ? (
+              <span className="loading loading-spinner loading-sm"></span>
+            ) : (
+              "Daftar"
+            )}
           </button>
         </form>
         <div className="text-center ms-7 w-[320px] lg:w-[400px]">

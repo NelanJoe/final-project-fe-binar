@@ -44,8 +44,9 @@ const CourseCTA = () => {
               value=""
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                (getProgressValue === "" || pathname === "/courses") &&
-                "bg-dark-blue text-white"
+                getProgressValue === "" || pathname === "/courses"
+                  ? "bg-dark-blue text-white"
+                  : "bg-white hover:bg-gray-100"
               }`}
             >
               All
@@ -55,7 +56,9 @@ const CourseCTA = () => {
               value="inProgress"
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                getProgressValue === "inProgress" && "bg-dark-blue text-white"
+                getProgressValue === "inProgress"
+                  ? "bg-dark-blue text-white"
+                  : "bg-white hover:bg-gray-100"
               }`}
             >
               In Progress
@@ -65,7 +68,9 @@ const CourseCTA = () => {
               value="completed"
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                getProgressValue === "completed" && "bg-dark-blue text-white"
+                getProgressValue === "completed"
+                  ? "bg-dark-blue text-white"
+                  : "bg-white hover:bg-gray-100"
               }`}
             >
               Selesai
@@ -78,7 +83,9 @@ const CourseCTA = () => {
               value=""
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                getTypeValue === "" && "bg-dark-blue text-white"
+                getTypeValue === ""
+                  ? "bg-dark-blue text-white"
+                  : "bg-white hover:bg-gray-100"
               }`}
             >
               All
@@ -88,7 +95,9 @@ const CourseCTA = () => {
               value="premium"
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                getTypeValue === "premium" && "bg-dark-blue text-white"
+                getTypeValue === "premium"
+                  ? "bg-dark-blue text-white"
+                  : "bg-white hover:bg-gray-100"
               }`}
             >
               Kelas Premium
@@ -98,7 +107,9 @@ const CourseCTA = () => {
               value="gratis"
               onClick={handleClick}
               className={`w-full px-2 py-1 md:px-4 md:py-2 text-sm md:text-base border rounded-2xl md:font-semibold text-gray-800/70 ${
-                getTypeValue === "gratis" && "bg-dark-blue text-white"
+                getTypeValue === "gratis"
+                  ? "bg-dark-blue text-white"
+                  : "bg-white hover:bg-gray-100"
               }`}
             >
               Kelas Gratis

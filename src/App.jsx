@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-import ProtectedRoute from "@/components/common/protected-route";
+import PrivateRoute from "@/components/common/private-route";
 
 import Home from "@/views/Home";
 import Error from "@/views/Error";
@@ -38,7 +38,7 @@ export default function App() {
           </Route>
 
           {/* My Courses pages */}
-          <Route element={<ProtectedRoute />}>
+          <Route element={<PrivateRoute />}>
             <Route path="my-courses">
               <Route index element={<MyCourses />} />
               <Route path=":id" element={<MyCoursesDetail />} />
@@ -46,8 +46,10 @@ export default function App() {
           </Route>
 
           {/* Payment page */}
-          <Route path="payment/:id" element={<Payment />} />
-          <Route path="payment-success/:id" element={<PaymentSuccess />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="payment/:id" element={<Payment />} />
+            <Route path="payment-success/:id" element={<PaymentSuccess />} />
+          </Route>
 
           {/* Auth Page */}
           <Route path="login" element={<Login />} />
@@ -63,7 +65,24 @@ export default function App() {
           <Route path="my-class" element={<MyClass />} />
 
           {/* Notification pages */}
-          <Route path="notification" element={<Notification />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="notification" element={<Notification />} />
+          </Route>
+
+          {/* Profile page */}
+          <Route element={<PrivateRoute />}>
+            <Route path="profile">
+              <Route index element={<Profile />} />
+              <Route
+                path="change-password"
+                element={<ProfileChangePassword />}
+              />
+              <Route
+                path="payment-history"
+                element={<ProfilePaymentHistory />}
+              />
+            </Route>
+          </Route>
 
           {/* Profile page */}
           <Route path="profile">

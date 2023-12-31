@@ -1,10 +1,19 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const CategoryItem = ({ category }) => {
+  const [searchParams] = useSearchParams();
+
+  const title = searchParams.get("title") || "";
+  const type = searchParams.get("type") || "";
+  const filter = searchParams.get("filter") || "";
+  const level = searchParams.get("level") || "";
+
   return (
     <div className="group w-full md:w-[200px]">
-      <Link to={`/courses/?category=${category.name}`}>
+      <Link
+        to={`/courses?title=${title}&type=${type}&filter=${filter}&category=${category?.name}&level=${level}`}
+      >
         <div className="space-y-2">
           <div className="group">
             <img
