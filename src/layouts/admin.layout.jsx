@@ -35,8 +35,6 @@ const AdminLayout = ({ children, title }) => {
     navigate("/admin-login");
   };
 
-  // TODO: Fix Navigasi Sidebar Admin Collapse 
-
   return (
     <>
       <Helmet>
@@ -75,40 +73,41 @@ const AdminLayout = ({ children, title }) => {
             </Link>
 
             {/* Menu */}
-            <ul className="space-y-2 font-medium pt-14 sm:pt-0">
+            <ul className="font-medium pt-14 sm:pt-0">
               <li>
                 <Link
                   to="/admin-dashboard"
-                  className="flex items-center p-2 text-white hover:bg-soft-blue group"
+                  className="flex items-center justify-center p-2 text-white hover:bg-soft-blue group"
                 >
-                  <span className="text-xl font-medium text-center ms-3">
+                  <span className="text-xl font-medium ms-3">
                     Dashboard
                   </span>
                 </Link>
               </li>
-              <li className="w-full text-center collapse collapse-arrow">
-                <input type="checkbox" />
-                <div className="text-xl font-medium text-white collapse-title">
-                  Kelola Kelas mu
-                </div>
-                <div className="collapse-content">
-                  <Link
-                    to="/admin-kelola-kelas"
-                    className="flex items-center p-2 text-white hover:bg-soft-blue group"
-                  >
-                    <span className="flex-1 ms-3 whitespace-nowrap">
-                      Kelola Kelas
-                    </span>
-                  </Link>
-                  <Link
-                    to="/my-class"
-                    className="flex items-center p-2 text-white hover:bg-soft-blue group"
-                  >
-                    <span className="flex-1 ms-3 whitespace-nowrap">
-                      My Class
-                    </span>
-                  </Link>
-                </div>
+              <li>
+                <details className="w-full text-center collapse collapse-arrow">
+                  <summary className="text-xl font-medium text-white collapse-title">
+                    Kelola Kelas mu
+                  </summary>
+                  <div className="collapse-content">
+                    <Link
+                      to="/admin-kelola-kelas"
+                      className="flex items-center p-2 text-white hover:bg-soft-blue group"
+                    >
+                      <span className="flex-1 ms-3 whitespace-nowrap">
+                        Kelola Kelas
+                      </span>
+                    </Link>
+                    <Link
+                      to="/my-class"
+                      className="flex items-center p-2 text-white hover:bg-soft-blue group"
+                    >
+                      <span className="flex-1 ms-3 whitespace-nowrap">
+                        My Class
+                      </span>
+                    </Link>
+                  </div>
+                </details>
               </li>
               <li>
                 <button
