@@ -26,14 +26,16 @@ const CourseDescription = ({ course, goals }) => {
 
   const { data: dataProfile } = useGetProfileQuery();
 
-  const [postCourseReview, { isLoading: isLoadingPostCourse }] =
-    usePostCourseReviewMutation();
 
   // Rating
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   // Review
   const [review, setReview] = useState("");
+
+  const [postCourseReview, { isLoading: isLoadingPostCourse }] =
+    usePostCourseReviewMutation();
+
 
   let content;
 
