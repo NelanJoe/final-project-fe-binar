@@ -1,11 +1,12 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { selectedToken } from "@/stores/auth/auth.selector";
 import {
   useGetAllCourseReviewQuery,
+  useGetProfileQuery,
   usePostCourseReviewMutation,
 } from "@/stores";
 import toast from "react-hot-toast";
@@ -14,10 +15,16 @@ const CourseDescription = ({ course, goals }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const token = useSelector(selectedToken);
+  const { pathname } = useLocation();
 
-  const { data, isLoading, isSuccess, isError } = useGetAllCourseReviewQuery(
-    Number(id)
-  );
+  const {
+    data: dataCourseReview,
+    isLoading,
+    isSuccess,
+    isError,
+  } = useGetAllCourseReviewQuery(Number(id));
+
+  const { data: dataProfile } = useGetProfileQuery();
 
   const [postCourseReview, { isLoading: isLoadingPostCourse }] =
     usePostCourseReviewMutation();
@@ -40,8 +47,30 @@ const CourseDescription = ({ course, goals }) => {
 
   if (isSuccess) {
     content = (
-      <div>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+      <div className="flex flex-col gap-3">
+        {dataCourseReview?.review?.map((review) => (
+          <div key={review?.id} className="p-4 space-y-3 rounded-md shadow-md">
+            <div className="flex items-center gap-3">
+              <div className="avatar">
+                <div className="w-8 h-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img
+                    src={`${review?.users?.profiles?.image}`}
+                    alt={`${review?.users?.profiles?.name}`}
+                  />
+                </div>
+              </div>
+              <p>{review?.users?.profiles?.name}</p>
+            </div>
+            <p className="text-sm text-justify">{review?.comment}</p>
+            <div className="flex flex-row gap-2">
+              <div className="flex flex-row">
+                {[...Array(review?.rating)].map((_, index) => (
+                  <p key={index}>⭐ </p>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     );
   }
@@ -50,18 +79,19 @@ const CourseDescription = ({ course, goals }) => {
     e.preventDefault();
     try {
       const newReview = {
+        userId: dataProfile?.user?.id,
         rating: rating?.toString(),
-        password: review,
+        coment: review,
       };
 
       const paramsPostData = {
-        myCouseId: id,
+        myCourseId: id,
         data: newReview,
       };
 
       const response = await postCourseReview(paramsPostData).unwrap();
 
-      if (response.success) {
+      if (response?.success === "success") {
         toast.success(response.message);
         navigate(`/my-courses/${id}`);
         window.location.reload();
@@ -97,12 +127,12 @@ const CourseDescription = ({ course, goals }) => {
           </ol>
         </div>
       </div>
-      {token !== null ? (
-        <div className="space-y-3">
-          <div>
-            <h2 className="mb-2 text-2xl font-semibold">Review</h2>
-            <div>{content}</div>
-          </div>
+      <div className="space-y-3">
+        <div>
+          <h2 className="mb-2 text-2xl font-semibold">Review</h2>
+          <div>{content}</div>
+        </div>
+        {token !== null && pathname !== `/courses/${id}` ? (
           <div>
             <h2 className="mb-2 text-2xl font-semibold">Add Feedback Course</h2>
             <div className="flex flex-col gap-4 px-4 py-4 my-2 rounded-md shadow-md">
@@ -158,8 +188,8 @@ const CourseDescription = ({ course, goals }) => {
               </form>
             </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 };

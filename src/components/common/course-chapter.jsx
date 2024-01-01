@@ -13,15 +13,11 @@ const CourseChapter = ({ chapters, status }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const handleClick = (name) => {
-    if (pathname === `/my-courses/${id}`) {
-      navigate(`/my-courses/${id}?watch=${name}`);
-    } else {
-      navigate(`/courses/${id}?watch=${name}`);
-    }
+  const handleClick = (chapter, source) => {
+    navigate(`/my-courses/${id}?chapterTitle=${chapter}&watchId=${source?.id}`);
   };
 
-  const watchName = searchParams.get("watch") || "";
+  const watchId = searchParams.get("watchId") || "";
 
   return (
     <>
@@ -38,23 +34,26 @@ const CourseChapter = ({ chapters, status }) => {
               <div className="space-y-2">
                 <button
                   className={`w-full text-sm ${
-                    watchName === source?.name && "p-2 bg-dark-blue rounded-md"
+                    Number(watchId) === source?.id &&
+                    "p-2 bg-dark-blue rounded-md"
                   }`}
-                  onClick={() => handleClick(source?.name)}
+                  onClick={() => handleClick(chapter.title, source)}
                   disabled={pathname === `/courses/${id}`}
                 >
                   <div className="flex flex-row items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div
                         className={`px-4 py-2 rounded-full ${
-                          watchName === source.name ? "bg-white" : "bg-white"
+                          Number(watchId) === source.id
+                            ? "bg-white"
+                            : "bg-white"
                         }`}
                       >
                         <p className="font-semibold">{(number += 1)}</p>
                       </div>
                       <p
                         className={
-                          watchName === source?.name
+                          Number(watchId) === source?.id
                             ? "text-white"
                             : "text-black"
                         }
@@ -63,7 +62,7 @@ const CourseChapter = ({ chapters, status }) => {
                       </p>
                     </div>
                     {status === "paid" || status !== "notPaid" ? (
-                      watchName === source?.name ? (
+                      Number(watchId) === source?.id ? (
                         <PauseCircleIcon className="text-red-500" />
                       ) : (
                         <PlayCircleIcon className="text-green-500" />

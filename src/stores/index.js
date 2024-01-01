@@ -57,6 +57,7 @@ export {
   useGetMyCourseByIdQuery,
   useGetAllCourseReviewQuery,
   usePostCourseReviewMutation,
+  usePostProgressVideoMutation,
 } from "./my-course/my-course.api";
 
 export {

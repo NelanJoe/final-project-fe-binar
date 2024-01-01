@@ -1,4 +1,4 @@
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
 import {
   ArrowLeftIcon,
   BookOpenTextIcon,
@@ -7,30 +7,73 @@ import {
   ShieldPlusIcon,
 } from "lucide-react";
 
-import { useGetMyCourseByIdQuery } from "@/stores";
+import {
+  useGetMyCourseByIdQuery,
+  usePostProgressVideoMutation,
+} from "@/stores";
 
 import BaseLayout from "@/layouts/base.layout";
 import CourseDescription from "@/components/common/course-description";
 import CourseChapter from "@/components/common/course-chapter";
 import YoutubeEmbed from "@/components/common/youtube-embed";
 import LoadingBar from "@/components/ui/LoadingBar";
+import toast from "react-hot-toast";
 
 const MyCoursesDetail = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
 
+  const myCourseId = Number(id);
+
   const { data, isLoading, isSuccess, isError, error } =
-    useGetMyCourseByIdQuery(Number(id));
+    useGetMyCourseByIdQuery(myCourseId);
+
+  const [postProgressVideo, { isLoading: isLoadingPostProgress }] =
+    usePostProgressVideoMutation();
+
+  const watchId = searchParams.get("watchId") || "";
+  const chapterTitle = searchParams.get("chapterTitle") || "Chapter 1";
 
   const course = data?.course?.courses;
 
-  const sources = course?.chapters[0]?.sources;
-
-  const watchingTitle = searchParams.get("watch") || "";
+  const sources = course?.chapters?.find(
+    (chapter) => chapter?.title === chapterTitle
+  ).sources;
 
   const urlYoutube =
-    sources?.find((item) => item?.name === watchingTitle)?.link ??
+    sources?.find((item) => item?.id === Number(watchId))?.link ??
     "https://www.youtube.com/watch?v=fCWOBU8OnMI";
+
+  const handleProgress = async () => {
+    try {
+      const itemVideo = sources?.find((item) => item?.id === Number(watchId));
+
+      const progressParams = {
+        myCourseId: myCourseId,
+        videoId: itemVideo.id,
+      };
+
+      const response = await postProgressVideo(progressParams).unwrap();
+
+      if (response.success === "success") {
+        toast.success(toast.success, {
+          style: {
+            textTransform: "capitalize",
+          },
+        });
+
+        Navigate(
+          `/my-courses/${myCourseId}?chapterTitle=${chapterTitle}&watchId=${watchId}`
+        );
+      }
+    } catch (error) {
+      toast.error(error?.data?.message, {
+        style: {
+          textTransform: "capitalize",
+        },
+      });
+    }
+  };
 
   let content;
 
@@ -120,6 +163,17 @@ const MyCoursesDetail = () => {
                 <div className="mb-6">
                   {urlYoutube ? <YoutubeEmbed url={urlYoutube} /> : null}
                 </div>
+
+                <div className="text-right">
+                  <button
+                    onClick={handleProgress}
+                    disabled={isLoadingPostProgress}
+                    className="btn btn-primary"
+                  >
+                    Complete Video
+                  </button>
+                </div>
+
                 <CourseDescription course={course} goals={course?.goals} />
               </div>
               <aside className="lg:col-span-4 lg:-mt-60">
@@ -144,6 +198,11 @@ const MyCoursesDetail = () => {
           <section className="block py-6 mx-4 space-y-4 lg:hidden">
             <div>
               <YoutubeEmbed url={urlYoutube} />
+              <div className="my-6 text-right">
+                <button onClick={handleProgress} className="btn btn-primary">
+                  Complete Video
+                </button>
+              </div>
             </div>
             <div>
               <div className="p-6 space-y-4 bg-white shadow-md rounded-xl">
@@ -155,7 +214,10 @@ const MyCoursesDetail = () => {
                     max="100"
                   ></progress>
                 </div>
-                <CourseDescription course={course} goals={course?.goals} />
+                <CourseChapter
+                  chapters={course?.chapters}
+                  status={course?.status}
+                />
               </div>
             </div>
             <div>

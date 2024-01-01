@@ -183,7 +183,10 @@ const CoursesDetail = () => {
                     max="100"
                   ></progress>
                 </div>
-                <CourseDescription course={course} goals={course?.goals} />
+                <CourseChapter
+                  chapters={course?.chapters}
+                  status={course?.status}
+                />
               </div>
             </div>
             <div>
