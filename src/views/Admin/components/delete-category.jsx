@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 const DeleteCategory = ({IdCategory}) => {
   const [putDeleteCategory] = usePutDeleteCategoryMutation();
-  console.log("Id Category",IdCategory);
 
   const handleClick = async (e) => {
     e.preventDefault();
