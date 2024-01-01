@@ -40,7 +40,7 @@ const CoursesCTA = () => {
             <button
               value={category.name}
               onClick={handleClick}
-              className={`px-3 py-1 rounded-full text-black/80 text-sm md:text-base md:font-semibold ${
+              className={`capitalize px-3 py-1 rounded-full text-black/80 text-sm md:text-base md:font-semibold ${
                 category.name === categoryParams
                   ? "bg-dark-blue text-white"
                   : "bg-light-blue"

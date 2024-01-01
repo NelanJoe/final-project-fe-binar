@@ -29,12 +29,12 @@ const PaymentCourseHistory = () => {
 
   if (isError) {
     return (
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-1">
+      <div className="flex items-center justify-center h-full">
         <div className="space-y-2">
           <p className="text-xl italic font-semibold text-center capitalize text-warning">
             {error?.data?.message}
           </p>
-          <p>Buy course before seen payment history</p>
+          <p className="text-center">Buy course before seen payment history</p>
           <div className="text-center">
             <Link to="/courses">
               <button className="rounded-full btn btn-primary">
@@ -56,7 +56,7 @@ const PaymentCourseHistory = () => {
           <CoursesList courses={courses} />
         ) : (
           <div>
-            <h2>Not found payment history</h2>
+            <h2 className="text-center">Not found payment history</h2>
           </div>
         )}
       </div>

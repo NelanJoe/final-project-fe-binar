@@ -44,20 +44,24 @@ const CourseChapter = ({ chapters, status }) => {
                   disabled={pathname === `/courses/${id}`}
                 >
                   <div className="flex flex-row items-center justify-between">
-                    <div
-                      className={`px-4 py-2 rounded-full ${
-                        watchName === source.name ? "bg-white" : "bg-white"
-                      }`}
-                    >
-                      <p className="font-semibold">{(number += 1)}</p>
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`px-4 py-2 rounded-full ${
+                          watchName === source.name ? "bg-white" : "bg-white"
+                        }`}
+                      >
+                        <p className="font-semibold">{(number += 1)}</p>
+                      </div>
+                      <p
+                        className={
+                          watchName === source?.name
+                            ? "text-white"
+                            : "text-black"
+                        }
+                      >
+                        {source?.name}
+                      </p>
                     </div>
-                    <p
-                      className={
-                        watchName === source?.name ? "text-white" : "text-black"
-                      }
-                    >
-                      {source?.name}
-                    </p>
                     {status === "paid" || status !== "notPaid" ? (
                       watchName === source?.name ? (
                         <PauseCircleIcon className="text-red-500" />

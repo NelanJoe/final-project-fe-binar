@@ -18,7 +18,29 @@ export const myCourseApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    getAllCourseReview: builder.query({
+      query: (myCouseId) => {
+        return {
+          url: `/course/review/${myCouseId}`,
+          method: "GET",
+        };
+      },
+    }),
+    postCourseReview: builder.mutation({
+      query: ({ myCouseId, data }) => {
+        return {
+          method: "POST",
+          url: `/course/review/${myCouseId}`,
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetMyCoursesQuery, useGetMyCourseByIdQuery } = myCourseApi;
+export const {
+  useGetMyCoursesQuery,
+  useGetMyCourseByIdQuery,
+  useGetAllCourseReviewQuery,
+  usePostCourseReviewMutation,
+} = myCourseApi;

@@ -39,6 +39,36 @@ const Notification = () => {
                 Notifikasi
               </h2>
             </div>
+            <div className="flex items-center justify-center h-full">
+              <h3 className="text-xl text-warning">Not found notification</h3>
+              <p>{error?.data?.message}</p>
+            </div>
+          </section>
+        </main>
+      </BaseLayout>
+    );
+  }
+
+  if (isSuccess) {
+    content = (
+      <BaseLayout title="Payment History">
+        <main className="min-h-screen ">
+          <section className="bg-light-blue">
+            <div className="py-12 mx-3 lg:pt-18 lg:pb-20 max-w-7xl lg:mx-auto">
+              <Link to="/">
+                <button className="flex flex-row items-center space-x-3 text-lg font-semibold text-dark-blue">
+                  <ArrowLeftIcon className="w-6 h-6" />{" "}
+                  <span>Kembali ke Beranda</span>
+                </button>
+              </Link>
+            </div>
+          </section>
+          <section className="-mt-6 lg:-mt-14 h-[600px] max-w-[1200px] mx-2 lg:mx-auto border-2 border-dark-blue rounded-lg overflow-y-scroll">
+            <div className="sticky inset-0 py-8 rounded-t-md bg-dark-blue">
+              <h2 className="text-xl font-semibold text-center text-white">
+                Notifikasi
+              </h2>
+            </div>
             <div className="p-2 lg:px-12 lg:py-6">
               <div className="flex flex-col gap-4">
                 {data?.notifications?.map((notifiaction) => (

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { ListFilterIcon } from "lucide-react";
 
 import BaseLyout from "@/layouts/base.layout";
@@ -36,6 +36,10 @@ const MyCourses = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetMyCoursesQuery(paramsMyCourses);
 
+  const openModal = () => {
+    document.querySelector("#course-filter")?.showModal();
+  };
+
   let content;
 
   if (isLoading) {
@@ -44,26 +48,62 @@ const MyCourses = () => {
 
   if (isError) {
     content = (
-      <BaseLyout title="Error My Course">
-        <div className="flex flex-col items-center justify-center min-h-screen">
-          <h2 className="text-2xl font-semibold text-center text-dark-blue">
-            Error {error?.data?.message}
-          </h2>
-          <p>
-            Buy courses in <Link to="/courses">Courses</Link>
-          </p>
-          <p>Or</p>
-          <Link to="/">
-            <button>Back to Home</button>
-          </Link>
-        </div>
+      <BaseLyout title="My Courses">
+        <main>
+          <section className="min-h-screen mx-4 mt-12 max-w-7xl lg:mx-auto">
+            <section>
+              <div className="flex flex-col justify-between lg:flex-row gap-y-2">
+                <h2 className="text-xl font-semibold">Kelasku</h2>
+              </div>
+            </section>
+
+            <section className="mt-3 lg:mt-10">
+              <div className="flex flex-col justify-between lg:flex-row gap-x-5">
+                <div className="hidden lg:block lg:w-[20%] mb-5 lg:mb-0">
+                  <CourseFilter />
+                </div>
+
+                {/* Mobile verse */}
+                <div className="flex flex-row lg:hidden gap-x-4">
+                  <button
+                    onClick={openModal}
+                    className="text-white btn btn-primary"
+                  >
+                    <ListFilterIcon />
+                    <span>Filter</span>
+                  </button>
+                  <CourseFilterSelect />
+                </div>
+
+                <div className="w-full lg:w-[80%]">
+                  <CourseCTA />
+                  <div className="my-4">
+                    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                      <p className="capitalize text-warning">
+                        {error?.data?.message}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+          <dialog id="course-filter" className="modal">
+            <div className="modal-box">
+              <form method="dialog">
+                <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <div className="p-4">
+                <CourseFilter />
+              </div>
+            </div>
+          </dialog>
+        </main>
       </BaseLyout>
     );
   }
-
-  const openModal = () => {
-    document.querySelector("#course-filter")?.showModal();
-  };
 
   if (isSuccess) {
     content = (

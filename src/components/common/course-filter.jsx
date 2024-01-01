@@ -1,9 +1,13 @@
+import { useGetCategoriesQuery } from "@/stores";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const CourseFilter = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const { data, isLoading, isSuccess, isError, error } =
+    useGetCategoriesQuery();
 
   const dataFilter = [
     {
@@ -15,39 +19,6 @@ const CourseFilter = () => {
       id: 2,
       name: "Paling Popular",
       value: "popular",
-    },
-  ];
-
-  const dataFilterCategory = [
-    {
-      id: 1,
-      name: "UI/UX Design",
-      value: "Ui&Ux",
-    },
-    {
-      id: 2,
-      name: "Web Development",
-      value: "Web Development",
-    },
-    {
-      id: 3,
-      name: "Android Development",
-      value: "Mobile Development",
-    },
-    {
-      id: 4,
-      name: "Data Science",
-      value: "Data Science",
-    },
-    {
-      id: 5,
-      name: "Fullstack Development",
-      value: "Fullstack",
-    },
-    {
-      id: 6,
-      name: "Cyber Security",
-      value: "Cyber Cecurity",
     },
   ];
 
@@ -69,7 +40,7 @@ const CourseFilter = () => {
     },
     {
       id: 4,
-      name: "Expret Level",
+      name: "Expert Level",
       value: "expert",
     },
   ];
@@ -80,6 +51,10 @@ const CourseFilter = () => {
   const category = searchParams.get("category") || "";
   const level = searchParams.get("level") || "";
   const progress = searchParams.get("progress") || "";
+
+  const getFilterValue = searchParams.get("filter");
+  const getCategoryValue = searchParams.get("category");
+  const getLevelValue = searchParams.get("level");
 
   const onFilter = (e) => {
     const { target } = e;
@@ -131,9 +106,43 @@ const CourseFilter = () => {
     }
   };
 
-  const getFilterValue = searchParams.get("filter");
-  const getCategoryValue = searchParams.get("category");
-  const getLevelValue = searchParams.get("level");
+  let contentFilterButton;
+
+  if (isLoading) {
+    contentFilterButton = (
+      <span className="loading loading-bars loading-sm"></span>
+    );
+  }
+
+  if (isError) {
+    contentFilterButton = (
+      <div>
+        <p className="capitalize text-warning">{error?.data?.message}</p>
+      </div>
+    );
+  }
+
+  if (isSuccess) {
+    contentFilterButton = (
+      <>
+        {data?.categories.map((categori) => (
+          <div key={categori.id} className="flex items-center gap-x-2">
+            <button
+              value={categori?.name}
+              onClick={onFilterCategory}
+              className={`capitalize px-2 py-1.5 border w-full rounded-md ${
+                getCategoryValue === categori?.name
+                  ? "bg-dark-blue text-white hover:bg-dark-blue/80"
+                  : "bg-white hover:bg-gray-100"
+              }`}
+            >
+              {categori?.name}
+            </button>
+          </div>
+        ))}
+      </>
+    );
+  }
 
   return (
     <div className="space-y-3">
@@ -157,23 +166,7 @@ const CourseFilter = () => {
       </div>
 
       <h3 className="text-lg font-semibold">Kategori</h3>
-      <div className="space-y-1">
-        {dataFilterCategory.map((filter) => (
-          <div key={filter.id} className="flex items-center gap-x-2">
-            <button
-              value={filter?.value}
-              onClick={onFilterCategory}
-              className={`capitalize px-2 py-1.5 border w-full rounded-md ${
-                getCategoryValue === filter?.value
-                  ? "bg-dark-blue text-white hover:bg-dark-blue/80"
-                  : "bg-white hover:bg-gray-100"
-              }`}
-            >
-              {filter?.name}
-            </button>
-          </div>
-        ))}
-      </div>
+      <div className="space-y-1">{contentFilterButton}</div>
 
       <h3 className="text-lg font-semibold">Level Kesulitan</h3>
       <div className="space-y-1">

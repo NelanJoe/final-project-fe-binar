@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 
 import { useLoginMutation } from "@/stores";
 import { setToken } from "@/stores/auth/auth.slice";
+import { selectedToken } from "@/stores/auth/auth.selector";
 
 import { loginSchema } from "../validation";
 
@@ -14,9 +16,10 @@ import GoogleLogin from "./google-login";
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const token = useSelector(selectedToken);
 
-  const [login] = useLoginMutation();
- 
+  const [login, { isLoading }] = useLoginMutation();
+
   const {
     register,
     handleSubmit,
@@ -24,6 +27,12 @@ const LoginForm = () => {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate, token]);
 
   const onSubmit = async (values, event) => {
     event.preventDefault();
@@ -33,7 +42,7 @@ const LoginForm = () => {
 
       const token = res.data.token;
       dispatch(setToken(token));
-      
+
       toast.success("Login Berhasil");
       navigate("/");
     } catch (error) {
@@ -96,9 +105,14 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
+            disabled={isLoading}
             className="w-full transition-all duration-150 ease-linear bg-dark-blue text-white hover:bg-[#4532bd] focus:ring-4 focus:ring- focus:outline-none lg:text-base rounded-2xl text-sm px-3 py-2"
           >
-            Masuk
+            {isLoading ? (
+              <span className="loading loading-spinner loading-sm"></span>
+            ) : (
+              "Masuk"
+            )}
           </button>
         </form>
         <div className="text-center ms-7 w-[320px] lg:w-[400px]">
