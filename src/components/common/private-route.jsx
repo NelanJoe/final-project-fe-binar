@@ -4,7 +4,7 @@ import { Outlet, Navigate } from "react-router-dom";
 import { useGetProfileQuery } from "@/stores";
 
 const PrivateRoute = ({ children }) => {
-  const { isSuccess, isError } = useGetProfileQuery();
+  const { isSuccess, isError, error } = useGetProfileQuery();
 
   let content;
 
@@ -13,7 +13,12 @@ const PrivateRoute = ({ children }) => {
   }
 
   if (isError) {
-    return <Navigate to="/login" replace={true} />;
+    if (error?.status === 403) {
+      return <Navigate to="/login" replace={true} />;
+    } else {
+      localStorage.removeItem("token");
+      return <Navigate to="/" replace={true} />;
+    }
   }
 
   return content;
