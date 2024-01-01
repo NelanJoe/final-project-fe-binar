@@ -96,6 +96,9 @@ const CourseDescription = ({ course, goals }) => {
             ))}
           </ol>
         </div>
+        <div>
+          <p></p>
+        </div>
       </div>
       {token !== null ? (
         <div className="space-y-3">

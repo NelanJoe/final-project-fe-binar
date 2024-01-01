@@ -68,7 +68,7 @@ export const adminApi = apiSlice.injectEndpoints({
         };
       },
     }),
-    putCategory: builder.mutation({
+    putEditCategory: builder.mutation({
       query: ({ categoryId, data }) => {
         return {
           url: `/admin/category/edit/${categoryId}`,
@@ -77,6 +77,15 @@ export const adminApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    putDeleteCategory: builder.mutation({
+      query: ({ categoryId, data }) => {
+        return {
+          url: `/admin/category/delete/${categoryId}`,
+          method: "PUT",
+          body: data,
+        };
+      }
+    })
   }),
 });
 
@@ -89,5 +98,6 @@ export const {
   useGetAdminKelolaKelasQuery,
   useGetAllCategorysQuery,
   usePostCategoryMutation,
-  usePutCategoryMutation,
+  usePutEditCategoryMutation,
+  usePutDeleteCategoryMutation
 } = adminApi;
