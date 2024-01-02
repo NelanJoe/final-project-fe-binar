@@ -128,6 +128,9 @@ const CourseDescription = ({ course, goals }) => {
             ))}
           </ol>
         </div>
+        <div>
+          <p></p>
+        </div>
       </div>
       <div className="space-y-3">
         <div>

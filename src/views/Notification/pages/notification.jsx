@@ -16,6 +16,10 @@ const Notification = () => {
   }
 
   if (isError) {
+    content = <div>Error {error?.data?.message}</div>;
+  }
+
+  if (isSuccess) {
     content = (
       <BaseLayout title="Payment History">
         <main className="min-h-screen ">
