@@ -121,6 +121,35 @@ export const adminApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    getAllChapter: builder.query({
+      query: () => "/admin/chapter",
+    }),
+    getChapterById: builder.query({
+      query: (chapterId) => `/admin/chapter/${chapterId}`,
+    }),
+    putChapter: builder.mutation({
+      query: ({ chapterId, data }) => {
+        return {
+          method: "PUT",
+          url: `/admin/chapter/edit/${chapterId}`,
+          body: data,
+        };
+      },
+    }),
+    deleteChapter: builder.mutation({
+      query: ({ chapterId }) => {
+        return {
+          method: "DELETE",
+          url: `/admin/chapter/delete/${chapterId}`,
+        };
+      },
+    }),
+    getAllCourses: builder.query({
+      query: () => "/admin/course",
+    }),
+    getAllSources: builder.query({
+      query: () => "/admin/source",
+    }),
   }),
 });
 
@@ -131,12 +160,21 @@ export const {
   useGetActivePremiumQuery,
   useGetAdminDashboardQuery,
   useGetAdminKelolaKelasQuery,
+
   useGetAllCategorysQuery,
   usePostCategoryMutation,
   usePutEditCategoryMutation,
   usePutDeleteCategoryMutation,
+
   useGetAllCourseQuery,
   usePostCourseMutation,
   usePutEditCourseMutation,
   usePutDeleteCourseMutation,
+
+  useGetAllChapterQuery,
+  useGetChapterByIdQuery,
+  usePutChapterMutation,
+  useDeleteChapterMutation,
+  useGetAllCoursesQuery,
+  useGetAllSourcesQuery,
 } = adminApi;

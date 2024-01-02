@@ -19,19 +19,27 @@ export const myCourseApi = apiSlice.injectEndpoints({
       },
     }),
     getAllCourseReview: builder.query({
-      query: (myCouseId) => {
+      query: (myCourseId) => {
         return {
-          url: `/course/review/${myCouseId}`,
+          url: `/course/review/${myCourseId}`,
           method: "GET",
         };
       },
     }),
     postCourseReview: builder.mutation({
-      query: ({ myCouseId, data }) => {
+      query: ({ myCourseId, data }) => {
         return {
           method: "POST",
-          url: `/course/review/${myCouseId}`,
+          url: `/course/review/${myCourseId}`,
           body: data,
+        };
+      },
+    }),
+    postProgressVideo: builder.mutation({
+      query: ({ myCourseId, videoId }) => {
+        return {
+          method: "POST",
+          url: `/course/progres/${myCourseId}/${videoId}`,
         };
       },
     }),
@@ -43,4 +51,5 @@ export const {
   useGetMyCourseByIdQuery,
   useGetAllCourseReviewQuery,
   usePostCourseReviewMutation,
+  usePostProgressVideoMutation,
 } = myCourseApi;

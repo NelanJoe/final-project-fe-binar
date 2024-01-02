@@ -55,6 +55,12 @@ export {
   usePostCourseMutation,
   usePutEditCourseMutation,
   usePutDeleteCourseMutation,
+  useGetAllChapterQuery,
+  useGetChapterByIdQuery,
+  usePutChapterMutation,
+  useDeleteChapterMutation,
+  useGetAllCoursesQuery,
+  useGetAllSourcesQuery,
 } from "./admin/admin.api";
 
 export {
@@ -62,6 +68,7 @@ export {
   useGetMyCourseByIdQuery,
   useGetAllCourseReviewQuery,
   usePostCourseReviewMutation,
+  usePostProgressVideoMutation,
 } from "./my-course/my-course.api";
 
 export {
