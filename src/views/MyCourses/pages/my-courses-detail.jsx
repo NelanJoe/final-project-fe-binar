@@ -31,8 +31,6 @@ const MyCoursesDetail = () => {
 
   const myCourseId = Number(id);
 
-  const myCourseId = Number(id);
-
   const { data, isLoading, isSuccess, isError, error } =
     useGetMyCourseByIdQuery(myCourseId);
 
