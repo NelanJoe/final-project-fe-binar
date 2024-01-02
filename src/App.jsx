@@ -7,7 +7,7 @@ import PrivateRoute from "@/components/common/private-route";
 import Home from "@/views/Home";
 import Error from "@/views/Error";
 import { Login, Register, ResetPassword, SetPassword, Otp } from "@/views/Auth";
-import { AdminDashboard, AdminLogin, Sources, Chapters } from "@/views/Admin";
+import { AdminDashboard, AdminLogin, Sources, Chapters, Course } from "@/views/Admin";
 import KelolaKelas from "./views/Admin/pages/kelola-kelas";
 
 import Courses from "@/views/Courses";
@@ -21,7 +21,7 @@ import {
   ProfilePaymentHistory,
 } from "@/views/Profile";
 import Notification from "./views/Notification";
-import MyClass from "./views/Admin/pages/my-class";
+import Category from "./views/Admin/pages/category";
 
 export default function App() {
   return (
@@ -62,7 +62,8 @@ export default function App() {
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="admin-dashboard" element={<AdminDashboard />} />
           <Route path="admin-kelola-kelas" element={<KelolaKelas />} />
-          <Route path="my-class" element={<MyClass />} />
+          <Route path="category" element={<Category />} />
+          <Route path="course" element={<Course />} />
           <Route path="sources" element={<Sources />} />
           <Route path="chapters" element={<Chapters />} />
 
