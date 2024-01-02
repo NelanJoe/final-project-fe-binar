@@ -16,7 +16,6 @@ const DeleteCategory = () => {
         window.location.reload();
         document.getElementById("delete-course").close();
       }
-    
     } catch (error) {
       toast.error(error?.data?.message);
     }
