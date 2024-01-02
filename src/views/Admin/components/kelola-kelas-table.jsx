@@ -1,9 +1,6 @@
-import { Filter } from "lucide-react";
-import TambahKelas from "./tambah-kelas";
 import { useGetAdminKelolaKelasQuery } from "@/stores";
 import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import CourseFilter from "@/components/common/course-filter";
 import LoadingBar from "@/components/ui/LoadingBar";
 
 const KelolaKelasTable = () => {
@@ -48,39 +45,15 @@ const KelolaKelasTable = () => {
     return <LoadingBar />;
   }
 
-  const openModal = () => {
-    document.querySelector("#kelola-kelas-filter")?.showModal();
-  };
-
   return (
     <article>
       <div className="flex items-center justify-between px-16">
         <h1 className="font-bold text-md lg:text-xl">Kelola Kelas</h1>
-        <div className="flex items-center gap-3">
-          <TambahKelas />
-          <button
-            onClick={openModal}
-            className="flex items-center gap-2 px-2 text-base border-2 rounded-full text-dark-blue hover:text-white hover:bg-dark-blue border-dark-blue"
-          >
-            <Filter className="w-4 h-4 " /> Filter
-          </button>
-          <dialog id="kelola-kelas-filter" className="modal">
-            <div className="md:px-5 modal-box md:w-fit ">
-              <form method="dialog">
-                <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
-                  ✕
-                </button>
-              </form>
-              <div className="p-4">
-                <CourseFilter />
-              </div>
-            </div>
-          </dialog>
-        </div>
+        
       </div>
       <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right">
-          <thead className="text-xs bg-light-blue-100">
+          <thead className="text-xs text-white bg-dark-blue">
             <tr className="text-center">
               {titleTable?.map((title, index) => (
                 <th key={index} scope="col" className="py-3 pl-2 text-sm border-x">

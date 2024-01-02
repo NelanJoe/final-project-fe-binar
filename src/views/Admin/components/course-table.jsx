@@ -1,42 +1,39 @@
 import LoadingBar from "@/components/ui/LoadingBar";
-import {  useGetAllCourseQuery} from "@/stores";
-import { showFormattedDate } from "@/utils/format-date";
+import { useGetAllCourseQuery } from "@/stores";
 import { PlusCircle } from "lucide-react";
-// import { useState } from "react";
+import { useState } from "react";
 import FormAddCourse from "./form-add-course";
 import DeleteCourse from "./delete-course";
 import EditCourse from "./edit-course";
 
 const CourseTable = () => {
   const titleTable = [
-    "Id",
-    "Title",
+    "No",
+    "Judul",
     "Author",
     "Telegram",
-    "Image",
-    "Description",
-    "Price",
+    "Gambar",
+    "Deskirpsi",
+    "Harga",
     "Level",
     "Prepare",
     "Aksi",
   ];
-  // const itemsPerPage = 10;
-  // const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading } = useGetAllCourseQuery();
-  console.log(data);
 
-  // // Hitung total halaman berdasarkan jumlah data
-  // const totalPages = Math.ceil(data?.course.length / itemsPerPage);
+  // Hitung total halaman berdasarkan jumlah data
+  const totalPages = Math.ceil(data?.course.length / itemsPerPage);
 
-  // // Mendapatkan data untuk halaman saat ini
-  // const indexOfLastItem = currentPage * itemsPerPage;
-  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const currentItems = data?.course.slice(indexOfFirstItem, indexOfLastItem);
+  // Mendapatkan data untuk halaman saat ini
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data?.course.slice(indexOfFirstItem, indexOfLastItem);
 
-  // // Fungsi untuk mengubah halaman
-  // const handlePageChange = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   if (isLoading) {
     return <LoadingBar />;
@@ -45,7 +42,7 @@ const CourseTable = () => {
   return (
     <article>
       <div className="flex items-center justify-between px-16">
-        <h1 className="font-bold text-md lg:text-xl">Course</h1>
+        <h1 className="font-bold text-md lg:text-xl">Courses</h1>
         <button
           onClick={() => document.getElementById("create-course").showModal()}
           className="flex items-center ml-2 gap-2 px-2 py-[2px] text-base text-white rounded-full hover:bg-[#4532bd] bg-dark-blue"
@@ -64,25 +61,23 @@ const CourseTable = () => {
           </div>
         </dialog>
       </div>
-
-      <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
+      <div className="relative mt-4 mb-10 overflow-x-auto sm:rounded-lg">
         <table className="w-full text-sm text-left border rtl:text-right">
-          <thead className="text-xs bg-light-blue-100">
+          <thead className="text-xs text-white bg-dark-blue">
             <tr className="text-center">
               {titleTable.map((title, index) => (
                 <th
                   key={index}
                   scope="col"
-                  className="py-5 pl-2 capitalize border-x md:text-sm"
+                  className="px-2 py-5 capitalize border-x md:text-sm"
                 >
                   {title}
                 </th>
               ))}
             </tr>
           </thead>
-
           <tbody>
-            {data?.course?.map((course, index) => {
+            {currentItems?.map((course, index) => {
               return (
                 <tr
                   key={index}
@@ -90,18 +85,33 @@ const CourseTable = () => {
                 >
                   <th
                     scope="row"
-                    className="py-3 pl-2 font-medium text-gray-900 whitespace-nowrap"
+                    className="px-3 py-3 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    {course?.courseId}
+                    {index + 1}
                   </th>
-                  <td className="py-3 pr-2 border-x">{course?.title}</td>
-                  <td className="py-3 pr-2 border-x">{course?.author}</td>
-                  <td className="py-3 pr-2 border-x">
-                    {showFormattedDate(course?.createdAt)}
+                  <td className="px-2 py-3 font-bold border-x">{course?.title}</td>
+                  <td className="px-2 py-3 border-x">{course?.author}</td>
+                  <td className="px-2 py-3 border-x text-dark-blue hover:underline">
+                    <a href={course?.telegram}>Link Telegram</a>
                   </td>
-                  <td className="py-3 pr-2 border-x">
-                    {showFormattedDate(course?.updatedAt)}
+                  <td className="px-2 py-3 font-semibold border-x">
+                    <div className="flex items-center justify-center">
+                      <img
+                        src={course?.image}
+                        alt={course?.title}
+                        className="object-cover w-10 h-10 border-2 rounded-xl border-dark-blue"
+                      />
+                    </div>
                   </td>
+                  <td className="px-2 py-3 border-x">
+                    {course?.description.slice(0, 50)}...
+                  </td>
+
+                  <td className="py-3 border-x">{course?.price}</td>
+                  <td className="px-2 py-3 font-bold uppercase border-x text-dark-blue">
+                    {course?.level}
+                  </td>
+                  <td className="px-2 py-3 border-x">{course?.prepare}</td>
 
                   <td className="flex items-center justify-center gap-2 px-2 pt-5 lg:py-5">
                     <button
@@ -120,9 +130,9 @@ const CourseTable = () => {
                           </button>
                         </form>
                         <EditCourse
-                          // categoryId={category?.id}
-                          // categoryName={category?.name}
-                          // categoryImage={category?.image}
+                        // categoryId={category?.id}
+                        // categoryName={category?.name}
+                        // categoryImage={category?.image}
                         />
                       </div>
                     </dialog>
@@ -155,14 +165,14 @@ const CourseTable = () => {
           </tbody>
         </table>
       </div>
-      {/* <div className="flex items-center justify-center mt-7">
+      <div className="flex items-center justify-center mt-7">
         <div className="join">
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
               className={`join-item btn btn-md ${
                 currentPage === index + 1
-                  ? "btn-active bg-dark-blue text-white"
+                  ? "btn-active bg-dark-blue hover:bg-[#4d0dfd] text-white"
                   : ""
               }`}
               onClick={() => handlePageChange(index + 1)}
@@ -171,7 +181,7 @@ const CourseTable = () => {
             </button>
           ))}
         </div>
-      </div> */}
+      </div>
     </article>
   );
 };
