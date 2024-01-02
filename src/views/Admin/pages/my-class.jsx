@@ -1,5 +1,6 @@
 import AdminLayout from '@/layouts/admin.layout'
 import CategoryTable from '../components/category-table';
+import CourseTable from '../components/course-table';
 
 const MyClass = () => {
   return (
@@ -12,6 +13,9 @@ const MyClass = () => {
         </div>
         <div className='px-5 py-5'>
           <CategoryTable />
+        </div>
+        <div className='px-5 py-5'>
+          <CourseTable />
         </div>
       </div>
     </AdminLayout>

@@ -1,21 +1,20 @@
 import { usePutDeleteCategoryMutation } from "@/stores";
 import toast from "react-hot-toast";
-import PropTypes from "prop-types";
 
-const DeleteCategory = ({IdCategory}) => {
+const DeleteCategory = () => {
   const [putDeleteCategory] = usePutDeleteCategoryMutation();
 
   const handleClick = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await putDeleteCategory(IdCategory).unwrap();
+      const res = await putDeleteCategory().unwrap();
 
       if (res.success) {
         toast.success(res?.success);
 
         window.location.reload();
-        document.getElementById("delete").close();
+        document.getElementById("delete-course").close();
       }
     
     } catch (error) {
@@ -33,8 +32,5 @@ const DeleteCategory = ({IdCategory}) => {
   );
 }
 
-DeleteCategory.propTypes = {
-  IdCategory: PropTypes.number,
-};
 
 export default DeleteCategory

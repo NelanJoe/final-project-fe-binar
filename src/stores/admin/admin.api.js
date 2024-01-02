@@ -84,8 +84,43 @@ export const adminApi = apiSlice.injectEndpoints({
           method: "PUT",
           body: data,
         };
-      }
-    })
+      },
+    }),
+    getAllCourse: builder.query({
+      query: () => {
+        return {
+          url: "/admin/course",
+          method: "GET",
+        };
+      },
+    }),
+    postCourse: builder.mutation({
+      query: ({ categoryId, data }) => {
+        return {
+          url: `/admin/course/create/${categoryId}`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    putEditCourse: builder.mutation({
+      query: ({ id, data }) => {
+        return {
+          url: `/admin/course/edit/${id}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+    }),
+    putDeleteCourse: builder.mutation({
+      query: ({ courseId, data }) => {
+        return {
+          url: `/admin/course/delete/${courseId}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -99,5 +134,9 @@ export const {
   useGetAllCategorysQuery,
   usePostCategoryMutation,
   usePutEditCategoryMutation,
-  usePutDeleteCategoryMutation
+  usePutDeleteCategoryMutation,
+  useGetAllCourseQuery,
+  usePostCourseMutation,
+  usePutEditCourseMutation,
+  usePutDeleteCourseMutation,
 } = adminApi;
