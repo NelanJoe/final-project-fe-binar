@@ -9,7 +9,7 @@
   - [Description](#description)
   - [Our Team](#our-team)
   - [Tech Stack](#tech-stack)
-  - [Summery](#summery)
+  - [Summary](#summary)
   - [Link Project](#link-project)
 
 ## Description
@@ -47,7 +47,7 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
 | Tanstack React Table | [Tanstack React Table ↗️](https://tanstack.com/table/v8/docs/guide/introduction) |
 | React Hot Toast      | [React Hot Toast ↗️](https://react-hot-toast.com/)                               |
 
-## Summery
+## Summary
 
 MOOC Last King Academy merupakan aplikasi pembelajaran daring yang lahir dari semangat memenuhi tugas project akhir Binar Academy, namun tidak semata-mata hanya demi kelulusan. Aplikasi ini mencita-citakan menjadi sarana pendidikan berkualitas dan mudah diakses bagi masyarakat Indonesia. Dibekali kursus beragam dari berbagai bidang ilmu, MOOC Last King Academy didesain dengan prinsip-prinsip pembelajaran daring yang efektif, seperti kualitas terjamin, kemudahan akses, interaktivitas, dan fleksibilitas. Fitur-fitur pendukung seperti video berkualitas tinggi, materi interaktif, forum diskusi, dan sistem notifikasi turut meningkatkan kenyamanan belajar. MOOC Last King Academy hadir sebagai wujud kontribusi nyata bagi dunia pendidikan Indonesia, dengan harapan dapat menjadi jembatan ilmu yang efektif dan efisien bagi masyarakat yang haus akan pengetahuan.
 
