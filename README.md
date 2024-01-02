@@ -27,7 +27,7 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
 
 ## Tech Stack
 
-| Backend Tech Stack |                                              |
+| Backend Tech Stack |
 | ------------------ | -------------------------------------------- |
 | Name               | Link                                         |
 | ExpressJs          | [ExpressJS ↗️](https://expressjs.com/)       |
@@ -35,7 +35,7 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
 | Image Kit          | [Image Kit ↗️](https://imagekit.io/)         |
 | PostgreSQL         | [PostgreSQL ↗️](https://www.postgresql.org/) |
 
-| Frontend Tech Stack  |                                                                                  |
+| Frontend Tech Stack  |
 | -------------------- | -------------------------------------------------------------------------------- |
 | Name                 | Link                                                                             |
 | ReactJs              | [React ↗️](https://react.dev/)                                                   |
