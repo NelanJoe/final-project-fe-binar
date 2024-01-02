@@ -1,4 +1,9 @@
-import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import {
   ArrowLeftIcon,
   BookOpenTextIcon,
@@ -22,6 +27,7 @@ import toast from "react-hot-toast";
 const MyCoursesDetail = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const myCourseId = Number(id);
 
@@ -55,16 +61,18 @@ const MyCoursesDetail = () => {
 
       const response = await postProgressVideo(progressParams).unwrap();
 
-      if (response.success === "success") {
+      if (response.success) {
         toast.success(toast.success, {
           style: {
             textTransform: "capitalize",
           },
         });
 
-        Navigate(
+        navigate(
           `/my-courses/${myCourseId}?chapterTitle=${chapterTitle}&watchId=${watchId}`
         );
+
+        window.location.reload();
       }
     } catch (error) {
       toast.error(error?.data?.message, {
@@ -183,7 +191,7 @@ const MyCoursesDetail = () => {
                     <progress
                       className="w-32 h-2.5 progress progress-success"
                       value={data?.course?.progres}
-                      max="100"
+                      max="10"
                     ></progress>
                   </div>
                   <CourseChapter

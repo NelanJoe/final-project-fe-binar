@@ -50,7 +50,13 @@ export {
   useGetAllCategorysQuery,
   usePostCategoryMutation,
   usePutEditCategoryMutation,
-  usePutDeleteCategoryMutation
+  usePutDeleteCategoryMutation,
+  useGetAllChapterQuery,
+  useGetChapterByIdQuery,
+  usePutChapterMutation,
+  useDeleteChapterMutation,
+  useGetAllCoursesQuery,
+  useGetAllSourcesQuery,
 } from "./admin/admin.api";
 
 export {

@@ -57,7 +57,10 @@ const CategoryTable = () => {
           <tbody>
             {data?.category?.map((category, index) => {
               return (
-                <tr key={index} className="text-center bg-white border-b hover:bg-gray-50">
+                <tr
+                  key={index}
+                  className="text-center bg-white border-b hover:bg-gray-50"
+                >
                   <th
                     scope="row"
                     className="py-3 pl-2 font-medium text-gray-900 whitespace-nowrap"
@@ -67,12 +70,12 @@ const CategoryTable = () => {
                   <td className="py-3 pr-2 border-x">{category?.name}</td>
                   <td className="px-2 py-3 font-semibold border-x">
                     <div className="flex items-center justify-center">
-                    <img
-                      src={category?.image}
-                      alt={category?.name}
-                      className="object-cover w-10 h-10 border-2 rounded-xl border-dark-blue"
+                      <img
+                        src={category?.image}
+                        alt={category?.name}
+                        className="object-cover w-10 h-10 border-2 rounded-xl border-dark-blue"
                       />
-                      </div>
+                    </div>
                   </td>
                   <td
                     className={`px-2 py-3 border-x font-bold uppercase ${
@@ -123,7 +126,7 @@ const CategoryTable = () => {
                           Apakah anda yakin ingin menghapus kelas ini?
                         </p>
                         <div className="flex justify-center modal-action">
-                          <DeleteCategory IdCategory={category?.id}/>
+                          <DeleteCategory IdCategory={category?.id} />
                         </div>
                       </div>
                     </dialog>
