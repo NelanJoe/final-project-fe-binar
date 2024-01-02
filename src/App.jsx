@@ -7,7 +7,7 @@ import PrivateRoute from "@/components/common/private-route";
 import Home from "@/views/Home";
 import Error from "@/views/Error";
 import { Login, Register, ResetPassword, SetPassword, Otp } from "@/views/Auth";
-import { AdminDashboard, AdminLogin } from "@/views/Admin";
+import { AdminDashboard, AdminLogin, Sources, Chapters } from "@/views/Admin";
 import KelolaKelas from "./views/Admin/pages/kelola-kelas";
 
 import Courses from "@/views/Courses";
@@ -63,6 +63,8 @@ export default function App() {
           <Route path="admin-dashboard" element={<AdminDashboard />} />
           <Route path="admin-kelola-kelas" element={<KelolaKelas />} />
           <Route path="my-class" element={<MyClass />} />
+          <Route path="sources" element={<Sources />} />
+          <Route path="chapters" element={<Chapters />} />
 
           {/* Notification pages */}
           <Route element={<PrivateRoute />}>

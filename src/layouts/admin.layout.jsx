@@ -79,9 +79,7 @@ const AdminLayout = ({ children, title }) => {
                   to="/admin-dashboard"
                   className="flex items-center justify-center p-2 text-white hover:bg-soft-blue group"
                 >
-                  <span className="text-xl font-medium ms-3">
-                    Dashboard
-                  </span>
+                  <span className="text-xl font-medium ms-3">Dashboard</span>
                 </Link>
               </li>
               <li>
@@ -104,6 +102,22 @@ const AdminLayout = ({ children, title }) => {
                     >
                       <span className="flex-1 ms-3 whitespace-nowrap">
                         My Class
+                      </span>
+                    </Link>
+                    <Link
+                      to="/chapters"
+                      className="flex items-center p-2 text-white hover:bg-soft-blue group"
+                    >
+                      <span className="flex-1 ms-3 whitespace-nowrap">
+                        Chapters
+                      </span>
+                    </Link>
+                    <Link
+                      to="/sources"
+                      className="flex items-center p-2 text-white hover:bg-soft-blue group"
+                    >
+                      <span className="flex-1 ms-3 whitespace-nowrap">
+                        Sources
                       </span>
                     </Link>
                   </div>
