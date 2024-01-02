@@ -1,11 +1,12 @@
-import LoadingBar from "@/components/ui/LoadingBar";
+import { useState } from "react";
+import { PlusCircle } from "lucide-react";
 
 import { useGetAllCategorysQuery } from "@/stores";
+
 import FormAddCategory from "./form-add-category";
-import { PlusCircle } from "lucide-react";
 import EditCategory from "./edit-category";
+import LoadingBar from "@/components/ui/LoadingBar";
 import DeleteCategory from "./delete-category";
-import { useState } from "react";
 
 const CategoryTable = () => {
   const titleTable = ["No", "Nama Kategori", "Gambar", "Available", "Aksi"];
@@ -51,7 +52,6 @@ const CategoryTable = () => {
           </div>
         </dialog>
       </div>
-
       <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
         <table className="w-full text-sm text-left border rtl:text-right">
           <thead className="text-xs text-white bg-dark-blue">
@@ -99,7 +99,6 @@ const CategoryTable = () => {
                   >
                     {category.available ? "Tersedia" : "Tidak Tersedia"}
                   </td>
-
                   <td className="flex items-center justify-center gap-2 px-2 pt-5 lg:py-5">
                     <button
                       onClick={() =>
@@ -152,7 +151,6 @@ const CategoryTable = () => {
           </tbody>
         </table>
       </div>
-
       <div className="flex items-center justify-center mt-7">
         <div className="join">
           {[...Array(totalPages)].map((_, index) => (

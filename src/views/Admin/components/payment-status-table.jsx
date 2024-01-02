@@ -1,8 +1,6 @@
-import CourseFilter from "@/components/common/course-filter";
 import LoadingBar from "@/components/ui/LoadingBar";
 import { useGetAdminDashboardQuery } from "@/stores";
 import { showFormattedDate } from "@/utils/format-date";
-import { Filter } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -45,34 +43,11 @@ const PaymentStatusTable = () => {
     return <LoadingBar/>
   }
 
-  const openModal = () => {
-    document.querySelector("#dashboard-filter")?.showModal();
-  };
-
     return (
       <article>
         <div className="flex items-center justify-between px-16">
           <h1 className="font-bold text-md lg:text-xl">Status Pembayaran</h1>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={openModal}
-              className="flex items-center gap-2 px-2 text-base border-2 rounded-full text-dark-blue hover:text-white hover:bg-dark-blue border-dark-blue"
-            >
-              <Filter className="w-4 h-4 " /> Filter
-            </button>
-            <dialog id="dashboard-filter" className="modal">
-              <div className="md:px-5 modal-box md:w-fit ">
-                <form method="dialog">
-                  <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                <div className="p-4">
-                  <CourseFilter />
-                </div>
-              </div>
-            </dialog>
-          </div>
+          
         </div>
         <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
           <table className="w-full text-sm text-left border rtl:text-right">

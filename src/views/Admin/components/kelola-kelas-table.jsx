@@ -113,7 +113,6 @@ const KelolaKelasTable = () => {
                         <p className="py-4">Ingin Mengubah kelas anda?</p>
                       </div>
                     </dialog>
-
                     <button
                       onClick={() =>
                         document.getElementById("delete").showModal()

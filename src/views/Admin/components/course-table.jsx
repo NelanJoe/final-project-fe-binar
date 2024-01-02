@@ -1,9 +1,11 @@
-import LoadingBar from "@/components/ui/LoadingBar";
-import { useGetAllCourseQuery } from "@/stores";
 import { PlusCircle } from "lucide-react";
 import { useState } from "react";
+
+import { useGetAllCourseQuery } from "@/stores";
+
 import FormAddCourse from "./form-add-course";
 import DeleteCourse from "./delete-course";
+import LoadingBar from "@/components/ui/LoadingBar";
 import EditCourse from "./edit-course";
 
 const CourseTable = () => {
@@ -34,6 +36,14 @@ const CourseTable = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  const getPaginationRange = () => {
+    const start = Math.max(1, currentPage - 2);
+    const end = Math.min(start + 4, totalPages);
+    return { start, end };
+  };
+
+  const { start, end } = getPaginationRange();
 
   if (isLoading) {
     return <LoadingBar />;
@@ -89,7 +99,9 @@ const CourseTable = () => {
                   >
                     {index + 1}
                   </th>
-                  <td className="px-2 py-3 font-bold border-x">{course?.title}</td>
+                  <td className="px-2 py-3 font-bold border-x">
+                    {course?.title}
+                  </td>
                   <td className="px-2 py-3 border-x">{course?.author}</td>
                   <td className="px-2 py-3 border-x text-dark-blue hover:underline">
                     <a href={course?.telegram}>Link Telegram</a>
@@ -106,13 +118,11 @@ const CourseTable = () => {
                   <td className="px-2 py-3 border-x">
                     {course?.description.slice(0, 50)}...
                   </td>
-
                   <td className="py-3 border-x">{course?.price}</td>
                   <td className="px-2 py-3 font-bold uppercase border-x text-dark-blue">
                     {course?.level}
                   </td>
                   <td className="px-2 py-3 border-x">{course?.prepare}</td>
-
                   <td className="flex items-center justify-center gap-2 px-2 pt-5 lg:py-5">
                     <button
                       onClick={() =>
@@ -129,11 +139,7 @@ const CourseTable = () => {
                             ✕
                           </button>
                         </form>
-                        <EditCourse
-                        // categoryId={category?.id}
-                        // categoryName={category?.name}
-                        // categoryImage={category?.image}
-                        />
+                        <EditCourse />
                       </div>
                     </dialog>
                     <button
@@ -167,19 +173,30 @@ const CourseTable = () => {
       </div>
       <div className="flex items-center justify-center mt-7">
         <div className="join">
-          {[...Array(totalPages)].map((_, index) => (
+          {Array.from({ length: end - start + 1 }, (_, index) => {
+            const pageNumber = start + index;
+            return (
+              <button
+                key={pageNumber}
+                className={`join-item btn btn-md ${
+                  currentPage === pageNumber
+                    ? "btn-active bg-dark-blue hover:bg-[#4d0dfd] text-white"
+                    : ""
+                }`}
+                onClick={() => handlePageChange(pageNumber)}
+              >
+                {pageNumber}
+              </button>
+            );
+          })}
+          {currentPage + 2 < totalPages && (
             <button
-              key={index}
-              className={`join-item btn btn-md ${
-                currentPage === index + 1
-                  ? "btn-active bg-dark-blue hover:bg-[#4d0dfd] text-white"
-                  : ""
-              }`}
-              onClick={() => handlePageChange(index + 1)}
+              className="join-item btn btn-md"
+              onClick={() => handlePageChange(currentPage + 5)}
             >
-              {index + 1}
+              ...
             </button>
-          ))}
+          )}
         </div>
       </div>
     </article>

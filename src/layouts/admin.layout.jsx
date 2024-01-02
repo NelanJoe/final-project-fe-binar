@@ -84,7 +84,7 @@ const AdminLayout = ({ children, title }) => {
               </li>
               <li>
                 <Link
-                  to="/admin-kelola-kelas"
+                  to="/admin-kelas"
                   className="flex items-center justify-center p-2 text-white hover:bg-soft-blue group"
                 >
                   <span className="text-xl font-medium ms-3">
