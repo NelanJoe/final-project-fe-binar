@@ -28,14 +28,13 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
 
 ## Tech Stack
 
-| Backend Tech Stack |                                                       |
-| ------------------ | ----------------------------------------------------- |
-| Name               | Link                                                  |
-| ExpressJs          | [ExpressJS ↗️](https://expressjs.com/)                |
-| Prisma             | [Prisma ↗️](https://www.prisma.io/)                   |
-| Swagger UI         | [Swagger UI ↗️](https://swagger.io/tools/swagger-ui/) |
-| Image Kit          | [Image Kit ↗️](https://imagekit.io/)                  |
-| PostgreSQL         | [PostgreSQL ↗️](https://www.postgresql.org/)          |
+| Backend Tech Stack |                                              |
+| ------------------ | -------------------------------------------- |
+| Name               | Link                                         |
+| ExpressJs          | [ExpressJS ↗️](https://expressjs.com/)       |
+| Prisma             | [Prisma ↗️](https://www.prisma.io/)          |
+| Image Kit          | [Image Kit ↗️](https://imagekit.io/)         |
+| PostgreSQL         | [PostgreSQL ↗️](https://www.postgresql.org/) |
 
 | Frontend Tech Stack  |                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------- |
