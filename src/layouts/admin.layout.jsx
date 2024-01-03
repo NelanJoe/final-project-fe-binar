@@ -83,14 +83,6 @@ const AdminLayout = ({ children, title }) => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/admin-kelas"
-                  className="flex items-center justify-center p-2 text-white hover:bg-soft-blue group"
-                >
-                  <span className="text-xl font-medium ms-3">Kelas</span>
-                </Link>
-              </li>
-              <li>
                 <details className="w-full text-center collapse collapse-arrow">
                   <summary className="text-xl font-medium text-white collapse-title">
                     Kelola Kelas mu

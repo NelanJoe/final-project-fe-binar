@@ -1,28 +1,20 @@
 import { useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 
 import { Search as SearchIcon } from "lucide-react";
 
 const AdminSearchForm = () => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const [searchParams] = useSearchParams();
-
   const [query, setQuery] = useState("");
-
-  const filter = searchParams.get("filter") || "";
-  const page = searchParams.get("page") || "";
-  const pageSize = searchParams.get("pageSize") || "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (pathname === "/admin-dashboard") {
-      navigate({
-        pathname: "/admin-dashboard",
-        search: `?filter=${filter}&page=${page}&pageSize=${pageSize}&=${query}`,
-      });
-    }
+    navigate({
+      pathname: "/admin-dashboard",
+      search: `?=${query}`,
+    });
   };
 
   return (

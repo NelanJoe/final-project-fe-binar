@@ -59,7 +59,7 @@ const CourseDescription = ({ course, goals }) => {
                   />
                 </div>
               </div>
-              <p className="capitalize">{review?.users?.profiles?.name}</p>
+              <p>{review?.users?.profiles?.name}</p>
             </div>
             <p className="text-sm text-justify">{review?.comment}</p>
             <div className="flex flex-row gap-2">
