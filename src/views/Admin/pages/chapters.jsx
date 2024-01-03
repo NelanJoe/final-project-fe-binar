@@ -145,7 +145,7 @@ const Chapters = () => {
           </div>
           <section className="py-4 lg:py-5 lg:px-5">
             <div className="py-4">
-              <h1 className="font-bold text-md lg:text-xl">Sources</h1>
+              <h1 className="font-bold text-md lg:text-xl">Chapters</h1>
             </div>
 
             <div className="w-full overflow-x-auto">

@@ -7,10 +7,11 @@
 - [Last King Academy](#last-king-academy)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
-  - [Our Team](#our-team)
   - [Tech Stack](#tech-stack)
+  - [Link Production, Staging, and Documentation](#link-production-staging-and-documentation)
   - [Summary](#summary)
-  - [Link Project](#link-project)
+  - [Our Team](#our-team)
+  - [Link Github Project](#link-github-project)
 
 ## Description
 
@@ -27,13 +28,14 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
 
 ## Tech Stack
 
-| Backend Tech Stack |                                              |
-| ------------------ | -------------------------------------------- |
-| Name               | Link                                         |
-| ExpressJs          | [ExpressJS ↗️](https://expressjs.com/)       |
-| Prisma             | [Prisma ↗️](https://www.prisma.io/)          |
-| Image Kit          | [Image Kit ↗️](https://imagekit.io/)         |
-| PostgreSQL         | [PostgreSQL ↗️](https://www.postgresql.org/) |
+| Backend Tech Stack |                                                       |
+| ------------------ | ----------------------------------------------------- |
+| Name               | Link                                                  |
+| ExpressJs          | [ExpressJS ↗️](https://expressjs.com/)                |
+| Prisma             | [Prisma ↗️](https://www.prisma.io/)                   |
+| Swagger UI         | [Swagger UI ↗️](https://swagger.io/tools/swagger-ui/) |
+| Image Kit          | [Image Kit ↗️](https://imagekit.io/)                  |
+| PostgreSQL         | [PostgreSQL ↗️](https://www.postgresql.org/)          |
 
 | Frontend Tech Stack  |                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------- |
@@ -46,6 +48,20 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
 | TailwindCSS          | [TailwindCSS ↗️](https://tailwindcss.com/)                                       |
 | Tanstack React Table | [Tanstack React Table ↗️](https://tanstack.com/table/v8/docs/guide/introduction) |
 | React Hot Toast      | [React Hot Toast ↗️](https://react-hot-toast.com/)                               |
+
+## Link Production, Staging, and Documentation
+
+- **Backend Production and Documentation**
+
+  1. **[Documentation API ↗️](https://final-project-km5-b16-production-0f84.up.railway.app/documentation/#/)**
+
+  2. **[Production ↗️](https://final-project-km5-b16-production-0f84.up.railway.app/)**
+
+- **Frontend Staging and Production**
+
+  1. **[Staging ↗️](https://last-king-academy-staging.pemudasukses.tech/)**
+
+  2. **[Production ↗️](https://last-king-academy.vercel.app/)**
 
 ## Summary
 
@@ -65,7 +81,7 @@ MOOC Last King Academy merupakan aplikasi pembelajaran daring yang lahir dari se
   2. [Abdurahman Azis](https://github.com/Azzaxy1)
   3. [Kevin A. Marpaung](https://github.com/KevinMarpaung)
 
-## Link Project
+## Link Github Project
 
 - **[Repository Backend ↗️](https://github.com/jonathanqwerty/FINAL-PROJECT-KM5-B16)**
 - **[Repository Frontend ↗️](https://github.com/NelanJoe/final-project-fe-binar)**

@@ -26,7 +26,6 @@ const CourseDescription = ({ course, goals }) => {
 
   const { data: dataProfile } = useGetProfileQuery();
 
-
   // Rating
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
@@ -35,7 +34,6 @@ const CourseDescription = ({ course, goals }) => {
 
   const [postCourseReview, { isLoading: isLoadingPostCourse }] =
     usePostCourseReviewMutation();
-
 
   let content;
 
@@ -61,7 +59,7 @@ const CourseDescription = ({ course, goals }) => {
                   />
                 </div>
               </div>
-              <p>{review?.users?.profiles?.name}</p>
+              <p className="capitalize">{review?.users?.profiles?.name}</p>
             </div>
             <p className="text-sm text-justify">{review?.comment}</p>
             <div className="flex flex-row gap-2">

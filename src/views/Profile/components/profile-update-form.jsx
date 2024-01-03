@@ -16,7 +16,7 @@ const ProfileUpdateForm = () => {
 
   const [image, setImage] = useState({ preview: "", data: "" });
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
@@ -55,7 +55,7 @@ const ProfileUpdateForm = () => {
 
     formData.append("image", image.data);
     formData.append("name", name || data?.user?.profiles?.name);
-    formData.append("email", email || data?.user?.email);
+    formData.append("email", data?.user?.email);
     formData.append("phone", phoneNumber || data?.user?.phone);
     formData.append("country", country || data?.user?.profiles?.country);
     formData.append("city", city || data?.user?.profiles?.city);
@@ -127,10 +127,9 @@ const ProfileUpdateForm = () => {
             <input
               type="email"
               name="email"
-              className="w-full rounded-xl"
-              placeholder={data?.user?.email || ""}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              className="w-full rounded-xl input"
+              placeholder={data?.user?.email}
+              disabled
             />
           </div>
           <div className="flex flex-col gap-2">
