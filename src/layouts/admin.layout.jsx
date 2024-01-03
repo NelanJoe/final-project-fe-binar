@@ -89,19 +89,19 @@ const AdminLayout = ({ children, title }) => {
                   </summary>
                   <div className="collapse-content">
                     <Link
-                      to="/admin-kelola-kelas"
+                      to="/category"
                       className="flex items-center p-2 text-white hover:bg-soft-blue group"
                     >
                       <span className="flex-1 ms-3 whitespace-nowrap">
-                        Kelola Kelas
+                        Categorys
                       </span>
                     </Link>
                     <Link
-                      to="/my-class"
+                      to="/course"
                       className="flex items-center p-2 text-white hover:bg-soft-blue group"
                     >
                       <span className="flex-1 ms-3 whitespace-nowrap">
-                        My Class
+                        Courses
                       </span>
                     </Link>
                     <Link
