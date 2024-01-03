@@ -219,7 +219,7 @@ const MyCoursesDetail = () => {
                   <progress
                     className="w-32 h-2.5 progress progress-success"
                     value={data?.course?.progres}
-                    max="100"
+                    max="10"
                   ></progress>
                 </div>
                 <CourseChapter
