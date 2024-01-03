@@ -44,7 +44,7 @@ const MyCoursesDetail = () => {
 
   const sources = course?.chapters?.find(
     (chapter) => chapter?.title === chapterTitle
-  ).sources;
+  )?.sources;
 
   const urlYoutube =
     sources?.find((item) => item?.id === Number(watchId))?.link ??
