@@ -1,30 +1,15 @@
-import { useState } from "react";
-import { PlusCircle } from "lucide-react";
+import LoadingBar from "@/components/ui/LoadingBar";
 
 import { useGetAllCategorysQuery } from "@/stores";
-
 import FormAddCategory from "./form-add-category";
+import { PlusCircle } from "lucide-react";
 import EditCategory from "./edit-category";
-import LoadingBar from "@/components/ui/LoadingBar";
 import DeleteCategory from "./delete-category";
 
 const CategoryTable = () => {
-  const titleTable = ["No", "Nama Kategori", "Gambar", "Available", "Aksi"];
-  const itemsPerPage = 10;
+  const titleTable = ["Id", "Nama", "Gambar", "Available", "Aksi"];
+
   const { data, isLoading } = useGetAllCategorysQuery();
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // Hitung total halaman berdasarkan jumlah data
-  const totalPages = Math.ceil(data?.category.length / itemsPerPage);
-
-  // Mendapatkan data untuk halaman saat ini
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data?.category.slice(indexOfFirstItem, indexOfLastItem);
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
   if (isLoading) {
     return <LoadingBar />;
@@ -33,7 +18,7 @@ const CategoryTable = () => {
   return (
     <article>
       <div className="flex items-center justify-between px-16">
-        <h1 className="font-bold text-md lg:text-xl">Categorys</h1>
+        <h1 className="font-bold text-md lg:text-xl">Category</h1>
         <button
           onClick={() => document.getElementById("create").showModal()}
           className="flex items-center ml-2 gap-2 px-2 py-[2px] text-base text-white rounded-full hover:bg-[#4532bd] bg-dark-blue"
@@ -52,9 +37,10 @@ const CategoryTable = () => {
           </div>
         </dialog>
       </div>
+
       <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
         <table className="w-full text-sm text-left border rtl:text-right">
-          <thead className="text-xs text-white bg-dark-blue">
+          <thead className="text-xs bg-light-blue-100">
             <tr className="text-center">
               {titleTable.map((title, index) => (
                 <th
@@ -67,8 +53,9 @@ const CategoryTable = () => {
               ))}
             </tr>
           </thead>
+
           <tbody>
-            {currentItems?.map((category, index) => {
+            {data?.category?.map((category, index) => {
               return (
                 <tr
                   key={index}
@@ -80,9 +67,7 @@ const CategoryTable = () => {
                   >
                     {(index += 1)}
                   </th>
-                  <td className="py-3 pr-2 font-bold border-x">
-                    {category?.name}
-                  </td>
+                  <td className="py-3 pr-2 border-x">{category?.name}</td>
                   <td className="px-2 py-3 font-semibold border-x">
                     <div className="flex items-center justify-center">
                       <img
@@ -99,16 +84,17 @@ const CategoryTable = () => {
                   >
                     {category.available ? "Tersedia" : "Tidak Tersedia"}
                   </td>
+
                   <td className="flex items-center justify-center gap-2 px-2 pt-5 lg:py-5">
                     <button
                       onClick={() =>
-                        document.getElementById("edit-category").showModal()
+                        document.getElementById("edit").showModal()
                       }
                       className="px-2 text-white rounded-full bg-dark-blue"
                     >
                       Ubah
                     </button>
-                    <dialog id="edit-category" className="modal">
+                    <dialog id="edit" className="modal">
                       <div className="modal-box">
                         <form method="dialog">
                           <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
@@ -124,20 +110,20 @@ const CategoryTable = () => {
                     </dialog>
                     <button
                       onClick={() =>
-                        document.getElementById("delete-category").showModal()
+                        document.getElementById("delete").showModal()
                       }
                       className="px-2 text-white rounded-full bg-warning"
                     >
                       Hapus
                     </button>
                     <dialog
-                      id="delete-category"
+                      id="delete"
                       className="modal modal-bottom sm:modal-middle"
                     >
                       <div className="modal-box">
                         <h3 className="text-lg font-bold">Hapus!</h3>
                         <p className="py-4 text-base">
-                          Apakah anda yakin ingin menghapus categori ini?
+                          Apakah anda yakin ingin menghapus kelas ini?
                         </p>
                         <div className="flex justify-center modal-action">
                           <DeleteCategory IdCategory={category?.id} />
@@ -150,23 +136,6 @@ const CategoryTable = () => {
             })}
           </tbody>
         </table>
-      </div>
-      <div className="flex items-center justify-center mt-7">
-        <div className="join">
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index}
-              className={`join-item btn btn-md ${
-                currentPage === index + 1
-                  ? "btn-active bg-dark-blue hover:bg-[#4d0dfd] text-white"
-                  : ""
-              }`}
-              onClick={() => handlePageChange(index + 1)}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
       </div>
     </article>
   );

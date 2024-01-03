@@ -16,7 +16,6 @@ const ProfileUpdateForm = () => {
 
   const [image, setImage] = useState({ preview: "", data: "" });
   const [name, setName] = useState("");
-
   const [phoneNumber, setPhoneNumber] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
