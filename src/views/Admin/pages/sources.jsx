@@ -25,11 +25,17 @@ import EditSourceModal from "../components/edit-source-modal";
 const Sources = () => {
   const customHelper = createColumnHelper();
 
-  const { data: dataAllSource } = useGetAllSourcesQuery();
+  const {
+    data: dataAllSource,
+    isSuccess: isSuccessSource,
+    isLoading: isLoadingSource,
+    isError: isErrorSource,
+    error: errorSource,
+  } = useGetAllSourcesQuery();
   const {
     data: dataAllChapter,
-    isSuccess: isSuccessChapter,
     isLoading: isLoadingChapter,
+    isSuccess: isSuccessChapter,
     isError: isErrorChapter,
     error: errorChapter,
   } = useGetAllChapterQuery();
@@ -80,11 +86,11 @@ const Sources = () => {
 
   let content;
 
-  if (isLoadingChapter) {
+  if (isLoadingChapter && isLoadingSource) {
     content = <LoadingBar />;
   }
 
-  if (isErrorChapter) {
+  if (isErrorChapter && isErrorSource) {
     content = (
       <div className="sm:ml-64">
         <div className="py-5 px-14 bg-light-blue-100 lg:flex-row">
@@ -97,7 +103,7 @@ const Sources = () => {
             <h1 className="font-bold text-md lg:text-xl">Chapters</h1>
           </div>
           <div className="w-full text-center">
-            <p>{errorChapter?.data?.message}</p>
+            <p>{errorChapter?.data?.message && errorSource?.data?.message}</p>
           </div>
         </section>
       </div>
@@ -105,7 +111,7 @@ const Sources = () => {
   }
 
   const sourceList = useMemo(() => {
-    return dataAllSource?.source.map((source) => ({
+    return dataAllSource?.source?.map((source) => ({
       ...source,
       chapter: dataAllChapter?.chapter.find(
         (chapter) => chapter.id === source?.chapterId
@@ -120,7 +126,7 @@ const Sources = () => {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  if (isSuccessChapter) {
+  if (isSuccessChapter && isSuccessSource) {
     content = (
       <AdminLayout>
         <div className=" sm:ml-64">
@@ -137,7 +143,7 @@ const Sources = () => {
             <div className="overflow-x-auto">
               <table className="table border">
                 <thead>
-                  {table.getHeaderGroups().map((headerGroup) => (
+                  {table?.getHeaderGroups()?.map((headerGroup) => (
                     <tr key={headerGroup.id}>
                       {headerGroup.headers.map((header) => (
                         <th
@@ -154,13 +160,13 @@ const Sources = () => {
                   ))}
                 </thead>
                 <tbody>
-                  {table?.getRowModel().rows.map((row) => (
+                  {table?.getRowModel()?.rows?.map((row) => (
                     <tr key={row.id}>
                       {row?.getVisibleCells()?.map((cell) => (
-                        <td key={row.id} className="text-center">
+                        <td key={row?.id} className="text-center">
                           {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
+                            cell?.column.columnDef.cell,
+                            cell?.getContext()
                           )}
                         </td>
                       ))}
@@ -174,18 +180,18 @@ const Sources = () => {
               <div className="join">
                 <button
                   onClick={() => {
-                    table.setPageIndex(0);
+                    table?.setPageIndex(0);
                   }}
-                  disabled={!table.getCanPreviousPage()}
+                  disabled={!table?.getCanPreviousPage()}
                   className="join-item btn btn-primary"
                 >
                   <ChevronFirstIcon className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => {
-                    table.previousPage();
+                    table?.previousPage();
                   }}
-                  disabled={!table.getCanPreviousPage()}
+                  disabled={!table?.getCanPreviousPage()}
                   className="join-item btn btn-primary"
                 >
                   <ChevronLeftIcon className="w-4 h-4" />
@@ -196,23 +202,23 @@ const Sources = () => {
                 >
                   <p>
                     {table?.getState().pagination.pageIndex + 1} of{" "}
-                    {table.getPageCount()}
+                    {table?.getPageCount()}
                   </p>
                 </div>
                 <button
                   onClick={() => {
-                    table.nextPage();
+                    table?.nextPage();
                   }}
-                  disabled={!table.getCanNextPage()}
+                  disabled={!table?.getCanNextPage()}
                   className="join-item btn btn-primary"
                 >
                   <ChevronRightIcon className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => {
-                    table.setPageIndex(table.getPageCount() - 1);
+                    table?.setPageIndex(table?.getPageCount() - 1);
                   }}
-                  disabled={!table.getCanNextPage()}
+                  disabled={!table?.getCanNextPage()}
                   className="join-item btn btn-primary"
                 >
                   <ChevronLastIcon className="w-4 h-4" />

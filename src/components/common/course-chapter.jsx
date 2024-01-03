@@ -52,11 +52,11 @@ const CourseChapter = ({ chapters, status }) => {
                         <p className="font-semibold">{(number += 1)}</p>
                       </div>
                       <p
-                        className={
+                        className={`capitalize ${
                           Number(watchId) === source?.id
                             ? "text-white"
                             : "text-black"
-                        }
+                        }`}
                       >
                         {source?.name}
                       </p>

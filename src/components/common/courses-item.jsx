@@ -6,9 +6,13 @@ import {
   Clock9Icon,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectedToken } from "@/stores/auth/auth.selector";
 
 const CoursesItem = ({ course }) => {
   const { pathname } = useLocation();
+
+  const token = useSelector(selectedToken);
 
   const isBuyed = course?.status === "paid" ? true : false;
 
@@ -69,20 +73,37 @@ const CoursesItem = ({ course }) => {
           </div>
         </div>
         <div>
-          {course?.type === "premium" ? (
-            <div className="px-3 py-1 text-sm font-semibold text-white rounded-full w-fit bg-soft-blue">
-              <div className="flex flex-row items-center gap-x-2">
-                <GemIcon className="w-4 h-4" />
-                <span>Beli Rp {course?.price}.000</span>
+          {token !== null && course?.persentaseProgres ? (
+            <>
+              <div className="relative">
+                <progress
+                  className="w-56 h-6 progress progress-primary"
+                  value={course?.progres}
+                  max="10"
+                ></progress>
+                <div className="absolute transform translate-x-2 -top-0 text-warning">
+                  {course?.persentaseProgres}
+                </div>
               </div>
-            </div>
+            </>
           ) : (
-            <div className="px-3 py-1 text-sm font-semibold text-white rounded-full w-fit bg-soft-blue">
-              <div className="flex flex-row items-center gap-x-2">
-                <GemIcon className="w-4 h-4" />
-                <span>Gratis</span>
-              </div>
-            </div>
+            <>
+              {course?.type === "premium" ? (
+                <div className="px-3 py-1 text-sm font-semibold text-white rounded-full w-fit bg-soft-blue">
+                  <div className="flex flex-row items-center gap-x-2">
+                    <GemIcon className="w-4 h-4" />
+                    <span>Beli Rp {course?.price}.000</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="px-3 py-1 text-sm font-semibold text-white rounded-full w-fit bg-soft-blue">
+                  <div className="flex flex-row items-center gap-x-2">
+                    <GemIcon className="w-4 h-4" />
+                    <span>Gratis</span>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
