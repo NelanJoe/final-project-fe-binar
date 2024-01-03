@@ -92,14 +92,16 @@ const CoursesItem = ({ course }) => {
                 <div className="px-3 py-1 text-sm font-semibold text-white rounded-full w-fit bg-soft-blue">
                   <div className="flex flex-row items-center gap-x-2">
                     <GemIcon className="w-4 h-4" />
-                    <span>Beli Rp {course?.price}.000</span>
+                    <span className="capitalize">
+                      Beli Rp {course?.price}.000
+                    </span>
                   </div>
                 </div>
               ) : (
                 <div className="px-3 py-1 text-sm font-semibold text-white rounded-full w-fit bg-soft-blue">
                   <div className="flex flex-row items-center gap-x-2">
                     <GemIcon className="w-4 h-4" />
-                    <span>Gratis</span>
+                    <span className="capitalize">Gratis</span>
                   </div>
                 </div>
               )}
