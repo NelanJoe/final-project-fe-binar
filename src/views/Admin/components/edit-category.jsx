@@ -46,7 +46,7 @@ const EditCategory = ({ categoryName, categoryImage, categoryId }) => {
 
         window.location.reload();
 
-        document.getElementById("edit").close();
+        document.getElementById("edit-category").close();
       }
     } catch (error) {
       toast.error(error?.data?.message);

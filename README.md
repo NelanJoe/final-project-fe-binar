@@ -28,6 +28,7 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
 
 ## Tech Stack
 
+<<<<<<< HEAD
 | Backend Tech Stack |                                                       |
 | ------------------ | ----------------------------------------------------- |
 | Name               | Link                                                  |
@@ -36,6 +37,15 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
 | Swagger UI         | [Swagger UI ↗️](https://swagger.io/tools/swagger-ui/) |
 | Image Kit          | [Image Kit ↗️](https://imagekit.io/)                  |
 | PostgreSQL         | [PostgreSQL ↗️](https://www.postgresql.org/)          |
+=======
+| Backend Tech Stack |                                              |
+| ------------------ | -------------------------------------------- |
+| Name               | Link                                         |
+| ExpressJs          | [ExpressJS ↗️](https://expressjs.com/)       |
+| Prisma             | [Prisma ↗️](https://www.prisma.io/)          |
+| Image Kit          | [Image Kit ↗️](https://imagekit.io/)         |
+| PostgreSQL         | [PostgreSQL ↗️](https://www.postgresql.org/) |
+>>>>>>> 95863103204166d301a49c2bcab11c85a9d9634b
 
 | Frontend Tech Stack  |                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------- |
@@ -49,6 +59,7 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
 | Tanstack React Table | [Tanstack React Table ↗️](https://tanstack.com/table/v8/docs/guide/introduction) |
 | React Hot Toast      | [React Hot Toast ↗️](https://react-hot-toast.com/)                               |
 
+<<<<<<< HEAD
 ## Link Production, Staging, and Documentation
 
 - **Backend Production and Documentation**
@@ -64,6 +75,9 @@ Aplikasi ini juga dilengkapi dengan berbagai fitur pendukung yang memudahkan pen
   2. **[Production ↗️](https://last-king-academy.vercel.app/)**
 
 ## Summary
+=======
+## Summery
+>>>>>>> 95863103204166d301a49c2bcab11c85a9d9634b
 
 MOOC Last King Academy merupakan aplikasi pembelajaran daring yang lahir dari semangat memenuhi tugas project akhir Binar Academy, namun tidak semata-mata hanya demi kelulusan. Aplikasi ini mencita-citakan menjadi sarana pendidikan berkualitas dan mudah diakses bagi masyarakat Indonesia. Dibekali kursus beragam dari berbagai bidang ilmu, MOOC Last King Academy didesain dengan prinsip-prinsip pembelajaran daring yang efektif, seperti kualitas terjamin, kemudahan akses, interaktivitas, dan fleksibilitas. Fitur-fitur pendukung seperti video berkualitas tinggi, materi interaktif, forum diskusi, dan sistem notifikasi turut meningkatkan kenyamanan belajar. MOOC Last King Academy hadir sebagai wujud kontribusi nyata bagi dunia pendidikan Indonesia, dengan harapan dapat menjadi jembatan ilmu yang efektif dan efisien bagi masyarakat yang haus akan pengetahuan.
 
@@ -81,7 +95,11 @@ MOOC Last King Academy merupakan aplikasi pembelajaran daring yang lahir dari se
   2. [Abdurahman Azis](https://github.com/Azzaxy1)
   3. [Kevin A. Marpaung](https://github.com/KevinMarpaung)
 
+<<<<<<< HEAD
 ## Link Github Project
+=======
+## Link Project
+>>>>>>> 95863103204166d301a49c2bcab11c85a9d9634b
 
 - **[Repository Backend ↗️](https://github.com/jonathanqwerty/FINAL-PROJECT-KM5-B16)**
 - **[Repository Frontend ↗️](https://github.com/NelanJoe/final-project-fe-binar)**

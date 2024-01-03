@@ -83,25 +83,33 @@ const AdminLayout = ({ children, title }) => {
                 </Link>
               </li>
               <li>
+                <Link
+                  to="/admin-kelas"
+                  className="flex items-center justify-center p-2 text-white hover:bg-soft-blue group"
+                >
+                  <span className="text-xl font-medium ms-3">Kelas</span>
+                </Link>
+              </li>
+              <li>
                 <details className="w-full text-center collapse collapse-arrow">
                   <summary className="text-xl font-medium text-white collapse-title">
                     Kelola Kelas mu
                   </summary>
                   <div className="collapse-content">
                     <Link
-                      to="/admin-kelola-kelas"
+                      to="/category"
                       className="flex items-center p-2 text-white hover:bg-soft-blue group"
                     >
                       <span className="flex-1 ms-3 whitespace-nowrap">
-                        Kelola Kelas
+                        Categorys
                       </span>
                     </Link>
                     <Link
-                      to="/my-class"
+                      to="/course"
                       className="flex items-center p-2 text-white hover:bg-soft-blue group"
                     >
                       <span className="flex-1 ms-3 whitespace-nowrap">
-                        My Class
+                        Courses
                       </span>
                     </Link>
                     <Link

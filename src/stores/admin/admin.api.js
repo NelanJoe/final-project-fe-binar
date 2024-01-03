@@ -86,6 +86,41 @@ export const adminApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    getAllCourse: builder.query({
+      query: () => {
+        return {
+          url: "/admin/course",
+          method: "GET",
+        };
+      },
+    }),
+    postCourse: builder.mutation({
+      query: ({ categoryId, data }) => {
+        return {
+          url: `/admin/course/create/${categoryId}`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    putEditCourse: builder.mutation({
+      query: ({ id, data }) => {
+        return {
+          url: `/admin/course/edit/${id}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+    }),
+    putDeleteCourse: builder.mutation({
+      query: ({ courseId, data }) => {
+        return {
+          url: `/admin/course/delete/${courseId}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+    }),
     getAllChapter: builder.query({
       query: () => "/admin/chapter",
     }),
@@ -125,10 +160,17 @@ export const {
   useGetActivePremiumQuery,
   useGetAdminDashboardQuery,
   useGetAdminKelolaKelasQuery,
+
   useGetAllCategorysQuery,
   usePostCategoryMutation,
   usePutEditCategoryMutation,
   usePutDeleteCategoryMutation,
+
+  useGetAllCourseQuery,
+  usePostCourseMutation,
+  usePutEditCourseMutation,
+  usePutDeleteCourseMutation,
+
   useGetAllChapterQuery,
   useGetChapterByIdQuery,
   usePutChapterMutation,
