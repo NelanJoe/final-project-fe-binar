@@ -52,7 +52,7 @@ const Sources = () => {
     }),
     customHelper.accessor("name", {
       header: "Nama Source",
-      cell: (info) => <span>{info?.getValue()}</span>,
+      cell: (info) => <span className="capitalize">{info?.getValue()}</span>,
     }),
     customHelper.accessor("link", {
       header: "Link Video",

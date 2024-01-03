@@ -1,7 +1,5 @@
-import { UsersIcon } from "lucide-react";
-
 import { useGetActiveUserQuery } from "@/stores";
-
+import { UsersIcon } from "lucide-react";
 import ActiveClass from "./active-class";
 import ActivePremium from "./active-premium";
 
