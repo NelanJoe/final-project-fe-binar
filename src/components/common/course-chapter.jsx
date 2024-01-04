@@ -5,7 +5,12 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
-import { LockIcon, PauseCircleIcon, PlayCircleIcon } from "lucide-react";
+import {
+  LockIcon,
+  PauseCircleIcon,
+  PlayCircleIcon,
+  CheckIcon,
+} from "lucide-react";
 
 const CourseChapter = ({ chapters, status }) => {
   const { id } = useParams();
@@ -52,14 +57,17 @@ const CourseChapter = ({ chapters, status }) => {
                         <p className="font-semibold">{(number += 1)}</p>
                       </div>
                       <p
-                        className={
+                        className={`capitalize ${
                           Number(watchId) === source?.id
                             ? "text-white"
                             : "text-black"
-                        }
+                        }`}
                       >
                         {source?.name}
                       </p>
+                      {source?.read === true ? (
+                        <CheckIcon className="w-5 h-5 text-green-500" />
+                      ) : null}
                     </div>
                     {status === "paid" || status !== "notPaid" ? (
                       Number(watchId) === source?.id ? (

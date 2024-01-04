@@ -44,7 +44,7 @@ const MyCoursesDetail = () => {
 
   const sources = course?.chapters?.find(
     (chapter) => chapter?.title === chapterTitle
-  ).sources;
+  )?.sources;
 
   const urlYoutube =
     sources?.find((item) => item?.id === Number(watchId))?.link ??
@@ -219,7 +219,7 @@ const MyCoursesDetail = () => {
                   <progress
                     className="w-32 h-2.5 progress progress-success"
                     value={data?.course?.progres}
-                    max="100"
+                    max="10"
                   ></progress>
                 </div>
                 <CourseChapter

@@ -26,7 +26,6 @@ const CourseDescription = ({ course, goals }) => {
 
   const { data: dataProfile } = useGetProfileQuery();
 
-
   // Rating
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
@@ -35,7 +34,6 @@ const CourseDescription = ({ course, goals }) => {
 
   const [postCourseReview, { isLoading: isLoadingPostCourse }] =
     usePostCourseReviewMutation();
-
 
   let content;
 
