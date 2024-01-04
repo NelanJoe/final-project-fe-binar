@@ -14,7 +14,6 @@ import {
   Chapters,
   Course,
 } from "@/views/Admin";
-import KelolaKelas from "./views/Admin/pages/kelola-kelas";
 
 import Courses from "@/views/Courses";
 import CoursesDetail from "@/views/Courses/pages/courses-detail";
