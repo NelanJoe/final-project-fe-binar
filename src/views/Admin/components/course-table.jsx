@@ -71,7 +71,7 @@ const CourseTable = () => {
           </div>
         </dialog>
       </div>
-      <div className="relative mt-4 mb-10 overflow-x-auto sm:rounded-lg">
+      <div className="relative mt-4 mb-10 overflow-x-auto">
         <table className="w-full text-sm text-left border rtl:text-right">
           <thead className="text-xs text-white bg-dark-blue">
             <tr className="text-center">

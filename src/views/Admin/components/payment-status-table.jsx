@@ -47,17 +47,16 @@ const PaymentStatusTable = () => {
       <article>
         <div className="flex items-center justify-between px-16">
           <h1 className="font-bold text-md lg:text-xl">Status Pembayaran</h1>
-          
         </div>
         <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
           <table className="w-full text-sm text-left border rtl:text-right">
-            <thead className="text-sm bg-light-blue-100">
-              <tr  className="text-center">
+            <thead className="text-sm text-white bg-dark-blue">
+              <tr className="text-center">
                 {titleTable?.map((title, index) => (
                   <th key={index} scope="col" className="px-2 py-3 border-x">
-                  {title}
-                </th>
-                  ))}
+                    {title}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -102,23 +101,23 @@ const PaymentStatusTable = () => {
             </tbody>
           </table>
         </div>
-          <div className="flex items-center justify-center mt-7">
-            <div className="join">
-              {[1, 2, 3, 4, 5, 6, 7].map((pageNumber) => (
-                <button
-                  key={pageNumber}
-                  onClick={() => handleShowPage(pageNumber)}
-                  className={`join-item btn btn-md ${
-                    pageNumber === +page
-                      ? "btn-active bg-dark-blue text-white hover:bg-[#5d4bd3]"
-                      : ""
-                  }`}
-                >
-                  {pageNumber}
-                </button>
-              ))}
-            </div>
+        <div className="flex items-center justify-center mt-7">
+          <div className="join">
+            {[1, 2, 3, 4, 5, 6, 7].map((pageNumber) => (
+              <button
+                key={pageNumber}
+                onClick={() => handleShowPage(pageNumber)}
+                className={`join-item btn btn-md ${
+                  pageNumber === +page
+                    ? "btn-active bg-dark-blue text-white hover:bg-[#5d4bd3]"
+                    : ""
+                }`}
+              >
+                {pageNumber}
+              </button>
+            ))}
           </div>
+        </div>
       </article>
     );
 };
