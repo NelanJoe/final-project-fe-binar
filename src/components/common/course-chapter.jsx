@@ -18,8 +18,8 @@ const CourseChapter = ({ chapters, status }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const handleClick = (chapter, source) => {
-    navigate(`/my-courses/${id}?chapterTitle=${chapter}&watchId=${source?.id}`);
+  const handleClick = (title, source) => {
+    navigate(`/my-courses/${id}?chapterTitle=${title}&watchId=${source?.id}`);
   };
 
   const watchId = searchParams.get("watchId") || "";
@@ -30,7 +30,7 @@ const CourseChapter = ({ chapters, status }) => {
         <div key={chapter.id} className="space-y-4">
           <div className="flex items-center justify-between font-semibold">
             <h3 className="text-dark-blue">
-              {chapter?.title || `Chapter ${(number += 1)}`}
+              {chapter?.tittle || `Chapter ${(number += 1)}`}
             </h3>
             <p className="text-[#4297ff]">{chapter?.duration} Menit</p>
           </div>
@@ -42,7 +42,7 @@ const CourseChapter = ({ chapters, status }) => {
                     Number(watchId) === source?.id &&
                     "p-2 bg-dark-blue rounded-md"
                   }`}
-                  onClick={() => handleClick(chapter.title, source)}
+                  onClick={() => handleClick(chapter?.tittle, source)}
                   disabled={pathname === `/courses/${id}`}
                 >
                   <div className="flex flex-row items-center justify-between">
