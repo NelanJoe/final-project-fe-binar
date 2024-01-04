@@ -68,7 +68,6 @@ export default function App() {
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="admin-dashboard" element={<AdminDashboard />} />
           <Route path="admin-kelola-kelas" element={<KelolaKelas />} />
-          <Route path="admin-kelas" element={<KelolaKelas />} />
           <Route path="category" element={<Category />} />
           <Route path="course" element={<Course />} />
           <Route path="sources" element={<Sources />} />

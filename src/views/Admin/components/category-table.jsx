@@ -1,9 +1,10 @@
-import LoadingBar from "@/components/ui/LoadingBar";
+import { PlusCircle } from "lucide-react";
 
 import { useGetAllCategorysQuery } from "@/stores";
+
 import FormAddCategory from "./form-add-category";
-import { PlusCircle } from "lucide-react";
 import EditCategory from "./edit-category";
+import LoadingBar from "@/components/ui/LoadingBar";
 import DeleteCategory from "./delete-category";
 
 const CategoryTable = () => {
@@ -18,7 +19,7 @@ const CategoryTable = () => {
   return (
     <article>
       <div className="flex items-center justify-between px-16">
-        <h1 className="font-bold text-md lg:text-xl">Category</h1>
+        <h1 className="font-bold text-md lg:text-xl">Categorys</h1>
         <button
           onClick={() => document.getElementById("create").showModal()}
           className="flex items-center ml-2 gap-2 px-2 py-[2px] text-base text-white rounded-full hover:bg-[#4532bd] bg-dark-blue"
@@ -37,10 +38,9 @@ const CategoryTable = () => {
           </div>
         </dialog>
       </div>
-
       <div className="relative px-16 mt-4 mb-10 overflow-x-auto sm:rounded-lg">
         <table className="w-full text-sm text-left border rtl:text-right">
-          <thead className="text-xs bg-light-blue-100">
+          <thead className="text-xs text-white bg-dark-blue">
             <tr className="text-center">
               {titleTable.map((title, index) => (
                 <th
@@ -84,7 +84,6 @@ const CategoryTable = () => {
                   >
                     {category.available ? "Tersedia" : "Tidak Tersedia"}
                   </td>
-
                   <td className="flex items-center justify-center gap-2 px-2 pt-5 lg:py-5">
                     <button
                       onClick={() =>
