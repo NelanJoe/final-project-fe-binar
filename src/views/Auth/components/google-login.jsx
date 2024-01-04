@@ -6,7 +6,7 @@ import googleLogo from "@/assets/images/google.svg";
 
 import { useGoogleLogin } from "@react-oauth/google";
 import { useLoginGoogleMutation } from "@/stores";
-import { setToken } from "@/stores/auth/auth.slice";
+import { setGoogleLogin, setToken } from "@/stores/auth/auth.slice";
 import toast from "react-hot-toast";
 
 const GoogleLogin = ({ buttonText }) => {
@@ -24,6 +24,7 @@ const GoogleLogin = ({ buttonText }) => {
 
         const token = res.data.token;
         dispatch(setToken(token));
+        dispatch(setGoogleLogin(true));
 
         toast.success("Login Berhasil");
 
