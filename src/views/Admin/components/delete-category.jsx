@@ -17,7 +17,6 @@ const DeleteCategory = ({IdCategory}) => {
         window.location.reload();
         document.getElementById("delete").close();
       }
-    
     } catch (error) {
       toast.error(error?.data?.message);
     }
