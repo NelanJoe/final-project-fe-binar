@@ -14,7 +14,6 @@ import {
   Chapters,
   Course,
 } from "@/views/Admin";
-import KelolaKelas from "./views/Admin/pages/kelola-kelas";
 
 import Courses from "@/views/Courses";
 import CoursesDetail from "@/views/Courses/pages/courses-detail";
@@ -67,7 +66,6 @@ export default function App() {
           {/* Admin page */}
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="admin-dashboard" element={<AdminDashboard />} />
-          <Route path="admin-kelas" element={<KelolaKelas />} />
           <Route path="category" element={<Category />} />
           <Route path="course" element={<Course />} />
           <Route path="sources" element={<Sources />} />
