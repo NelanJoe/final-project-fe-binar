@@ -38,13 +38,13 @@ const MyCoursesDetail = () => {
     usePostProgressVideoMutation();
 
   const watchId = searchParams.get("watchId") || "";
-  const chapterTitle = searchParams.get("chapterTitle") || "Chapter 1";
+  const chapterTitle = searchParams.get("chapterTitle") || "";
 
   const course = data?.course?.courses;
 
-  const sources = course?.chapters?.find(
-    (chapter) => chapter?.title === chapterTitle
-  )?.sources;
+  const sources = course?.chapters?.find((chapter) => {
+    return chapter?.tittle === chapterTitle;
+  })?.sources;
 
   const urlYoutube =
     sources?.find((item) => item?.id === Number(watchId))?.link ??
