@@ -149,7 +149,7 @@ const Chapters = () => {
             </div>
 
             <div className="w-full overflow-x-auto">
-              <table className="table border table-sm lg:table-md table-zebra">
+              <table className="table border table-sm lg:table-md">
                 <thead className="text-white bg-dark-blue">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <tr key={headerGroup.id}>
