@@ -1,13 +1,13 @@
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import googleLogo from "@/assets/images/google.svg";
 
 import { useGoogleLogin } from "@react-oauth/google";
-import { useLoginGoogleMutation } from '@/stores';
-import { setToken } from '@/stores/auth/auth.slice';
-import toast from 'react-hot-toast';
+import { useLoginGoogleMutation } from "@/stores";
+import { setGoogleLogin, setToken } from "@/stores/auth/auth.slice";
+import toast from "react-hot-toast";
 
 const GoogleLogin = ({ buttonText }) => {
   const dispatch = useDispatch();
@@ -24,10 +24,11 @@ const GoogleLogin = ({ buttonText }) => {
 
         const token = res.data.token;
         dispatch(setToken(token));
+        dispatch(setGoogleLogin(true));
 
-        toast.success('Login Berhasil');
+        toast.success("Login Berhasil");
 
-        navigate('/');
+        navigate("/");
       } catch (error) {
         toast.error(`Error: ${error?.data?.error}`);
       }
