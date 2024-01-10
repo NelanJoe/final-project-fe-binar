@@ -9,6 +9,19 @@ const categoryApi = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      transformResponse: (result) => {
+        return result?.categories;
+      },
+      providesTags: (result) => {
+        if (result?.categories) {
+          return [
+            { type: "Category", id: "LIST" },
+            ...result.categories.map(({ id }) => ({ type: "Category", id })),
+          ];
+        } else {
+          return [{ type: "Category", id: "LIST" }];
+        }
+      },
     }),
   }),
 });

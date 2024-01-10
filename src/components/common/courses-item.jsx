@@ -5,31 +5,34 @@ import {
   BookOpenTextIcon,
   Clock9Icon,
 } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectedToken } from "@/stores/auth/auth.selector";
 
 const CoursesItem = ({ course }) => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const token = useSelector(selectedToken);
 
   const isBuyed = course?.status === "paid" ? true : false;
 
-  let redirect;
-  if (pathname === "/my-courses") {
-    redirect = `/my-courses/${course?.id}`;
-  } else if (pathname === "/courses" || pathname === "/") {
-    redirect = `/courses/${course?.id}`;
-  } else {
-    redirect = `/my-courses/${course?.id}`;
-  }
+  const onRedirect = () => {
+    if (pathname === "/my-courses") {
+      navigate(`/my-courses/${course?.id}`);
+    } else if (pathname === "/courses" || pathname === "/") {
+      navigate(`/courses/${course?.id}`);
+    } else {
+      navigate(`/my-courses/${course?.id}`);
+    }
+  };
 
   return (
     <div
-      className={`rounded-3xl shadow-md w-full h-fit border ${
+      className={`rounded-3xl shadow-md w-full h-fit border cursor-pointer ${
         isBuyed && "border-yellow-500"
       }`}
+      onMouseDown={onRedirect}
     >
       <div>
         <img
@@ -49,12 +52,10 @@ const CoursesItem = ({ course }) => {
           </span>
         </div>
         <div>
-          <Link to={redirect}>
-            <h3 className="text-lg font-semibold break-words">
-              {course?.title || "Membuat web sederhana menggunakan reactjs"}
-            </h3>
-            <p className="text-base">by {course?.outhor || "Susan Doe"}</p>
-          </Link>
+          <h3 className="text-lg font-semibold break-words">
+            {course?.title || "Membuat web sederhana menggunakan reactjs"}
+          </h3>
+          <p className="text-base">by {course?.outhor || "Susan Doe"}</p>
         </div>
         <div className="flex items-start justify-between md:flex-row md:items-center">
           <div className="flex flex-row items-center text-sm gap-x-1 md:text-base">

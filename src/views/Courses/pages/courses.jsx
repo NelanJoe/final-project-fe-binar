@@ -35,8 +35,13 @@ const Courses = () => {
     };
   }, [title, type, category, filter, level]);
 
-  const { data, isLoading, isSuccess, isError, error } =
-    useGetCoursesQuery(paramsCourses);
+  const {
+    data: courses,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetCoursesQuery(paramsCourses);
 
   const openModal = () => {
     document.querySelector("#course-filter")?.showModal();
@@ -160,7 +165,7 @@ const Courses = () => {
                   <CourseCTA />
                   <div className="my-4">
                     <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                      <CoursesList courses={data?.course} />
+                      <CoursesList courses={courses} />
                     </div>
                   </div>
                 </div>

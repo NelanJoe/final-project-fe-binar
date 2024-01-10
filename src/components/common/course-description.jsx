@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, redirect, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { selectedToken } from "@/stores/auth/auth.selector";
@@ -12,7 +12,6 @@ import {
 import toast from "react-hot-toast";
 
 const CourseDescription = ({ course, goals }) => {
-  const navigate = useNavigate();
   const { id } = useParams();
   const token = useSelector(selectedToken);
   const { pathname } = useLocation();
@@ -93,8 +92,8 @@ const CourseDescription = ({ course, goals }) => {
 
       if (response?.success === "success") {
         toast.success(response.message);
-        navigate(`/my-courses/${id}`);
-        window.location.reload();
+
+        throw redirect(`/my-courses/${id}`);
       }
     } catch (error) {
       toast.error(`${error?.data?.message}`, {
