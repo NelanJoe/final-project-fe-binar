@@ -2,11 +2,9 @@ import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ListFilterIcon } from "lucide-react";
 
-import BaseLyout from "@/layouts/base.layout";
+import BaseLayout from "@/layouts/base.layout";
 
 import { useGetMyCoursesQuery } from "@/stores";
-
-import LoadingBar from "@/components/ui/LoadingBar";
 
 import CoursesList from "@/components/common/courses-list";
 import CourseCTA from "@/components/common/course-cta";
@@ -43,132 +41,75 @@ const MyCourses = () => {
   let content;
 
   if (isLoading) {
-    content = <LoadingBar />;
+    content = (
+      <div className="flex items-center justify-center my-80">
+        <span className="loading loading-dots loading-md"></span>
+      </div>
+    );
   }
 
   if (isError) {
-    content = (
-      <BaseLyout title="My Courses">
-        <main>
-          <section className="min-h-screen mx-4 mt-12 max-w-7xl lg:mx-auto">
-            <section>
-              <div className="flex flex-col justify-between lg:flex-row gap-y-2">
-                <h2 className="text-xl font-semibold">Kelasku</h2>
-              </div>
-            </section>
-
-            <section className="mt-3 lg:mt-10">
-              <div className="flex flex-col justify-between lg:flex-row gap-x-5">
-                <div className="hidden lg:block lg:w-[20%] mb-5 lg:mb-0">
-                  <CourseFilter />
-                </div>
-
-                {/* Mobile verse */}
-                <div className="flex flex-row lg:hidden gap-x-4">
-                  <button
-                    onClick={openModal}
-                    className="text-white btn btn-primary"
-                  >
-                    <ListFilterIcon />
-                    <span>Filter</span>
-                  </button>
-                  <CourseFilterSelect />
-                </div>
-
-                <div className="w-full lg:w-[80%]">
-                  <CourseCTA />
-                  <div className="my-4">
-                    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                      <p className="capitalize text-warning">
-                        {error?.data?.message}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </section>
-          <dialog id="course-filter" className="modal">
-            <div className="modal-box">
-              <form method="dialog">
-                <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
-                  ✕
-                </button>
-              </form>
-              <div className="p-4">
-                <CourseFilter />
-              </div>
-            </div>
-          </dialog>
-        </main>
-      </BaseLyout>
-    );
+    content = <p className="capitalize text-warning">{error?.data?.message}</p>;
   }
 
   if (isSuccess) {
     content = (
-      <BaseLyout title="My Courses">
-        <main>
-          <section className="min-h-screen mx-4 mt-12 max-w-7xl lg:mx-auto">
-            <section>
-              <div className="flex flex-col justify-between lg:flex-row gap-y-2">
-                <h2 className="text-xl font-semibold">Kelasku</h2>
-              </div>
-            </section>
-
-            <section className="mt-3 lg:mt-10">
-              <div className="flex flex-col justify-between lg:flex-row gap-x-5">
-                <div className="hidden lg:block lg:w-[20%] mb-5 lg:mb-0">
-                  <CourseFilter />
-                </div>
-
-                {/* Mobile verse */}
-                <div className="flex flex-row lg:hidden gap-x-4">
-                  <button
-                    onClick={openModal}
-                    className="text-white btn btn-primary"
-                  >
-                    <ListFilterIcon />
-                    <span>Filter</span>
-                  </button>
-                  <CourseFilterSelect />
-                </div>
-
-                <div className="w-full lg:w-[80%]">
-                  <CourseCTA />
-                  <div className="my-4">
-                    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                      {data?.MyCourse ? (
-                        <CoursesList courses={data?.MyCourse} />
-                      ) : (
-                        <div>
-                          <h2>Not found courses</h2>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </section>
-          <dialog id="course-filter" className="modal">
-            <div className="modal-box">
-              <form method="dialog">
-                <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
-                  ✕
-                </button>
-              </form>
-              <div className="p-4">
-                <CourseFilter />
-              </div>
-            </div>
-          </dialog>
-        </main>
-      </BaseLyout>
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <CoursesList courses={data?.MyCourse} />
+      </div>
     );
   }
 
-  return content;
+  return (
+    <BaseLayout title="My Courses">
+      <main>
+        <section className="min-h-screen mx-4 mt-12 max-w-7xl lg:mx-auto">
+          <section>
+            <div className="flex flex-col justify-between lg:flex-row gap-y-2">
+              <h2 className="text-xl font-semibold">Kelasku</h2>
+            </div>
+          </section>
+
+          <section className="mt-3 lg:mt-10">
+            <div className="flex flex-col justify-between lg:flex-row gap-x-5">
+              <div className="hidden lg:block lg:w-[20%] mb-5 lg:mb-0">
+                <CourseFilter />
+              </div>
+
+              {/* Mobile verse */}
+              <div className="flex flex-row lg:hidden gap-x-4">
+                <button
+                  onClick={openModal}
+                  className="text-white btn btn-primary"
+                >
+                  <ListFilterIcon />
+                  <span>Filter</span>
+                </button>
+                <CourseFilterSelect />
+              </div>
+
+              <div className="w-full lg:w-[80%]">
+                <CourseCTA />
+                <div className="my-4">{content}</div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <dialog id="course-filter" className="modal">
+          <div className="modal-box">
+            <form method="dialog">
+              <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
+                ✕
+              </button>
+            </form>
+            <div className="p-4">
+              <CourseFilter />
+            </div>
+          </div>
+        </dialog>
+      </main>
+    </BaseLayout>
+  );
 };
 
 export default MyCourses;

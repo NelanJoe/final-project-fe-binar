@@ -18,7 +18,8 @@ const CoursePaymentModal = () => {
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useGetDetailCoursePopupQuery(Number(id));
-  const [postOrderCourseById] = usePostOrderCourseByIdMutation();
+  const [postOrderCourseById, { isLoadingPostOrderCourse }] =
+    usePostOrderCourseByIdMutation();
 
   const handlePostOrderCourse = async () => {
     try {
@@ -100,12 +101,17 @@ const CoursePaymentModal = () => {
         </div>
         <button
           onClick={handlePostOrderCourse}
+          disabled={isLoadingPostOrderCourse}
           className="px-4 py-2 text-white border-2 border-white rounded-full shadow-md bg-dark-blue "
         >
-          <div className="flex items-center transition-all duration-300 ease-in gap-x-1 hover:gap-x-2">
-            <span>Beli Sekarang</span>
-            <ArrowRightCircleIcon className="w-6 h-6 " />
-          </div>
+          {isLoadingPostOrderCourse ? (
+            <span className="loading loading-spinner loading-sm"></span>
+          ) : (
+            <div className="flex items-center transition-all duration-300 ease-in gap-x-1 hover:gap-x-2">
+              <span>Beli Sekarang</span>
+              <ArrowRightCircleIcon className="w-6 h-6 " />
+            </div>
+          )}
         </button>
       </div>
     </dialog>

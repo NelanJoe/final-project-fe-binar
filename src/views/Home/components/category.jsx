@@ -3,16 +3,24 @@ import { Link } from "react-router-dom";
 import { useGetCategoriesQuery } from "@/stores";
 
 import CategoryItem from "./category-item";
-import LoadingBar from "@/components/ui/LoadingBar";
 
 const Category = () => {
-  const { data, isLoading, isSuccess, isError, error } =
-    useGetCategoriesQuery();
+  const {
+    data: categories,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetCategoriesQuery();
 
   let content;
 
   if (isLoading) {
-    content = <LoadingBar />;
+    content = (
+      <div className="flex items-center justify-center">
+        <span className="loading loading-dots loading-md"></span>
+      </div>
+    );
   }
 
   if (isError) {
@@ -21,25 +29,27 @@ const Category = () => {
 
   if (isSuccess) {
     content = (
-      <section className="py-8 bg-light-blue-100 md:px-4 lg:py-20">
-        <div className="mx-4 space-y-6 max-w-7xl md:mx-auto">
-          <div className="flex flex-row items-center justify-between">
-            <h3 className="text-xl font-semibold">Kategori Belajar</h3>
-            <Link to="/courses" className="font-semibold text-dark-blue">
-              Lihat Semua
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:grid-cols-3 xl:grid-cols-6">
-            {data?.categories?.map((category) => (
-              <CategoryItem key={category.id} category={category} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
+        {categories?.map((category) => (
+          <CategoryItem key={category.id} category={category} />
+        ))}
+      </div>
     );
   }
 
-  return content;
+  return (
+    <section className="py-8 bg-light-blue-100 md:px-4 lg:py-20">
+      <div className="mx-4 space-y-6 max-w-7xl lg:mx-auto">
+        <div className="flex flex-row items-center justify-between">
+          <h3 className="text-xl font-semibold">Kategori Belajar</h3>
+          <Link to="/courses" className="font-semibold text-dark-blue">
+            Lihat Semua
+          </Link>
+        </div>
+        {content}
+      </div>
+    </section>
+  );
 };
 
 export default Category;

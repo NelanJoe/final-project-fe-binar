@@ -9,6 +9,7 @@ const notificationaApi = apiSlice.injectEndpoints({
           url: "/me/notifications",
         };
       },
+      providesTags: ["Notification"],
     }),
   }),
 });

@@ -9,6 +9,7 @@ const profileApi = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["Profile"],
     }),
     updateProfile: builder.mutation({
       query: (data) => {
@@ -18,6 +19,7 @@ const profileApi = apiSlice.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["Profile"],
     }),
   }),
 });

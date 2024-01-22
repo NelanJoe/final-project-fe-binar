@@ -6,8 +6,13 @@ const CourseFilter = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const { data, isLoading, isSuccess, isError, error } =
-    useGetCategoriesQuery();
+  const {
+    data: categories,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetCategoriesQuery();
 
   const dataFilter = [
     {
@@ -125,7 +130,7 @@ const CourseFilter = () => {
   if (isSuccess) {
     contentFilterButton = (
       <>
-        {data?.categories.map((categori) => (
+        {categories.map((categori) => (
           <div key={categori.id} className="flex items-center gap-x-2">
             <button
               value={categori?.name}

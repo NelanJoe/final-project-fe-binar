@@ -1,9 +1,4 @@
-import {
-  Link,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { Link, redirect, useParams, useSearchParams } from "react-router-dom";
 import {
   ArrowLeftIcon,
   BookOpenTextIcon,
@@ -11,6 +6,7 @@ import {
   MessagesSquareIcon,
   ShieldPlusIcon,
 } from "lucide-react";
+import toast from "react-hot-toast";
 
 import {
   useGetMyCourseByIdQuery,
@@ -22,12 +18,10 @@ import CourseDescription from "@/components/common/course-description";
 import CourseChapter from "@/components/common/course-chapter";
 import YoutubeEmbed from "@/components/common/youtube-embed";
 import LoadingBar from "@/components/ui/LoadingBar";
-import toast from "react-hot-toast";
 
 const MyCoursesDetail = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
 
   const myCourseId = Number(id);
 
@@ -61,18 +55,16 @@ const MyCoursesDetail = () => {
 
       const response = await postProgressVideo(progressParams).unwrap();
 
-      if (response.success) {
+      if (response?.success) {
         toast.success(toast.success, {
           style: {
             textTransform: "capitalize",
           },
         });
 
-        navigate(
+        throw redirect(
           `/my-courses/${myCourseId}?chapterTitle=${chapterTitle}&watchId=${watchId}`
         );
-
-        window.location.reload();
       }
     } catch (error) {
       toast.error(error?.data?.message, {
@@ -109,7 +101,7 @@ const MyCoursesDetail = () => {
         <main className="min-h-screen">
           <section className="bg-light-blue">
             <div className="py-6 mx-4 max-w-7xl lg:mx-auto">
-              <Link to="/courses">
+              <Link to="/my-courses">
                 <button className="flex flex-row items-center space-x-3">
                   <ArrowLeftIcon className="w-6 h-6" />{" "}
                   <span>Kelas lainnya</span>

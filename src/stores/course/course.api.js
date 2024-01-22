@@ -9,6 +9,19 @@ const courseApi = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      transformResponse: (result) => {
+        return result?.popular;
+      },
+      providesTags: (result) => {
+        if (result?.popular) {
+          return [
+            { type: "Popular", id: "LIST" },
+            ...result.popular.map(({ id }) => ({ type: "Popular", id })),
+          ];
+        } else {
+          return [{ type: "Popular", id: "LIST" }];
+        }
+      },
     }),
     getCourses: builder.query({
       query: ({ keyword, type, filter, categori, level, page }) => {
@@ -16,6 +29,19 @@ const courseApi = apiSlice.injectEndpoints({
           url: `/course?search=${keyword}&type=${type}&filter=${filter}&kategori=${categori}&level=${level}&page=${page}`,
           method: "GET",
         };
+      },
+      transformResponse: (result) => {
+        return result?.course;
+      },
+      providesTags: (result) => {
+        if (result?.course) {
+          return [
+            { type: "Course", id: "LIST" },
+            ...result.course.map(({ id }) => ({ type: "Course", id })),
+          ];
+        } else {
+          return [{ type: "Course", id: "LIST" }];
+        }
       },
     }),
     getCourseById: builder.query({
@@ -25,6 +51,9 @@ const courseApi = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "Course", id: arg.id }];
+      },
     }),
     getDetailCoursePopup: builder.query({
       query: (courseId) => {
@@ -32,6 +61,9 @@ const courseApi = apiSlice.injectEndpoints({
           url: `/course/popup/${courseId}`,
           method: "GET",
         };
+      },
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "Course", id: arg.id }];
       },
     }),
     getCourseOrderById: builder.query({
@@ -41,6 +73,9 @@ const courseApi = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "Course", id: arg.id }];
+      },
     }),
     postOrderCourseById: builder.mutation({
       query: (courseId) => {
@@ -48,6 +83,9 @@ const courseApi = apiSlice.injectEndpoints({
           url: `/course/order/${courseId}`,
           method: "POST",
         };
+      },
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "Course", id: arg.id }];
       },
     }),
     patchOrderCourseById: builder.mutation({
@@ -58,6 +96,9 @@ const courseApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    invalidatesTags: (result, error, arg) => {
+      return [{ type: "MyCourse", id: arg.id }];
+    },
   }),
 });
 

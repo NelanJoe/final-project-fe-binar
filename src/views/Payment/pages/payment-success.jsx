@@ -9,7 +9,6 @@ const PaymentSuccess = () => {
 
   const handleMulaiBelajar = () => {
     navigate(`/my-courses`);
-    window.location.reload();
   };
 
   return (

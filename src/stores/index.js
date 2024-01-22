@@ -12,6 +12,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(apiSlice.middleware);
   },
+  devTools: import.meta.env.NODE_ENV !== "production",
 });
 
 setupListeners(store.dispatch);

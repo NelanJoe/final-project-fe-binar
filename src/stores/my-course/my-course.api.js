@@ -9,6 +9,16 @@ export const myCourseApi = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: (result) => {
+        if (result?.MyCourse) {
+          return [
+            { type: "MyCourse", id: "LIST" },
+            ...result.MyCourse.map(({ id }) => ({ type: "MyCourse", id })),
+          ];
+        } else {
+          return [{ type: "MyCourse", id: "LIST" }];
+        }
+      },
     }),
     getMyCourseById: builder.query({
       query: (id) => {
@@ -17,6 +27,9 @@ export const myCourseApi = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "MyCourse", id: arg.id }];
+      },
     }),
     getAllCourseReview: builder.query({
       query: (myCourseId) => {
@@ -24,6 +37,16 @@ export const myCourseApi = apiSlice.injectEndpoints({
           url: `/course/review/${myCourseId}`,
           method: "GET",
         };
+      },
+      providesTags: (result) => {
+        if (result?.review) {
+          return [
+            { type: "Review", id: "LIST" },
+            ...result.review.map(({ id }) => ({ type: "Review", id })),
+          ];
+        } else {
+          return [{ type: "Review", id: "LIST" }];
+        }
       },
     }),
     postCourseReview: builder.mutation({
@@ -34,6 +57,9 @@ export const myCourseApi = apiSlice.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "Review", id: arg.myCourseId }];
+      },
     }),
     postProgressVideo: builder.mutation({
       query: ({ myCourseId, videoId }) => {
@@ -41,6 +67,11 @@ export const myCourseApi = apiSlice.injectEndpoints({
           method: "POST",
           url: `/course/progres/${myCourseId}/${videoId}`,
         };
+      },
+      invalidatesTags: (result, error, arg) => {
+        if (arg) {
+          return [{ type: "MyCourse", id: arg.videoId }];
+        }
       },
     }),
   }),
